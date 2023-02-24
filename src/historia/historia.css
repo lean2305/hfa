@@ -1,0 +1,50 @@
+.esquerda{
+    width: 70%;
+    padding-top: 4%;
+    background-color: whitesmoke;
+    height: 100vh;
+    
+    flex-direction: column;
+}
+
+
+
+.direita{
+    width: 30%;
+    display: flex;
+    box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.5);
+}
+
+
+.pagina{
+    display: flex;
+}
+
+.imgbarra{
+    background-image: url(https://www.hfa.pt/storage/files/original/capital_social._5fdcc65e3a01b.jpg);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 40%;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.ImgText{
+    color: white;
+    padding-top: 28vh;
+    margin-left: 2%;
+    position: absolute;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.img{
+    height: 10%;
+    width: 50%;
+}
+
+.historia{
+    display: flex;
+    margin-top: 4%
+}
