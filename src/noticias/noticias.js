@@ -4,16 +4,6 @@ import './noticias.css';
 
 
 
-class Menu extends Component{
-    render() {
-        return(
-            <div className='direita'>
-              <p>{this.props.menu}</p>
-            </div>
-        );
-    }
-}
-
 
 class Quadrado extends Component{
     render() {
@@ -92,7 +82,15 @@ class Footer extends Component{
 }
 
 
-
+class Menu extends Component{
+    render() {
+        return(
+            <div>
+              <p>{this.props.menu}</p>
+            </div>
+        );
+    }
+}
 
 
 
@@ -110,23 +108,25 @@ function Noticias() {
             <Container>
                     <Row>
                         <Col sm={4}>
-                        <Noticia barra="Eventos" />
+                            <Noticia barra="Eventos" />
                         </Col>
+
                         <Col sm={4}>
-                        <Noticia barra="Eventos" />
+                            <Noticia barra="Eventos" />
                         </Col>
+
                         <Col sm={4}>
-                        <Noticia barra="Eventos" />
+                            <Noticia barra="Eventos" />
                         </Col>
                     </Row>
                     <Row>
                         <Col sm={4}>
-                        <Noticia barra="Eventos" />
+                            <Noticia barra="Eventos" />
                         </Col>
+
                         <Col sm={4}>
-                        <Noticia barra="Eventos" />
+                            <Noticia barra="Eventos" />
                         </Col>
-                       
                     </Row>
                 </Container>
             
@@ -135,8 +135,13 @@ function Noticias() {
            <Footer />
 
         </div>
+        
+        <div className='direita'>
 
             <Menu menu="MENU" />
+
+        </div>
+            
  
     
 
