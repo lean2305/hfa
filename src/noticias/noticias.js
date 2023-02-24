@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { setConfiguration } from 'react-grid-system';
 import { Container, Row, Col } from 'react-grid-system';
 import './noticias.css';
 
@@ -32,8 +31,7 @@ class Quadrado extends Component{
                     </div>
                         <div className='img'>
                             <img src="https://www.pulnet.com.br/uploads/img/servicos/16/thumb-840-370/3fea4195859a7cc9e862be43c2d5970e.jpg"  />
-                        </div>
-                        
+                        </div>       
                 </div>
                 
             </div>
@@ -60,21 +58,19 @@ class Noticia extends Component{
     render() {
         return(
             
-            <div  >
-               
-               
-            
-                        <img className='imgbarra' src="https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"  />
-                        
-                        <p className='p'>{this.props.barra}</p>
-                        <h4>PARTICIPAÇÃO FEIRA PRODUCTRÓNICA MUNIQUE</h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply texxt. It has roots in a piece of classical Latin...</p>
-                        <br /><p>15/02/2022</p> 
-                       
+            <div>
+                        <img className='imgbarra' src="https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"  />  
+                        <div className='texto'>
+                            <p className='p'>{this.props.barra}</p>
+                            <h4>PARTICIPAÇÃO FEIRA PRODUCTRÓNICA MUNIQUE</h4>
+                            <p>Contrary to popular belief, Lorem Ipsum is not simply texxt. It has roots in a piece of classical Latin...</p>
+                            <br /><p>15/02/2022</p> 
+                        </div>
             </div>
         );
     }
 }
+
 
 class Footer extends Component{
     render() {
