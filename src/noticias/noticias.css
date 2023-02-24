@@ -22,7 +22,7 @@
     display: flex;
     margin-left: 2%;
     margin-right: 2%;   
-    
+   font-size: 2vh;
 }
 
 .titulo{
@@ -30,6 +30,7 @@
     margin-top: 2%;
     margin-left: 3%;
     color: white;
+    
 }
 
 .pagina{
@@ -104,4 +105,32 @@
 
 .Copy{
     display: flex;
+}
+
+.barra_hora{
+     width: 100%;
+     height: 20vh;
+     margin-top: 2%;
+     font-size: xx-small;
+     
+}
+
+.svg_menu{
+    height: 5vh;
+    width: 5vh;
+}
+
+.text_menu{
+    margin-left: 4%;
+    margin-top: -1%;
+    font-weight: bolder;
+}
+
+.mais_noticias{
+    font-size: 2.1vh;
+}
+
+
+.div_noticia{
+    font-size: 2vh;
 }

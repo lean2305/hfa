@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { Container, Row, Col } from 'react-grid-system';
 import './noticias.css';
+import Clock from './clock';
+import ExibirDataAtual from './date';
 
 
 
@@ -34,7 +36,7 @@ class Quadrado extends Component{
 class Mais extends Component{
     render() {
         return(
-            <div>
+            <div className='mais_noticias'>
                
               <h2 className='mais'>{this.props.nomemeio}</h2>
               
@@ -48,7 +50,7 @@ class Noticia extends Component{
     render() {
         return(
             
-            <div>
+            <div className='div_noticia'>
                         <img className='imgbarra' src="https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"  />  
                         <div className='texto'>
                             <p className='p'>{this.props.barra}</p>
@@ -82,11 +84,28 @@ class Footer extends Component{
 }
 
 
-class Menu extends Component{
+class Hora extends Component{
     render() {
         return(
-            <div>
-              <p>{this.props.menu}</p>
+            <div className='barra_hora'>
+              
+                <Container>
+                    <Row>
+
+                        <Col sm={4}>
+                            <svg className='svg_menu' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+                            <p className='text_menu'>{this.props.menu}</p>
+                        </Col>
+
+                        <Col sm={4}>
+                            <Clock></Clock>
+                        </Col>
+                        
+                        <ExibirDataAtual></ExibirDataAtual>
+                        
+
+                    </Row>
+                </Container>
             </div>
         );
     }
@@ -138,7 +157,7 @@ function Noticias() {
         
         <div className='direita'>
 
-            <Menu menu="MENU" />
+            <Hora menu="MENU" />
 
         </div>
             
