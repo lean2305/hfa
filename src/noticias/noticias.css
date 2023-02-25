@@ -134,3 +134,15 @@
 .div_noticia{
     font-size: 2vh;
 }
+
+.conteudo_menu{
+
+    padding-top: 15%;
+    text-align: center;
+}
+
+.menu_botao{
+    padding-left: 3%;
+    text-align: left;
+    font-size: 1vh;
+}

@@ -31,6 +31,15 @@ function ExibirDataAtual() {
       }}>
         
       <h1>{dataAtual}</h1>
+      
+      <hr style={{
+        border: "none",
+        height: "3px",
+        backgroundColor: "#a5a5a5",
+        backgroundImage: "linear-gradient(to right, #a5a5a5 50%, transparent 50%)",
+        backgroundPosition: "right"
+      }} />
+
     </div>
   );
 }
