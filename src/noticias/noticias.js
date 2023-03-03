@@ -3,10 +3,10 @@ import { Container, Row, Col } from 'react-grid-system';
 import './noticias.css';
 import Clock from './clock';
 import ExibirDataAtual from './date';
+import React, { useState } from 'react';
 
 
-
-
+{/* Maior div do lado esquerdo da página */}
 class Quadrado extends Component{
     render() {
         return(
@@ -32,7 +32,7 @@ class Quadrado extends Component{
     }
 }
 
-
+{/* Texto simples de noticias */}
 class Mais extends Component{
     render() {
         return(
@@ -45,7 +45,7 @@ class Mais extends Component{
     }
 }
 
-
+{/* Parte onde ficam as noticias */}
 class Noticia extends Component{
     render() {
         return(
@@ -64,6 +64,7 @@ class Noticia extends Component{
 }
 
 
+{/* Rodapé dá pagina do lado esquerdo */}
 class Footer extends Component{
     render() {
         return( 
@@ -83,7 +84,7 @@ class Footer extends Component{
     }
 }
 
-
+{/* Conteudo do menu direito contendo imagem e texto */}
 class Conteudo_menu extends Component{
     render() {
         return( 
@@ -96,7 +97,7 @@ class Conteudo_menu extends Component{
     }
 }
 
-
+{/* Botões do menu direito */}
 class Botao extends Component{
     render() {
         return( 
@@ -115,12 +116,14 @@ class Botao extends Component{
 
 
 
-class Hora extends Component{
+
+{/* Rodapé do menu direito */}
+
+class Footer_menu extends Component{
     render() {
         return(
-            <div>
-                <svg className='svg_menu' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
-                <p className='text_menu'>{this.props.menu}</p>       
+            <div className='footer_menu'>
+                   <h1>Página principal</h1>
             </div>
         );
     }
@@ -130,7 +133,15 @@ class Hora extends Component{
 
 
 
+{/* Exibição de todos os componentes */}
 function Noticias() {
+    const [display, setDisplay] = useState('flex');
+    
+
+  function handleClick() {
+    setDisplay('none');
+  }
+    
     return (
      <div className='pagina'>
        
@@ -139,6 +150,7 @@ function Noticias() {
             <Mais nomemeio="MAIS NOTICIAS & EVENTOS" />
             
             <div className="container">
+                
             <Container>
                     <Row>
                         <Col sm={4}>
@@ -152,8 +164,6 @@ function Noticias() {
                         <Col sm={4}>
                             <Noticia barra="Eventos" />
                         </Col>
-                    </Row>
-                    <Row>
                         <Col sm={4}>
                             <Noticia barra="Eventos" />
                         </Col>
@@ -162,6 +172,7 @@ function Noticias() {
                             <Noticia barra="Eventos" />
                         </Col>
                     </Row>
+                    
                 </Container>
             
             </div>
@@ -170,16 +181,19 @@ function Noticias() {
 
         </div>
         
-        <div className='direita'>
-
-           
+        <div className='direita' style={{ display: display }}>
             <div className='barra_hora'>
               
                 <Container>
                     <Row>
 
                         <Col sm={4}>
-                            <Hora menu="MENU" />
+                            <div>
+                            <button onClick={handleClick} >
+                                <svg className='svg_menu' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+                                <p className='text_menu'>MENU</p>    
+                                </button>
+                            </div>
                         </Col>
 
                         <Col sm={4}>
@@ -205,18 +219,17 @@ function Noticias() {
                         </Col>
 
                     </Row>
+
+                    <Row>
+                        <Col>
+                            <Footer_menu />
+                        </Col>
+                    </Row>
                 </Container>
+                
             </div>
-            
-
         </div>
-            
- 
-    
-
      </div>
-     
-     
     );
   }
 
