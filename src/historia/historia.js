@@ -4,6 +4,8 @@ import { Container, Row, Col } from 'react-grid-system';
 import Clock from '../data_hora/clock';
 import ExibirDataAtual from '../data_hora/date';
 
+
+{/* Botão do menu direita */}
 class Menu extends Component{
     render() {
         return(
@@ -15,6 +17,7 @@ class Menu extends Component{
 }
 
 
+{/* Primeiro background com texto por cima */}
 class Img extends Component{
     render() {
         return(
@@ -26,18 +29,20 @@ class Img extends Component{
 }
 
 
+{/* Componente contendo a historia da hfa com uma imagem de lado */}
 class Texto extends Component{
     render() {
         return(
             <div className='historia'>
-                                    <p>A HFA-Henrique, Fernando & Alves, S.A. é uma PME, especializada na assemblagem e teste de equipamento eletrónico e de telecomunicações, em regime de subcontratação.
+                                    <p className='texto_historia'>A HFA-Henrique, Fernando & Alves, S.A. é uma PME, especializada na assemblagem e teste de equipamento eletrónico e de telecomunicações, em regime de subcontratação.
                     Fundada em 1995, o crescimento contínuo da empresa demonstra o seu compromisso em providenciar serviços de elevado valor acrescentado.
-                    Os produtos são assemblados e testados de acordo com os requisitos dos Clientes. O processo produtivo é facilmente adaptável às necessidades de cada um, permitindo entregar um produto totalmente customizado. A empresa recorre a equipamentos inovadores, a tecnologias de alta precisão e rapidez, a técnicos qualificados e aposta na formação e treino especializado e constante dos seus colaboradores.</p>
+                    <br /><br />Os produtos são assemblados e testados de acordo com os requisitos dos Clientes. O processo produtivo é facilmente adaptável às necessidades de cada um, permitindo entregar um produto totalmente customizado. A empresa recorre a equipamentos inovadores, a tecnologias de alta precisão e rapidez, a técnicos qualificados e aposta na formação e treino especializado e constante dos seus colaboradores.</p>
                 <img className='img' src="https://www.hfa.pt/storage/files/original/banner_noticias_5eb2851fc1bf8.jpg"  />
             </div>
         );
     }
 }
+
 
 {/* Conteudo do menu direito contendo imagem e texto */}
 class Conteudo_menu extends Component{
@@ -83,18 +88,56 @@ class Botao extends Component{
     }
 }
 
+
+
+{/*  */}
+
+class Objetivo extends Component{
+    render() {
+        return(
+            <div className='objetivo'>
+                   <Container>
+                    <Row>
+                        <Col className='texto_objetivo'>
+                            <h3>01</h3>
+                            <h2>VISÃO</h2>
+                            <p>Fazer da HFA uma referência a nivel mundial no setor da produção e teste de produtos de eletrónica   </p>
+                        
+                        </Col>
+                        <Col className='texto_objetivo'>
+                        <h3>02</h3>
+                            <h2>VISÃO</h2>
+                            <p>Fazer da HFA uma referência a nivel mundial no setor da produção e teste de produtos de eletrónica   </p>
+                        
+                        </Col>
+                        <Col className='texto_objetivo'>
+                            <h3>03</h3>
+                            <h2>VISÃO</h2>
+                            <p>Fazer da HFA uma referência a nivel mundial no setor da produção e teste de produtos de eletrónica   </p>
+                        
+                        </Col>
+                    </Row>
+                   </Container>
+            </div>
+        );
+    }
+}
+
+
+
 function Historia() {
     return (
+
      <div className='pagina'>
        
         <div className='esquerda'>
            <Img />
            <Texto />
+           <Objetivo />
 
         </div>
 
         
- 
         <div className='direita' >
             <div className='barra_hora'>
               
@@ -141,10 +184,11 @@ function Historia() {
                     </Row>
                 </Container>
                 
-            </div>
-        </div>
+            </div>          {/* className='barra_hora' */}
 
-     </div>
+        </div>              {/* className='direita' */}
+
+     </div>                 /* className='pagina' */
      
      
     );
