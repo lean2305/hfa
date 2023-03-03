@@ -1,17 +1,166 @@
-.one {
-    background-image: url("../images/hfa01.png");
+.esquerda{
+    width: 100%;
+    display: flex;
+    background-color: whitesmoke;
+    height: 100%;
+    flex-direction: column;
 }
 
-.two {
+
+
+.direita{
+    width: 30%;
+    box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.5);
+}   
+
+.titulo{
+    display: contents;
+    margin-top: 2%;
+    margin-left: 3%;
+    color: white;
+    
+}
+
+.pagina{
+    display: flex;
+}
+
+.mais{
+    margin-top: 3%;
+    margin-left: 2%;
+}
+
+.img{
+    display: flex;
+    margin-left: 11.2%;
+}
+
+.texto{
+    margin-top: 2%;
+    margin-left: 3%;
+   
+    height:100%;
+    
+}
+
+.barra{
+    
+   
+    margin-left: 2%;
+    height: 51vh;
+    width: 36vh;
+    margin-right: 6%;
+    margin-top: 5%;
+}
+
+.imgbarra{
+    height: 15vh;
+    width: 42vh;
+    margin-left: 2%;
+}
+
+.p{
+    color:blue;
+}
+
+.container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+  }
+  
+
+.footer{
+    background-color: #002c4b;
+  font-size: 2vh;
+    width: 100%;
+    height: 10%;
+    margin-top: 10%;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.Text-footer{
+    margin-left: 2%;
+    margin-right: 5%;
+    font-size: smaller;
+    color: white;
+}
+.Text-footerr{
+    margin-left: 2%;
+    margin-right: 5%;
+    font-size: smaller;
+    color: white;
+}
+
+.Copy{
+    display: flex;
+}
+
+.barra_hora{
+     width: 100%;
+     height: 20vh;
+     margin-top: 2%;
+     font-size: xx-small;
+     
+}
+
+.svg_menu{
+    height: 5vh;
+    width: 5vh;
+}
+
+.text_menu{
+    margin-left: 4%;
+    margin-top: -1%;
+    font-weight: bolder;
+}
+
+.mais_noticias{
+    font-size: 2.1vh;
+    
+}
+
+
+.div_noticia{
+    font-size: 2vh;
+}
+
+.conteudo_menu{
+
+    padding-top: 15%;
+    text-align: center;
+}
+
+.menu_botao{
+    padding-left: 3%;
+    text-align: left;
+    font-size: 1vh;
+}
+
+.footer_menu{
+   
+    background-color: #002c4b;
+    color: white;
+    margin-top: 20%;
+    display: flex;
+    justify-content: center;
+    font-size: 1vh;
+}
+
+.um {
+    background-image: url("../images/hfa01.png");
+}
+.dois {
     background-image: url("../images/hfa02.png");
 }
-.three {
+.tres {
     background-image: url("../images/hfa03.png");
 }
-.four {
-    background-image: url("../images/hfa01.png");
+.quatro {
+    background-image: url("../images/hfa04.png");
 }
 
-.five {
-    background-image: url("../images/hfa04.png");
+Quad {
+    padding: 0;
+    margin: 0;
 }
