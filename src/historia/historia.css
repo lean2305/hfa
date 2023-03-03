@@ -20,11 +20,11 @@
     display: flex;
 }
 
-.imgbarra{
+.img_fundo{
     background-image: url(https://www.hfa.pt/storage/files/original/capital_social._5fdcc65e3a01b.jpg);
     background-repeat: no-repeat;
     width: 100%;
-    height: 40%;
+    height: 40vh;
     padding: 0;
     background-size: cover;
     background-position: center;

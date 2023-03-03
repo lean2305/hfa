@@ -5,13 +5,13 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 //import Sidebar from './side-bar/Side-bar';
 //import Menu from './menu/menu';
-import Noticia from './noticias/noticias';
-//import Historia from './historia/historia';
+//import Noticia from './noticias/noticias';
+import Historia from './historia/historia';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Noticia />
+    <Historia />
    
   </React.StrictMode>
 );
