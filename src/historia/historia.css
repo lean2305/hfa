@@ -2,11 +2,9 @@
     width: 70%;
     padding-top: 4%;
     background-color: whitesmoke;
-    height: 100vh;
-    
+    height: 100%;
     flex-direction: column;
 }
-
 
 
 .direita{
@@ -40,11 +38,37 @@
 }
 
 .img{
-    height: 10%;
-    width: 50%;
+    height: 30vh;
+    width: 40vh;
+    margin-top: 3%;
+    margin-right: 10%;
 }
 
 .historia{
     display: flex;
     margin-top: 4%
+}
+
+.texto_historia{
+    padding-left: 5%;
+    padding-right: 10%;
+}
+
+.objetivo{
+   margin-top: 4%;
+    box-shadow: inset 0 0 0 1000px rgba(9, 1, 62, 0.486);
+    background-image: url(https://www.hfa.pt/storage/files/original/BannerHomepage_5ecccdf533634.jpg);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 40vh;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.texto_objetivo{
+    color: white;
+    font-family: 'Titillium Web', sans-serif;
+    
 }
