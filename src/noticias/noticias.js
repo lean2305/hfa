@@ -97,6 +97,7 @@ class Conteudo_menu extends Component{
     }
 }
 
+
 {/* Botões do menu direito */}
 class Botao extends Component{
     render() {
@@ -113,7 +114,6 @@ class Botao extends Component{
         );
     }
 }
-
 
 
 
@@ -135,12 +135,7 @@ class Footer_menu extends Component{
 
 {/* Exibição de todos os componentes */}
 function Noticias() {
-    const [display, setDisplay] = useState('flex');
     
-
-  function handleClick() {
-    setDisplay('none');
-  }
     
     return (
      <div className='pagina'>
@@ -181,7 +176,7 @@ function Noticias() {
 
         </div>
         
-        <div className='direita' style={{ display: display }}>
+        <div className='direita' >
             <div className='barra_hora'>
               
                 <Container>
@@ -189,10 +184,10 @@ function Noticias() {
 
                         <Col sm={4}>
                             <div>
-                            <button onClick={handleClick} >
+                            
                                 <svg className='svg_menu' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
                                 <p className='text_menu'>MENU</p>    
-                                </button>
+                               
                             </div>
                         </Col>
 
