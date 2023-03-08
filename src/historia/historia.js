@@ -99,21 +99,21 @@ class Objetivo extends Component{
                    <Container>
                     <Row>
                         <Col className='texto_objetivo'>
-                            <h3>01</h3>
-                            <h2>VISÃO</h2>
-                            <p>Fazer da HFA uma referência a nivel mundial no setor da produção e teste de produtos de eletrónica   </p>
+                            <h3>{this.props.visao01}</h3>
+                            <h2>{this.props.visao}</h2>
+                            <p>{this.props.visaoT}</p>
                         
                         </Col>
                         <Col className='texto_objetivo'>
-                        <h3>02</h3>
-                            <h2>VISÃO</h2>
-                            <p>Fazer da HFA uma referência a nivel mundial no setor da produção e teste de produtos de eletrónica   </p>
+                            <h3>{this.props.missao02}</h3>
+                            <h2>{this.props.missao}</h2>
+                            <p>{this.props.missaoT}</p>
                         
                         </Col>
                         <Col className='texto_objetivo'>
-                            <h3>03</h3>
-                            <h2>VISÃO</h2>
-                            <p>Fazer da HFA uma referência a nivel mundial no setor da produção e teste de produtos de eletrónica   </p>
+                            <h3>{this.props.valores03}</h3>
+                            <h2>{this.props.valores}</h2>
+                            <p>{this.props.valoresT}</p>
                         
                         </Col>
                     </Row>
@@ -133,7 +133,9 @@ function Historia() {
         <div className='esquerda'>
            <Img />
            <Texto />
-           <Objetivo />
+           <Objetivo visao01="01" visao="VISÃO" visaoT="Fazer da HFA uma referência a nivel mundial no setor da produção e teste de produtos de eletrónica" 
+                    missao02="02" missao="MISSÃO" missaoT="Realizarde formasustentada, e com elevados padrões de qualidade, os produtos de eletrónica solicitados, sempre na vanguarda da tecnlogia."
+                    valores03="03" valores="VALORES" valoresT="Qualidade; Know-How; Inovação; Flexibilidade; Dedicação; Confiança / Confidencialidade"/>
 
         </div>
 
