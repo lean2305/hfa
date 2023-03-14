@@ -247,8 +247,8 @@ class Integrante extends Component{
         return(
             <div className='integrante'>
                 <div className='integrante_esquerda'>
-                    <p style={{color :'#022d4b', fontWeight:'bold'}}>Ética e responsabilidade social</p>
-                    <h1 style={{color :'#3ba5dd', fontWeight:'bold'}}>PARTE INTEGRANTE DO ADN DA HFA</h1>
+                    <p style={{color :'#022d4b', fontWeight:'bold', fontSize: '2.2vh'}}>Ética e responsabilidade social</p>
+                    <h1 style={{color :'#3ba5dd', fontWeight:'bold', fontSize:'4.4vh'}}>PARTE INTEGRANTE DO ADN DA HFA</h1>
                     <p>Acreditamos, que juntos, Empresários, Funcionários, Clientes, Fornecedores (Critérios de Monitorização), Acionistas, Autoridades governamentais e Comunidade em geral, podemos colaborar com as exigências do mundo atual, dedicando especial atenção aos princípios e à ética nos negócios, às relações com os empregados, aos direitos humanos, â gestão ambiental, à relação com a comunidade e às condições gerais de trabalho, tanto dentro da HFA, como na relação com a da cadeia produtiva.
                     <br /><br /> Temos a noção clara de que o desenvolvimento dos negócios nos dias de hoje deve pautar-se no respeito à integridade ecológica, na justiça social e económica, na democracia, na não-violência e na paz.
                     </p>

@@ -147,20 +147,23 @@
     font-size: 1vh;
 }
 
-.um {
-    background-image: url("../images/hfa01.png");
-}
-.dois {
-    background-image: url("../images/hfa02.png");
-}
-.tres {
-    background-image: url("../images/hfa03.png");
-}
-.quatro {
-    background-image: url("../images/hfa04.png");
+
+.quadrado_menor{
+    width: 33.33%;
+    height: 50vh;
+    background-color: #002c4b;
 }
 
-Quad {
-    padding: 0;
-    margin: 0;
+.quadrado_maior{
+    width: 66.66%;
+    height: 50vh;
+    background-color: #6690ad;
+}
+
+.quadrado_fila1{
+    display: flex;
+}
+
+.quadrado_fila2{
+    display: flex;
 }

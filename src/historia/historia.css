@@ -37,6 +37,7 @@
     margin-left: 2%;
     position: absolute;
     font-family: 'Titillium Web', sans-serif;
+    font-size: 5vh;
 }
 
 .img{
@@ -54,6 +55,7 @@
 .texto_historia{
     padding-left: 5%;
     padding-right: 10%;
+    font-size: 2.4vh;
 }
 
 .objetivo{
@@ -148,12 +150,14 @@
   }
 
   .compromisso_direita_p{
+    font-size: 2.2vh;
     color: #0d344e;
     font-weight: bold;
   }
 
   .compromisso_direita_h2{
     color: #3ba5dd;
+    font-size: 3.3vh;
   }
   
 
