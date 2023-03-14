@@ -11,6 +11,8 @@
     width: 30%;
     display: flex;
     box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    margin-left: 70%;
 }
 
 
@@ -64,9 +66,25 @@
     padding: 0;
     background-size: cover;
     background-position: center;
+    display: flex; /* define o tipo de display como flexível */
+    align-items: center; 
+   
+
     
 }
 
+.objetivo_conteudo{
+    text-align: center;
+    padding-left: 4%;
+
+}
+.no-center {
+    display: flex;
+  }
+
+  .obetivo_p{
+    text-align: initial;
+  }
 .texto_objetivo{
     color: white;
     font-family: 'Titillium Web', sans-serif;
@@ -87,3 +105,124 @@
     font-size: xx-small;
     
 }
+
+.compromisso{
+    padding-top: 6%;
+    display: flex;
+    
+  
+}
+.compromisso_esquerda{
+    width: 50%;
+    
+}
+
+.compromisso_direita{
+    width: 50%;
+    padding-left: 4%;
+    
+}
+
+.compromisso_img {
+    width: 100%;
+   
+  }
+
+  .compromisso_img2 {
+    width: 60%;
+   
+  }
+
+  .compromisso_fila1{
+    display: flex;
+    text-align: center;
+  }
+  
+  .compromisso_fila2{
+    display: flex;
+    text-align: center;
+  }
+
+  .compromisso_div{
+        margin-right: -20%;
+  }
+
+  .compromisso_direita_p{
+    color: #0d344e;
+    font-weight: bold;
+  }
+
+  .compromisso_direita_h2{
+    color: #3ba5dd;
+  }
+  
+
+ .ola{
+    display: flex;
+    align-items: baseline;
+    padding-left: 3%;
+ }
+  
+ .parceria_titulo{
+    color: #3ba5dd;
+    text-align: center;
+  }
+
+  .integrante{
+    padding-top: 4%;
+    display: flex;
+  }
+
+  .integrante_esquerda{
+    padding-left: 4%;
+    width: 52%;
+    
+  }
+
+  .integrante_direita{
+    padding-left: 4%;
+    width: 48%;
+    padding-top: 10%;
+    height: 20%;
+    margin-left: 4%;
+  }
+
+  .integrante_direita_border{
+    border: 1px solid black;
+    box-sizing: border-box;
+    padding: 7px;
+    transform: translate(-5px, -5px);
+    height: 300px;
+    width: 300px;
+  }
+
+  .footer{
+    background-color: #002c4b;
+    font-size: 2vh;
+    width: 100%;
+    height: 10%;
+    margin-top: 10%;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.Text-footer{
+    margin-left: 2%;
+    margin-right: 5%;
+    font-size: smaller;
+    color: white;
+}
+.Text-footerr{
+    margin-left: 2%;
+    margin-right: 5%;
+    font-size: smaller;
+    color: white;
+}
+
+.Copy{
+  display: flex;
+}
+
+
+  
+  
+
