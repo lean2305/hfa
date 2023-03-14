@@ -152,13 +152,51 @@
     width: 33.33%;
     height: 50vh;
     background-color: #002c4b;
+    text-align: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
 }
+
+
+.quadrado_menor::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Altere o valor alpha para controlar a transparência */
+    z-index: -1;
+    
+  }
+
+  .quadrado_h1{
+    z-index: 1;
+    color: #fff;
+  }
+
 
 .quadrado_maior{
     width: 66.66%;
     height: 50vh;
     background-color: #6690ad;
+    text-align: center;
+    text-align: center;
+    background-size: cover;
+    position: relative;
+    
 }
+
+.quadrado_maior::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Altere o valor alpha para controlar a transparência */
+  }
 
 .quadrado_fila1{
     display: flex;
@@ -166,4 +204,12 @@
 
 .quadrado_fila2{
     display: flex;
+    
+}
+
+.svg{
+    margin-top: 25%;
+     background-size: cover;
+     background-repeat: no-repeat;
+    
 }
