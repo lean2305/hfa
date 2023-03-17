@@ -56,9 +56,15 @@ class Quadrados extends Component{
                 <div className="quadrado_fila2">
                     <div style={{backgroundImage:"url('https://s1.static.brasilescola.uol.com.br/be/vestibular/notebook-ferramenta-trabalho-varios-profissionais-599844f1a665d.jpg')"}} className="quadrado_menor">
                         <svg className="svg" width="20%" height="20%" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 9C2 6.79086 3.79086 5 6 5H13C15.2091 5 17 6.79086 17 9V9.07171L20.202 7.23108C21.0019 6.77121 22 7.34868 22 8.27144V15.7488C22 16.6203 21.1003 17.2012 20.306 16.8424L16.9855 15.3425C16.8118 17.3913 15.0938 19 13 19H6C3.79086 19 2 17.2091 2 15V9ZM17 13.1544L20 14.5096V9.65407L17 11.3786V13.1544ZM15 9C15 7.89543 14.1046 7 13 7H6C4.89543 7 4 7.89543 4 9V15C4 16.1046 4.89543 17 6 17H13C14.1046 17 15 16.1046 15 15V9Z" fill="#ffffff"/></svg>
+                        
                         <h1 className="quadrado_h1">Videos</h1>
                     </div>
-                    <div style={{backgroundImage:"url('https://img.freepik.com/fotos-gratis/mulher-de-negocio-que-trabalha-no-laptop_1388-91.jpg')"}} className="quadrado_maior"></div>
+                    <div style={{backgroundImage:"url('https://img.freepik.com/fotos-gratis/mulher-de-negocio-que-trabalha-no-laptop_1388-91.jpg')"}} className="quadrado_maior">
+                    <svg className="svg_maior" width="20%" height="20%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.09998 12V10.52C9.09998 8.60999 10.45 7.83999 12.1 8.78999L13.38 9.52999L14.66 10.27C16.31 11.22 16.31 12.78 14.66 13.73L13.38 14.47L12.1 15.21C10.45 16.16 9.09998 15.38 9.09998 13.48V12Z" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                    </div>
                 </div>
             </div>
         );
