@@ -1,0 +1,179 @@
+.esquerda{
+    width: 100%;
+    display: flex;
+    background-color: whitesmoke;
+    height: 100%;
+    padding-top: 2%;
+    flex-direction: column;
+}
+
+
+.direita{
+  width: 30%;
+  display: flex;
+  box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  margin-left: 70%;
+}
+
+
+.pagina{
+    display: flex;
+}
+
+.quadrado{
+    margin-left: 4%;
+    margin-right: 4%;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-image: url(https://www.hfa.pt/storage/files/original/top_footer_5eb17c42caf92.jpg);
+    height: 40vh;
+    position: relative;
+}
+
+
+
+.quadrado::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 68, 129, 0.623);
+    z-index: 1;
+  }
+
+
+
+
+  .quadrado_p {
+    position: relative;
+    color: #fff;
+    z-index: 2;
+  }
+  
+  .quadrado_h1{
+    position: relative;
+    color: #fff;
+    z-index: 2;
+    letter-spacing: 1px;
+  }
+
+  .quadrado_texto{
+    padding-top: 15%;
+    padding-left: 2%;
+    width: 22%;
+  }
+  
+  .texto{
+    display: flex;
+    padding-top: 4%;
+  }
+
+  .texto_esquerda{
+    padding-left: 6%;
+    padding-right: 2%;
+    width: 50%;
+   
+
+  }
+
+  .texto_direita{
+    padding-left: 2%;
+    padding-right: 6%;
+    width: 50%;
+  }
+
+  .aviso{
+    padding-top: 6%;
+    text-align: center;
+  }
+  
+  .aviso_img{
+    width: 10%;
+  }
+
+  .aviso_h1{
+    color: red;
+  }
+
+ 
+
+  .contacto{
+    display: flex;
+    padding-top: 3%;
+    justify-content: center;
+  }
+
+
+  .contacto_logo{
+    text-align: center;
+  }
+
+  .contacto_texto{
+    padding-left: 4%;
+  }
+
+  .contacto_p{
+    color: #fff
+  }
+
+.contacto_esquerda{
+    background-color: #009ee0;
+    width: 50%;
+    height: 35vh;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.contacto_direita{
+    background-color: #5e5556;
+    width: 50%;
+    height: 35vh;
+    margin-right: 4%;
+    margin-left: 4%;
+}
+  
+.contacto_img_esquerda{
+    padding-top: 6%;
+    height: 3vh;
+    width: 40%;
+}
+
+.contacto_img_direita{
+    padding-top: 4%;
+    height: 7vh;
+    width: 40%;
+}
+
+
+.footer{
+  background-color: #002c4b;
+  font-size: 2vh;
+  width: 100%;
+  height: 10%;
+  margin-top: 10%;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.Text-footer{
+  margin-left: 2%;
+  margin-right: 5%;
+  font-size: smaller;
+  color: white;
+}
+.Text-footerr{
+  margin-left: 2%;
+  margin-right: 5%;
+  font-size: smaller;
+  color: white;
+}
+
+.Copy{
+display: flex;
+}
+
+
