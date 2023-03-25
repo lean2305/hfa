@@ -91,7 +91,7 @@ class Footer_menu extends Component{
     render() {
         return(
             <div className='footer_menu_wrapper'>
-                <div className='footer_menu'>
+                <div className='footer_menuu'>
                     <div className='button_wrapper'>
                         <div style={{backgroundColor: '#63b8e3'}} className='button'>
                             <h2 style={{fontSize: '3vh'}}>Voltar</h2>
@@ -114,7 +114,7 @@ class Footer_menu extends Component{
 function PaginaNoticia() {
     return (
      <div className='pagina'>
-        <div className='esquerda'>
+        <div className='esquerda_pg'>
 
             {/* Este é um componente que contém links para as imagens de cada quadrado e o texto da notícia correspondente.*/}
             <Noticia 
@@ -135,7 +135,7 @@ function PaginaNoticia() {
            <Footer />
         </div>
         
-        <div className='direita' >
+        <div className='direita_pg' >
             <div className='barra_hora'>
                 <Container>
                     <Row>

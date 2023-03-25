@@ -1,5 +1,5 @@
-.esquerda{
-    width: 100%;
+.esquerda_menu_inicial{
+    width: 70%;
     display: flex;
     background-color: whitesmoke;
     height: 100%;
@@ -8,7 +8,7 @@
 
 
 
-.direita{
+.direita_menu_inicial{
     width: 30%;
     display: flex;
     box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.5);
@@ -16,7 +16,7 @@
     margin-left: 70%;
 }   
 
-.titulo{
+.titulo_menu_inicial{
     display: contents;
     margin-top: 2%;
     margin-left: 3%;
@@ -24,21 +24,21 @@
     
 }
 
-.pagina{
+.pagina_menu_inicial{
     display: flex;
 }
 
-.mais{
+.mais_menu_inicial{
     margin-top: 3%;
     margin-left: 2%;
 }
 
-.img{
+.img_menu_inicial{
     display: flex;
     margin-left: 11.2%;
 }
 
-.texto{
+.texto_menu_inicial{
     margin-top: 2%;
     margin-left: 3%;
    
@@ -46,7 +46,7 @@
     
 }
 
-.barra{
+.barra_menu_inicial{
     
    
     margin-left: 2%;
@@ -56,24 +56,24 @@
     margin-top: 5%;
 }
 
-.imgbarra{
+.imgbarra_menu_inicial{
     height: 15vh;
     width: 42vh;
     margin-left: 2%;
 }
 
-.p{
+.p_menu_inicial{
     color:blue;
 }
 
-.container {
+.container_menu_inicial {
     flex-direction: row;
     flex-wrap: wrap;
     
   }
   
 
-.footer{
+.footer_menu_inicial{
     background-color: #002c4b;
   font-size: 2vh;
     width: 100%;
@@ -82,24 +82,24 @@
     font-family: 'Titillium Web', sans-serif;
 }
 
-.Text-footer{
+.Text-footer_menu_inicial{
     margin-left: 2%;
     margin-right: 5%;
     font-size: smaller;
     color: white;
 }
-.Text-footerr{
+.Text-footerr_menu_inicial{
     margin-left: 2%;
     margin-right: 5%;
     font-size: smaller;
     color: white;
 }
 
-.Copy{
+.Copy_menu_inicial{
     display: flex;
 }
 
-.barra_hora{
+.barra_hora_menu_inicial{
      width: 100%;
      height: 20vh;
      margin-top: 2%;
@@ -107,40 +107,40 @@
      
 }
 
-.svg_menu{
+.svg_menu_menu_inicial{
     height: 5vh;
     width: 5vh;
 }
 
-.text_menu{
+.text_menu_menu_inicial{
     margin-left: 4%;
     margin-top: -1%;
     font-weight: bolder;
 }
 
-.mais_noticias{
+.mais_noticias_menu_inicial{
     font-size: 2.1vh;
     
 }
 
 
-.div_noticia{
+.div_noticia_menu_inicial{
     font-size: 2vh;
 }
 
-.conteudo_menu{
+.conteudo_menu_menu_inicial{
 
     padding-top: 15%;
     text-align: center;
 }
 
-.menu_botao{
+.menu_botao_menu_inicial{
     padding-left: 3%;
     text-align: left;
     font-size: 1vh;
 }
 
-.footer_menu{
+.footer_menu_menu_inicial{
    
     background-color: #002c4b;
     color: white;
@@ -151,7 +151,7 @@
 }
 
 
-.quadrado_menor{
+.quadrado_menor_menu_inicial{
     width: 33.33%;
     height: 50vh;
     background-color: #002c4b;
@@ -162,7 +162,7 @@
 }
 
 
-.quadrado_menor::before {
+.quadrado_menor_menu_inicial::before {
     content: "";
     position: absolute;
     top: 0;
@@ -174,13 +174,13 @@
     
   }
 
-  .quadrado_h1{
+  .quadrado_h1_menu_inicial{
     z-index: 1;
     color: #fff;
   }
 
 
-.quadrado_maior{
+.quadrado_maior_menu_inicial{
     width: 66.66%;
     height: 50vh;
     background-color: #6690ad;
@@ -192,7 +192,7 @@
     
 }
 
-.quadrado_maior::before {
+.quadrado_maior_menu_inicial::before {
     content: "";
     position: absolute;
     top: 0;
@@ -203,23 +203,23 @@
     z-index: -1;
   }
 
-.quadrado_fila1{
+.quadrado_fila1_menu_inicial{
     display: flex;
 }
 
-.quadrado_fila2{
+.quadrado_fila2_menu_inicial{
     display: flex;
     
 }
 
-.svg{
+.svg_menu_inicial{
     margin-top: 25%;
      background-size: cover;
      background-repeat: no-repeat;
     
 }
 
-.svg_maior{
+.svg_maior_menu_inicial{
     margin-top: 20%;
      background-size: cover;
      background-repeat: no-repeat;

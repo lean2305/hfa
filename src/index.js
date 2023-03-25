@@ -5,12 +5,12 @@ import './index.css';
 //import Noticias from './noticias/noticias';
 //import MenuInicial from './menu-inicial/menu';
 //import RecursosHumanos from './recursos-humanos/recursos-humanos';
-import Menu from './menu/menu'
-
+//import Menu from './menu/menu'
+import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode> 
-    <Menu />
+    <App />
    
   </React.StrictMode>
 );
