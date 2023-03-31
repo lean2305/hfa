@@ -82,10 +82,12 @@
 }
 .no-center {
     display: flex;
+    font-size: 3vh;
   }
 
   .obetivo_p{
     text-align: initial;
+    font-size: 2.2vh;
   }
 .texto_objetivo{
     color: white;
@@ -170,6 +172,7 @@
  .parceria_titulo{
     color: #3ba5dd;
     text-align: center;
+    font-size: 2.3vh;
   }
 
   .integrante{
@@ -226,7 +229,11 @@
   display: flex;
 }
 
-
-  
+.compromisso_texto_p{
+  font-size: 2.2vh;
+}
+  .integrante_p{
+    font-size: 2.2vh;
+  }
   
 

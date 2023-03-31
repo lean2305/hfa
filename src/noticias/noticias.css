@@ -128,6 +128,7 @@
     margin-left: 4%;
     margin-top: -1%;
     font-weight: bolder;
+    font-size: 1.2vh;
 }
 
 .mais_noticias_menu_noticia{
@@ -154,9 +155,13 @@
 
 .footer_menu_menu_noticia{
    
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-left: 70%;
+    width: 30%;
     background-color: #002c4b;
     color: white;
-    margin-top: 20%;
     display: flex;
     justify-content: center;
     font-size: 1vh;

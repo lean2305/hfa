@@ -113,6 +113,7 @@
 }
 
 .text_menu_menu_inicial{
+    font-size: 1.2vh;
     margin-left: 4%;
     margin-top: -1%;
     font-weight: bolder;
@@ -177,6 +178,7 @@
   .quadrado_h1_menu_inicial{
     z-index: 1;
     color: #fff;
+    font-size: 4.4vh;
   }
 
 

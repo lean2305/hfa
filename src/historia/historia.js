@@ -3,6 +3,7 @@ import './historia.css';
 import { Container, Row, Col } from 'react-grid-system';
 import Clock from '../data_hora/clock';
 import ExibirDataAtual from '../data_hora/date';
+import { Link } from 'react-router-dom';
 
 
 {/* Botão do menu direita */}
@@ -10,7 +11,9 @@ class Menu extends Component{
     render() {
         return(
             <div className='direita'>
-              <p>{this.props.menu}</p>
+               
+                    <p>{this.props.menu}</p>
+               
             </div>
         );
     }
@@ -62,9 +65,11 @@ class Conteudo_menu extends Component{
 class Footer_menu extends Component{
     render() {
         return(
+            <Link to="/" style={{ textDecoration: 'none' }}> 
             <div className='footer_menu'>
-                   <h1>Página principal</h1>
+                   <h1>{this.props.btn_pagina_principal}</h1>
             </div>
+            </Link> 
         );
     }
 }
@@ -164,7 +169,7 @@ class Compromisso extends Component{
                 <div className='compromisso_direita'>
                     <p className='compromisso_direita_p'>Qualidade</p>
                     <h2 className='compromisso_direita_h2'>O COMPROMISSO DA HFA</h2>
-                    <p><p style={{ color: '#0d344e' }}>“A HFA tem o seu sistema de gestão da Qualidade certificado pelos referenciais NP EN ISO 9001:2015 e IATF 16949:2016. O Sistema de gestão da qualidade da empresa é um dos pilares fundamentais para o sucesso da mesma”</p> A atual política de gestão integrada, definida pela administração, reflete a preocupação da empresa na definição e implementação de um conjunto de processos e metodologias, que asseguram elevando padrões de qualidade, eficiência e performance.<br /><br /> Neste sentido, todos assumem a responsabilidade de cumprir com o Sistema de Gestão da Qualidade, procurando permanentemente a otimização dos processos e recursos, enquanto fatores de melhoria contínua, e promover o desenvolvimento e a satisfação dos Colaboradores, levando em conta as diferentes aspirações sociais, económicas e ambientais.</p>
+                    <p className='compromisso_texto_p'><p style={{ color: '#0d344e' }}>“A HFA tem o seu sistema de gestão da Qualidade certificado pelos referenciais NP EN ISO 9001:2015 e IATF 16949:2016. O Sistema de gestão da qualidade da empresa é um dos pilares fundamentais para o sucesso da mesma”</p> A atual política de gestão integrada, definida pela administração, reflete a preocupação da empresa na definição e implementação de um conjunto de processos e metodologias, que asseguram elevando padrões de qualidade, eficiência e performance.<br /><br /> Neste sentido, todos assumem a responsabilidade de cumprir com o Sistema de Gestão da Qualidade, procurando permanentemente a otimização dos processos e recursos, enquanto fatores de melhoria contínua, e promover o desenvolvimento e a satisfação dos Colaboradores, levando em conta as diferentes aspirações sociais, económicas e ambientais.</p>
                 </div>
             </div>
         );
@@ -249,7 +254,7 @@ class Integrante extends Component{
                 <div className='integrante_esquerda'>
                     <p style={{color :'#022d4b', fontWeight:'bold', fontSize: '2.2vh'}}>Ética e responsabilidade social</p>
                     <h1 style={{color :'#3ba5dd', fontWeight:'bold', fontSize:'4.4vh'}}>PARTE INTEGRANTE DO ADN DA HFA</h1>
-                    <p>Acreditamos, que juntos, Empresários, Funcionários, Clientes, Fornecedores (Critérios de Monitorização), Acionistas, Autoridades governamentais e Comunidade em geral, podemos colaborar com as exigências do mundo atual, dedicando especial atenção aos princípios e à ética nos negócios, às relações com os empregados, aos direitos humanos, â gestão ambiental, à relação com a comunidade e às condições gerais de trabalho, tanto dentro da HFA, como na relação com a da cadeia produtiva.
+                    <p className='integrante_p'>Acreditamos, que juntos, Empresários, Funcionários, Clientes, Fornecedores (Critérios de Monitorização), Acionistas, Autoridades governamentais e Comunidade em geral, podemos colaborar com as exigências do mundo atual, dedicando especial atenção aos princípios e à ética nos negócios, às relações com os empregados, aos direitos humanos, â gestão ambiental, à relação com a comunidade e às condições gerais de trabalho, tanto dentro da HFA, como na relação com a da cadeia produtiva.
                     <br /><br /> Temos a noção clara de que o desenvolvimento dos negócios nos dias de hoje deve pautar-se no respeito à integridade ecológica, na justiça social e económica, na democracia, na não-violência e na paz.
                     </p>
 
@@ -313,10 +318,10 @@ function Historia() {
 
                         <Col sm={4}>
                             <div>
-                            
+                            <Link to="/menu" style={{ textDecoration: 'none' }}>
                                 <svg className='svg_menu' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+                            </Link>
                                 <p className='text_menu'>MENU</p>    
-                               
                             </div>
                         </Col>
 
@@ -346,7 +351,7 @@ function Historia() {
 
                     <Row>
                         <Col>
-                            <Footer_menu />
+                            <Footer_menu btn_pagina_principal="Página Principal" />
                         </Col>
                     </Row>
                 </Container>

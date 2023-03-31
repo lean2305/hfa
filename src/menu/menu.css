@@ -23,6 +23,7 @@
 }
 .menu_h1{
     color: white;
+    font-size: 4.9vh;
 }
 
 .menu_texto{
@@ -34,5 +35,7 @@
 }
 
 .menu_logo{
+    font-size: 7vh;
+    width: 60%;
     padding-bottom: 10%;
 }
