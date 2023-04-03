@@ -37,8 +37,8 @@ class Texto extends Component{
     render() {
         return(
             <div className='historia'>
-                                    <p className='texto_historia'><p>{this.props.texto_texto_historia1}
-                    </p><p>{this.props.integrante_texto2}</p></p>
+                <p className='texto_historia'><p>{this.props.texto_texto_historia1}
+                </p><p>{this.props.integrante_texto2}</p></p>
                 <img className='img' src={this.props.integrante_img}  />
             </div>
         );
@@ -51,9 +51,9 @@ class Conteudo_menu extends Component{
     render() {
         return( 
             <div className='conteudo_menu'>
-               <img className='imgbarra' src="https://showroom.portugalbikevalue.pt/wp-content/uploads/2021/05/HFA-Logo-Dark.png"  />  
-                <h1 style={{color: "#072d49", fontFamily : "'Titillium Web', sans-serif", fontSize: "4vh"}}>ATENDIMENTO</h1>
-                <p style={{ color: "#47555c",marginLeft : "5%", marginRight: "5%", fontSize: "2.3vh"}}>Para ser atendido, consoante a sua necessidade, escolha nos botões abaixo o departamento. <br />Enquando aguarda, navegue pela nossa plataforma para saber mais sobre nós!</p>       
+               <img className='imgbarra' src={this.props.menu_logo}  />  
+                <h1 style={{color: "#072d49", fontFamily : "'Titillium Web', sans-serif", fontSize: "4vh"}}>{this.props.menu_titulo}</h1>
+                <p style={{ color: "#47555c",marginLeft : "5%", marginRight: "5%", fontSize: "2.3vh"}}><p>{this.props.menu_texto1}</p><p>{this.props.menu_texto2}</p></p>       
             </div>
         );
     }
@@ -66,7 +66,7 @@ class Footer_menu extends Component{
         return(
             <Link to="/" style={{ textDecoration: 'none' }}> 
             <div className='footer_menu'>
-                   <h1>{this.props.btn_pagina_principal}</h1>
+                <h1>{this.props.btn_pagina_principal}</h1>
             </div>
             </Link> 
         );
@@ -81,10 +81,10 @@ class Botao extends Component{
         return( 
             <div className='menu_botao'>
               
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", fontSize: "2vh"}}>Recursos Humanos</button>
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginLeft: "4%", fontSize: "2vh"}}>Compras</button>
+                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", fontSize: "2vh"}}>{this.props.botao_1}</button>
+                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginLeft: "4%", fontSize: "2vh"}}>{this.props.botao_2}</button>
                 <br />
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginTop: "4%", fontSize: "2vh"}}>Planeamento</button>
+                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginTop: "4%", fontSize: "2vh"}}>{this.props.botao_3}</button>
                 
                 
             </div>
@@ -275,15 +275,28 @@ class Footer extends Component{
         return( 
             <div className='footer'>
                 <br />
-                <p className='Text-footerr' style={{ color: "rgb(168, 168, 168)" }}>{this.props.developed}<a style={{ color: "white" ,fontWeight: "bold" }}>{this.props.hfa}</a></p>
+                <p className='Text-footerr' style={{ color: "rgb(168, 168, 168)" }}>{this.props.developed}<a style={{ color: "white" ,fontWeight: "bold" }}>{this.props.by}</a></p>
 
                 <div className='Copy'>
-                    <p className='Text-footer' style={{ color: "rgb(168, 168, 168)" }}>© COPYRIGHT 2020 HFA / ALL RIGHTS RESERVED</p>
-                    <p className='Text-footer'>TERMOS & CONDIÇÕES</p>
-                    <p className='Text-footer'>POLÍTICA DE PRIVACIDADE</p>
-                    <p className='Text-footer'>COOKIES </p>
+                    <p className='Text-footer' style={{ color: "rgb(168, 168, 168)" }}>{this.props.copyright}</p>
+                    <p className='Text-footer'>{this.props.termos}</p>
+                    <p className='Text-footer'>{this.props.politica}</p>
+                    <p className='Text-footer'>{this.props.cookies}</p>
                 </div>
                 <br />
+            </div>
+        );
+    }
+}
+
+class Col_menu extends Component{
+    render() {
+        return(
+            <div>
+                <Link to="/menu" style={{ textDecoration: 'none' }}>
+                    <svg className='svg_menu' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+                </Link>
+                <p className='text_menu'>{this.props.svg_menu}</p>    
             </div>
         );
     }
@@ -298,7 +311,6 @@ function Historia() {
        
         <div className='esquerda'>
             <Img 
-            
                 img_titulo="RIGOR E EXCELÊNCIA DESDE 1995"
             />
 
@@ -309,11 +321,13 @@ function Historia() {
                 integrante_img="https://www.hfa.pt/storage/files/original/banner_noticias_5eb2851fc1bf8.jpg"
 
             />
-           <Objetivo visao01="01" visao="VISÃO" visaoT="Fazer da HFA uma referência a nivel mundial no setor da produção e teste de produtos de eletrónica" 
+           <Objetivo 
+                    visao01="01" visao="VISÃO" visaoT="Fazer da HFA uma referência a nivel mundial no setor da produção e teste de produtos de eletrónica" 
                     missao02="02" missao="MISSÃO" missaoT="Realizarde formasustentada, e com elevados padrões de qualidade, os produtos de eletrónica solicitados, sempre na vanguarda da tecnlogia."
                     valores03="03" valores="VALORES" valoresT="Qualidade; Know-How; Inovação; Flexibilidade; Dedicação; Confiança / Confidencialidade"/>
             
-            <Compromisso certificado_img_610G="https://www.hfa.pt/storage/files/original/CIT_IPCA610G_EN_2021_5ed660ba42913.png" 
+            <Compromisso 
+                certificado_img_610G="https://www.hfa.pt/storage/files/original/CIT_IPCA610G_EN_2021_5ed660ba42913.png" 
                 certificado_texto_G10G="CERTIFICADO IPC TRAINER - IPC-A-610G~"
                 certificado_img_7711 ="https://www.hfa.pt/storage/files/original/CIT_IPC771121C_EN_2021_5ed660fbdfd1c.png"
                 certificado_texto_7711="CERTIFICADO IPC TRAINER - IPC-7711/7721"
@@ -330,7 +344,8 @@ function Historia() {
                 compromisso_texto3="Neste sentido, todos assumem a responsabilidade de cumprir com o Sistema de Gestão da Qualidade, procurando permanentemente a otimização dos processos e recursos, enquanto fatores de melhoria contínua, e promover o desenvolvimento e a satisfação dos Colaboradores, levando em conta as diferentes aspirações sociais, económicas e ambientais."
                 />
             
-            <Parceria parceria_titulo="PARCERIAS HFA" 
+            <Parceria 
+                parceria_titulo="PARCERIAS HFA" 
                 parceria_img_1="https://hfa.one/wp-content/uploads/2021/02/Uartronica-Logo-Dark-1024x347.png"
                 parceria_img_2="https://uploads-ssl.webflow.com/5fa309ec7a7638a3605f0b0c/5fa314a16dc9bd7596674ae6_logo-horizontal-no-slogan.svg"
                 parceria_img_3="https://hfa.one/wp-content/uploads/2021/02/Globaltronic-Logo-Dark-1024x347.png"
@@ -350,7 +365,14 @@ function Historia() {
                 integrante_img='https://www.hfa.pt/storage/files/original/estica_responsabilidade_5ebbc6a26a684.jpg'
             />
 
-            <Footer developed="Developed by " by="HFA" />
+            <Footer 
+                developed="Developed by " 
+                by="HFA" 
+                copyright="© COPYRIGHT 2020 HFA / ALL RIGHTS RESERVED" 
+                termos="TERMOS & CONDIÇÕES"
+                politica="POLÍTICA DE PRIVACIDADE"
+                cookies="COOKIES "
+                />
         </div>
 
         
@@ -361,12 +383,8 @@ function Historia() {
                     <Row>
 
                         <Col sm={4}>
-                            <div>
-                            <Link to="/menu" style={{ textDecoration: 'none' }}>
-                                <svg className='svg_menu' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
-                            </Link>
-                                <p className='text_menu'>MENU</p>    
-                            </div>
+                           
+                            <Col_menu svg_menu="MENU" />
                         </Col>
 
                         <Col sm={4}>
@@ -384,11 +402,20 @@ function Historia() {
                     <Row>
 
                         <Col>
-                            <Conteudo_menu />
+                            <Conteudo_menu 
+                                menu_logo="https://showroom.portugalbikevalue.pt/wp-content/uploads/2021/05/HFA-Logo-Dark.png"
+                                menu_titulo="ATENDIMENTO"
+                                menu_texto1="Para ser atendido, consoante a sua necessidade, escolha nos botões abaixo o departamento. "
+                                menu_texto2="Enquando aguarda, navegue pela nossa plataforma para saber mais sobre nós!"
+                                />
                         </Col>
 
                         <Col>
-                            <Botao />
+                            <Botao 
+                                botao_1="Recursos Humanos"
+                                botao_2="Compras"
+                                botao_3="Planeamento"
+                            />
                         </Col>
 
                     </Row>
