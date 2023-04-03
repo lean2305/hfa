@@ -55,7 +55,7 @@
 .texto_historia{
     padding-left: 5%;
     padding-right: 10%;
-    font-size: 2.4vh;
+    font-size: 2.2vh;
 }
 
 .objetivo{
@@ -147,10 +147,7 @@
     text-align: center;
   }
 
-  .compromisso_div{
-        margin-right: -20%;
-  }
-
+  
   .compromisso_direita_p{
     font-size: 2.2vh;
     color: #0d344e;
