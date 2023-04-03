@@ -7,6 +7,7 @@ import RecursosHumanos from './recursos-humanos/recursos-humanos';
 import Historia from './historia/historia';
 import Menu from './menu/menu';
 import PaginaNoticia from './pagina_noticia/pagina_noticia';
+import Dashboard from './dashboard/dashboard';
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
           <Route path='/historia' element={<Historia />} />
           <Route path='/recursos-humanos' element={<RecursosHumanos/>} />
           <Route path='/noticias' element={<Noticias />}/>
+          <Route path='/dashboard' element={<Dashboard />} />
+
           
           
       </Routes>

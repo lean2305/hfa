@@ -1,0 +1,15 @@
+.dashboard{
+    display: flex;
+}
+
+.dasboard_esquerda{
+    height: 100vh;
+    width: 20%;
+    background-color: gray;
+}
+
+.dasboard_direita{
+    height: 100vh;
+    width: 80%;
+    background-color: white;
+}
