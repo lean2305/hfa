@@ -19,7 +19,7 @@ app.post("/register", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  db.query("SELECT * FROM usuarios WHERE email = ?", [email], (err, result) => {
+  db.query("SELECT * FROM utilizador WHERE email = ?", [email], (err, result) => {
     if (err) {
       res.send(err);
     } else if (result.length == 0) {
@@ -28,13 +28,13 @@ app.post("/register", (req, res) => {
           res.send(err);
         } else {
           db.query(
-            "INSERT INTO usuarios (email, password) VALUES (?, ?)",
+            "INSERT INTO utilizador (email, password) VALUES (?, ?)",
             [email, hash],
             (error, response) => {
               if (error) {
                 res.send(error);
               } else {
-                res.send({ msg: "Usuário cadastrado com sucesso" });
+                res.send({ msg: "Utilizador cadastrado com sucesso" });
               }
             }
           );
@@ -46,11 +46,14 @@ app.post("/register", (req, res) => {
   });
 });
 
+const jwt = require('jsonwebtoken');
+const secretKey = 'sua_chave_secreta';
+
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  db.query("SELECT * FROM usuarios WHERE email = ?", [email], (err, result) => {
+  db.query("SELECT * FROM utilizador WHERE email = ?", [email], (err, result) => {
     if (err) {
       res.send(err);
     } else if (result.length > 0) {
@@ -58,13 +61,18 @@ app.post("/login", (req, res) => {
         if (error) {
           res.send(error);
         } else if (response) {
-          res.send({ msg: "Usuário logado" });
+          const loggedInUser = {
+            email: result[0].email,
+            id: result[0].id
+          };
+          const token = jwt.sign(loggedInUser, secretKey, { expiresIn: '1h' });
+          res.json({ msg: "Usuário logado", token: token });
         } else {
           res.send({ msg: "Senha incorreta" });
         }
       });
     } else {
-      res.send({ msg: "Usuário não registrado!" });
+      res.send({ msg: "Utilizador não registrado!" });
     }
   });
 });

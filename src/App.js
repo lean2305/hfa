@@ -9,8 +9,7 @@ import Menu from './menu/menu';
 import PaginaNoticia from './pagina_noticia/pagina_noticia';
 import Login from './dashboard/login';
 import Dashboard from './dashboard/dashboard';
-
-
+import Protected from './dashboard/protected';
 
 function App() {
   return (
@@ -24,7 +23,7 @@ function App() {
           <Route path='/recursos-humanos' element={<RecursosHumanos/>} />
           <Route path='/noticias' element={<Noticias />}/>
           <Route path='/login' element={<Login/>} />
-          <Route path='/dashboard' element={<Dashboard/>} />
+          <Route path='/dashboard' element={<Protected><Dashboard  /></Protected>} />
          
           
 
