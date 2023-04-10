@@ -1,32 +1,49 @@
-import { Component } from "react";
-import './login.css';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import MenuInicial from '../menu-inicial/menu'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 
-class Dashboard_conteudo extends Component{
-    render() {
-        return( 
-            <div>
-               <h1>Dashboard</h1>
-               
-            </div>
-        );
-    }
-}
+function Dashboard_conteudo() {
+    const [selectedImage, setSelectedImage] = useState(null);
 
-
-
-
-
-function  Dashboard() {
+    const handleImageChange = (event) => {
+      setSelectedImage(event.target.files[0]);
+    };
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append('image', selectedImage);
+  
+      axios.post("http://localhost:3001/upload", formData)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    };
+  
     return (
         <div>
-            <Dashboard_conteudo />
+            <h1>Dashboard</h1>
+            <form onSubmit={handleSubmit}>
+                <input type="file" onChange={handleImageChange} />
+                <button type="submit">Upload</button>
+            </form>
         </div>
     );
   }
+  
 
 
-export default  Dashboard;
+
+
+function Dashboard() {
+  return (
+    <div>
+        <Dashboard_conteudo />
+    </div>
+  );
+}
+
+export default Dashboard;

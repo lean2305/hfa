@@ -24,10 +24,6 @@ function App() {
           <Route path='/noticias' element={<Noticias />}/>
           <Route path='/login' element={<Login/>} />
           <Route path='/dashboard' element={<Protected><Dashboard  /></Protected>} />
-         
-          
-
-          
           
       </Routes>
     </Router>

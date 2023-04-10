@@ -4,6 +4,8 @@ const mysql = require("mysql");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const multer  = require('multer');
+const path = require('path');
 
 const db = mysql.createPool({
   host: "localhost",
@@ -75,6 +77,26 @@ app.post("/login", (req, res) => {
       res.send({ msg: "Utilizador não registrado!" });
     }
   });
+});
+
+
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'upload/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname))
+    }
+  })
+});
+
+app.use(express.static('public'));
+
+app.post('/upload', upload.single('image'), (req, res) => {
+  console.log(req.file);
+  res.send('File uploaded successfully');
 });
 
 app.listen(3001, () => {
