@@ -22,6 +22,7 @@ function Dashboard_conteudo() {
       event.preventDefault();
       const formData = new FormData();
       formData.append('image', selectedImage);
+      
   
       axios.post("http://localhost:3001/upload", formData)
         .then(response => {

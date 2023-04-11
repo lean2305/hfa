@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const multer  = require('multer');
 const path = require('path');
-const mysql = require('mysql2');
+
 
 const db = mysql.createPool({
   host: "localhost",
