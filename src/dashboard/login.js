@@ -20,7 +20,9 @@ function App() {
       })
       .then((data) => {
         localStorage.setItem("token", data.token);
-        navigate("/dashboard");
+        if (data.msg === "Utilizador conectado") { // adiciona essa linha
+          navigate("/dashboard");
+        }
       })
       .catch((err) => console.error(err));
   };

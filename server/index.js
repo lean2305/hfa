@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const multer  = require('multer');
 const path = require('path');
+const mysql = require('mysql2');
 
 const db = mysql.createPool({
   host: "localhost",
@@ -68,7 +69,7 @@ app.post("/login", (req, res) => {
             id: result[0].id
           };
           const token = jwt.sign(loggedInUser, secretKey, { expiresIn: '1h' });
-          res.json({ msg: "Usuário logado", token: token });
+          res.json({ msg: "Utilizador conectado", token: token });
         } else {
           res.send({ msg: "Senha incorreta" });
         }
@@ -97,6 +98,8 @@ app.post('/upload', upload.single('image'), (req, res) => {
   console.log(req.file);
   res.send('File uploaded successfully');
 });
+
+
 
 app.listen(3001, () => {
   console.log("rodando na porta 3001");
