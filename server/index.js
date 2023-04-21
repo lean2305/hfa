@@ -18,6 +18,14 @@ const db = mysql.createPool({
 app.use(express.json());
 app.use(cors());
 
+
+app.get('/noticias', (req, res) => {
+  db.query('SELECT * FROM notev', (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
+});
+
 app.post("/register", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -80,7 +88,6 @@ app.post("/login", (req, res) => {
   });
 });
 
- 
 const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
@@ -98,7 +105,6 @@ app.post('/upload', upload.single('image'), (req, res) => {
   console.log(req.file);
   res.send('File uploaded successfully');
 });
-
 
 
 app.listen(3001, () => {

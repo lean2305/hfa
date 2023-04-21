@@ -3,8 +3,9 @@ import { Container, Row, Col } from 'react-grid-system';
 import './noticias.css';
 import Clock from './clock';
 import ExibirDataAtual from './date';
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 {/* Maior div do lado esquerdo da página */}
 class Quadrado extends Component{
@@ -51,12 +52,12 @@ class Noticia extends Component{
         return(
             
             <div className='div_noticia_menu_noticia'>
-                        <img className='imgbarra_menu_noticia' src="https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"  />  
+                        <img className='imgbarra_menu_noticia' src={this.props.noticia_img}  />  
                         <div className='texto_menu_noticia'>
                             <p className='p_menu_noticia'>{this.props.barra}</p>
-                            <h4>PARTICIPAÇÃO FEIRA PRODUCTRÓNICA MUNIQUE</h4>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply texxt. It has roots in a piece of classical Latin...</p>
-                            <br /><p>15/02/2022</p> 
+                            <h4>{this.props.noticia_titulo}</h4>
+                            <p>{this.props.noticia_texto}</p>
+                            <br /><p>{this.props.noticia_data}</p> 
                         </div>
             </div>
         );
@@ -139,8 +140,18 @@ class Footer_menu extends Component{
 
 {/* Exibição de todos os componentes */}
 function Noticias() {
-    
-    
+
+    const [noticias, setNoticias] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/noticias')
+          .then((response) => {
+            setNoticias(response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }, []);
     return (
      <div className='pagina_menu_noticia'>
        
@@ -152,23 +163,47 @@ function Noticias() {
                 
             <Container>
                     <Row>
-                        <Col sm={4}>
-                            <Noticia barra="Eventos" />
+                        <Col sm={4}> 
+                        
+                        {noticias.map((noticia) => (
+                            <Noticia barra={noticia.categoria_notev} 
+                            noticia_titulo={noticia.titulo_notev} 
+                            noticia_texto={noticia.descr_notev}
+                            noticia_data={noticia.data_notev}
+                            noticia_img={process.env.PUBLIC_URL  + noticia.imagem_notev}
+                            />
+                            ))}
                         </Col>
 
                         <Col sm={4}>
-                            <Noticia barra="Eventos" />
+                        <Noticia barra="Eventos" noticia_titulo="PARTICIPAÇÃO FEIRA PRODUCTRÓNICA MUNIQUE" 
+                            noticia_texto="Contrary to popular belief, Lorem Ipsum is not simply texxt. It has roots in a piece of classical Latin..."
+                            noticia_data="15/02/2022"
+                            noticia_img= "https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"
+                            />
                         </Col>
 
                         <Col sm={4}>
-                            <Noticia barra="Eventos" />
+                        <Noticia barra="Eventos" noticia_titulo="PARTICIPAÇÃO FEIRA PRODUCTRÓNICA MUNIQUE" 
+                            noticia_texto="Contrary to popular belief, Lorem Ipsum is not simply texxt. It has roots in a piece of classical Latin..."
+                            noticia_data="15/02/2022"
+                            noticia_img= "https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"
+                            />
                         </Col>
                         <Col sm={4}>
-                            <Noticia barra="Eventos" />
+                        <Noticia barra="Eventos" noticia_titulo="PARTICIPAÇÃO FEIRA PRODUCTRÓNICA MUNIQUE" 
+                            noticia_texto="Contrary to popular belief, Lorem Ipsum is not simply texxt. It has roots in a piece of classical Latin..."
+                            noticia_data="15/02/2022"
+                            noticia_img= "https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"
+                            />
                         </Col>
 
                         <Col sm={4}>
-                            <Noticia barra="Eventos" />
+                        <Noticia barra="Eventos" noticia_titulo="PARTICIPAÇÃO FEIRA PRODUCTRÓNICA MUNIQUE" 
+                            noticia_texto="Contrary to popular belief, Lorem Ipsum is not simply texxt. It has roots in a piece of classical Latin..."
+                            noticia_data="15/02/2022"
+                            noticia_img= "https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"
+                            />
                         </Col>
                     </Row>
                     
