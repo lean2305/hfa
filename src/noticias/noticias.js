@@ -15,15 +15,15 @@ class Quadrado extends Component{
             <div>
                 <div className='noticia_menu_noticia'>
                     <div className='texto_menu_noticia'>
-                        <p  className='titulo_menu_noticia'>{this.props.nome}</p>
+                        <p  className='titulo_menu_noticia'>{this.props.quadrado_catgoria}</p>
                         <br />
-                        <h3 className='titulo_menu_noticia'>ADMINISTRATOR DA HFA É O NOVO EMBAIXADOR DA UA</h3>
+                        <h3 className='titulo_menu_noticia'>{this.props.quadrado_titulo}</h3>
                         <br /><br />
-                        <p className='titulo_menu_noticia'>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin...</p>
-                        <br /><br /><p className='titulo_menu_noticia'>15/02/2022</p> 
+                        <p className='titulo_menu_noticia'>{this.props.quadrado_texto}</p>
+                        <br /><br /><p className='titulo_menu_noticia'>{this.props.quadrado_data}</p> 
                     </div>
                         <div className='img_menu_noticia'>
-                            <img src="https://www.pulnet.com.br/uploads/img/servicos/16/thumb-840-370/3fea4195859a7cc9e862be43c2d5970e.jpg"  />
+                            <img src={this.props.quadrado_img}/>
                         </div>       
                 </div>
                 
@@ -142,69 +142,55 @@ class Footer_menu extends Component{
 function Noticias() {
 
     const [noticias, setNoticias] = useState([]);
-
-    useEffect(() => {
+    const [ultimaNoticia, setUltimaNoticia] = useState(null);
+      useEffect(() => {
         axios.get('http://localhost:3001/noticias')
-          .then((response) => {
-            setNoticias(response.data);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }, []);
+        .then((response) => {
+          setNoticias(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      
+    axios.get('http://localhost:3001/noticias/ultima')
+    .then((response) => {
+      setUltimaNoticia(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }, []);
     return (
      <div className='pagina_menu_noticia'>
        
         <div className='esquerda_menu_noticia'>
-            <Quadrado nome="Noticia"/>
+        <Quadrado
+          quadrado_catgoria={ultimaNoticia ? ultimaNoticia.categoria_notev : ''}
+          quadrado_titulo={ultimaNoticia ? ultimaNoticia.titulo_notev : ''}
+          quadrado_texto={ultimaNoticia ? ultimaNoticia.descr_notev.slice(0, 205)+"..." : ''}
+          quadrado_data={ultimaNoticia ? ultimaNoticia.data_notev.slice(0, 10) : ''}
+          quadrado_img={ultimaNoticia ? process.env.PUBLIC_URL  + ultimaNoticia.imagem_notev : ''}
+        />
+
             <Mais nomemeio="MAIS NOTICIAS & EVENTOS" />
             
             <div className="container_menu_noticia">
                 
             <Container>
                     <Row>
+                    {noticias.slice(1).map((noticia) => (
                         <Col sm={4}> 
                         
-                        {noticias.map((noticia) => (
                             <Noticia barra={noticia.categoria_notev} 
-                            noticia_titulo={noticia.titulo_notev} 
-                            noticia_texto={noticia.descr_notev}
-                            noticia_data={noticia.data_notev}
-                            noticia_img={process.env.PUBLIC_URL  + noticia.imagem_notev}
+                                noticia_titulo={noticia.titulo_notev} 
+                                noticia_texto={noticia.descr_notev.slice(0, 100)+"..."}
+                                noticia_data={noticia.data_notev.slice(0, 10)+"       "}
+                                noticia_img={process.env.PUBLIC_URL  + noticia.imagem_notev}
                             />
-                            ))}
+                            
                         </Col>
+                        ))}
 
-                        <Col sm={4}>
-                        <Noticia barra="Eventos" noticia_titulo="PARTICIPAÇÃO FEIRA PRODUCTRÓNICA MUNIQUE" 
-                            noticia_texto="Contrary to popular belief, Lorem Ipsum is not simply texxt. It has roots in a piece of classical Latin..."
-                            noticia_data="15/02/2022"
-                            noticia_img= "https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"
-                            />
-                        </Col>
-
-                        <Col sm={4}>
-                        <Noticia barra="Eventos" noticia_titulo="PARTICIPAÇÃO FEIRA PRODUCTRÓNICA MUNIQUE" 
-                            noticia_texto="Contrary to popular belief, Lorem Ipsum is not simply texxt. It has roots in a piece of classical Latin..."
-                            noticia_data="15/02/2022"
-                            noticia_img= "https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"
-                            />
-                        </Col>
-                        <Col sm={4}>
-                        <Noticia barra="Eventos" noticia_titulo="PARTICIPAÇÃO FEIRA PRODUCTRÓNICA MUNIQUE" 
-                            noticia_texto="Contrary to popular belief, Lorem Ipsum is not simply texxt. It has roots in a piece of classical Latin..."
-                            noticia_data="15/02/2022"
-                            noticia_img= "https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"
-                            />
-                        </Col>
-
-                        <Col sm={4}>
-                        <Noticia barra="Eventos" noticia_titulo="PARTICIPAÇÃO FEIRA PRODUCTRÓNICA MUNIQUE" 
-                            noticia_texto="Contrary to popular belief, Lorem Ipsum is not simply texxt. It has roots in a piece of classical Latin..."
-                            noticia_data="15/02/2022"
-                            noticia_img= "https://greentumble.com/wp-content/uploads/2016/12/being-green.jpg"
-                            />
-                        </Col>
                     </Row>
                     
                 </Container>

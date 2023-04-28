@@ -18,9 +18,19 @@ const db = mysql.createPool({
 app.use(express.json());
 app.use(cors());
 
+app.get('/noticias/ultima', (req, res) => {
+  db.query('SELECT * FROM notev ORDER BY idnotev DESC LIMIT 1', (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Erro ao buscar a última notícia');
+    } else {
+      res.send(result[0]);
+    }
+  });
+});
 
 app.get('/noticias', (req, res) => {
-  db.query('SELECT * FROM notev', (err, results) => {
+  db.query('SELECT * FROM notev ORDER BY idnotev DESC', (err, results) => {
     if (err) throw err;
     res.json(results);
   });
@@ -91,7 +101,7 @@ app.post("/login", (req, res) => {
 const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'upload/')
+      cb(null, '../public/')
     },
     filename: function (req, file, cb) {
       cb(null, Date.now() + path.extname(file.originalname))
