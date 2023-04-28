@@ -6,6 +6,7 @@ import ExibirDataAtual from './date';
 import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import APIHOST from '../constant';
 
 {/* Maior div do lado esquerdo da página */}
 class Quadrado extends Component{
@@ -153,7 +154,7 @@ function Noticias() {
     const [noticias, setNoticias] = useState([]);
     const [ultimaNoticia, setUltimaNoticia] = useState(null);
       useEffect(() => {
-        axios.get('http://localhost:3001/noticias')
+        axios.get(`${APIHOST}/noticias`)
         .then((response) => {
           setNoticias(response.data);
         })
@@ -161,7 +162,7 @@ function Noticias() {
           console.error(error);
         });
       
-    axios.get('http://localhost:3001/noticias/ultima')
+    axios.get(`${APIHOST}/noticias/ultima`)
     .then((response) => {
       setUltimaNoticia(response.data);
     })

@@ -36,6 +36,13 @@ app.get('/noticias', (req, res) => {
   });
 });
 
+app.get('/historia', (req, res) => {
+  db.query('SELECT * FROM historia', (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
+});
+
 app.post("/register", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;

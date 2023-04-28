@@ -112,8 +112,6 @@ function MenuInicial() {
                 quadrado_text_2="Recrutamento"
                 quadrado_text_3="Historia HFA"
                 quadrado_text_4="Videos"
-
-
             /> 
         </div>
         

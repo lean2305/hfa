@@ -40,11 +40,16 @@
     font-size: 5vh;
 }
 
+.integrante_img{
+  object-fit: cover;
+}
+
 .img{
     height: 30vh;
     width: 40vh;
     margin-top: 3%;
     margin-right: 10%;
+    object-fit: cover;
 }
 
 .historia{

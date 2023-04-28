@@ -4,7 +4,8 @@ import { Container, Row, Col } from 'react-grid-system';
 import Clock from '../data_hora/clock';
 import ExibirDataAtual from '../data_hora/date';
 import { Link } from 'react-router-dom';
-
+import React, { useState , useEffect } from 'react';
+import axios from 'axios';
 
 {/* Botão do menu direita */}
 class Menu extends Component{
@@ -261,7 +262,7 @@ class Integrante extends Component{
 
                 <div  className='integrante_direita'>
                     <div className='integrante_direita_border'>
-                        <img width="300" height="300" src={this.props.integrante_img} />
+                        <img className='integrante_img' width="300" height="300"  src={this.props.integrante_img} />
                     </div>
                 </div>
             </div>
@@ -305,6 +306,7 @@ class Col_menu extends Component{
 
 
 function Historia() {
+
     return (
 
      <div className='pagina'>
@@ -312,6 +314,7 @@ function Historia() {
         <div className='esquerda'>
             <Img 
                 img_titulo="RIGOR E EXCELÊNCIA DESDE 1995"
+                
             />
 
             <Texto 
