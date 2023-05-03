@@ -19,6 +19,7 @@
     "react-dom": "^18.2.0",
     "react-grid-system": "^8.1.9",
     "react-helmet": "^6.1.0",
+    "react-native-video": "^5.2.1",
     "react-router-dom": "^6.10.0",
     "react-scripts": "^5.0.1",
     "stylelint": "^15.2.0",
