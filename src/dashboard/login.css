@@ -1,0 +1,38 @@
+.container_login{
+  width: 200px;
+  height: max-content;
+  margin: auto;
+  background-color: #ebebeb;
+  padding: 20px 15px;
+  margin-top: 120px;
+  border-radius: 7px;
+  font-family: sans-serif;
+  box-shadow: 10px 11px rgba(0,0,0,0.7);
+
+}
+
+
+
+.login-form_login{
+  padding: 5px;
+
+}
+
+.form-field_login{
+  display: inline-block;
+  padding: 5px;
+  margin-top: 20px;
+}
+
+.fomr-error_login{
+  display: block;
+  color: red;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.button_login{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px 10px;
+}

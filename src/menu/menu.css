@@ -1,0 +1,41 @@
+.menu{
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-image: url(https://www.hfa.pt/storage/files/original/BannerHomepage_5ecccdf533634.jpg);
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    
+}
+.menu::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(19, 42, 107, 0.5); /* Altere o valor alpha para controlar a transparência */
+    z-index: -1;
+    
+    
+}
+.menu_h1{
+    color: white;
+    font-size: 4.9vh;
+}
+
+.menu_texto{
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.menu_logo{
+    font-size: 7vh;
+    width: 60%;
+    padding-bottom: 10%;
+}
