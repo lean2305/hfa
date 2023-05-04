@@ -10,6 +10,7 @@ import PaginaNoticia from './pagina_noticia/pagina_noticia';
 import Login from './dashboard/login';
 import Dashboard from './dashboard/dashboard';
 import Protected from './dashboard/protected';
+import Videos from './videos/video';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='/noticias' element={<Noticias />}/>
           <Route path='/login' element={<Login/>} />
           <Route path='/dashboard' element={<Protected><Dashboard  /></Protected>} />
+          <Route path='/videos' element={<Videos/>} />
           
       </Routes>
     </Router>
