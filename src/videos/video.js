@@ -8,6 +8,8 @@ import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import APIHOST from '../constant';
+import Modal from 'react-modal';
+
 
 {/* Maior div do lado esquerdo da página */}
 class Quadrado extends Component{
@@ -48,19 +50,14 @@ class Mais extends Component{
     }
 }
 
-{/* Parte onde ficam as noticias */}
+{/* Parte onde ficam os videos */}
 class Noticia extends Component{
     render() {
         return(
-            
             <div className='div_noticia_menu_noticia'>
-                        <img className='imgbarra_menu_noticia' src={this.props.noticia_img}  />  
-                        <div className='texto_menu_noticia'>
-                            <p className='p_menu_noticia'>{this.props.barra}</p>
-                            <h4>{this.props.noticia_titulo}</h4>
-                            <p>{this.props.noticia_texto}</p>
-                            <br /><p>{this.props.noticia_data}</p> 
-                        </div>
+
+                <iframe style={{height: '100%' , width:'101%'}} src={this.props.videoo} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                
             </div>
         );
     }
@@ -155,7 +152,7 @@ function Videos() {
     const [noticias, setNoticias] = useState([]);
     const [ultimaNoticia, setUltimaNoticia] = useState(null);
       useEffect(() => {
-        axios.get(`${APIHOST}/noticias`)
+        axios.get(`${APIHOST}/videos`)
         .then((response) => {
           setNoticias(response.data);
         })
@@ -171,6 +168,7 @@ function Videos() {
       console.error(error);
     });
   }, []);
+
     return (
      <div className='pagina_menu_noticia'>
        
@@ -183,21 +181,21 @@ function Videos() {
                 quadrado_img={ultimaNoticia ? process.env.PUBLIC_URL  + ultimaNoticia.imagem_notev : ''}
             />
 
-            <Mais nomemeio="MAIS NOTICIAS & EVENTOS" />
+            <Mais nomemeio="HFA - Eletrónica e Telecomunicações" />
             
             <div className="container_menu_noticia">
                 
                 <Container>
                         <Row>
-                        {noticias.slice(1).map((noticia) => (
-                            <Col sm={4}> 
+                        {noticias.slice(0).map((noticia) => (
+                            <Col sm={3.98}> 
                             
-                                <Noticia barra={noticia.categoria_notev} 
-                                    noticia_titulo={noticia.titulo_notev} 
-                                    noticia_texto={noticia.descr_notev.slice(0, 100)+"..."}
-                                    noticia_data={noticia.data_notev.slice(0, 10)+"       "}
-                                    noticia_img={process.env.PUBLIC_URL  + noticia.imagem_notev}
+                                <Noticia 
+                                  
+                                  videoo={noticia.url_video} 
+                                  
                                 />
+                                
                                 
                             </Col>
                             ))}

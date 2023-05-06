@@ -36,6 +36,13 @@ app.get('/noticias', (req, res) => {
   });
 });
 
+app.get('/videos', (req, res) => {
+  db.query('SELECT * FROM videos ORDER BY id_videos DESC', (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
+});
+
 app.get('/historia', (req, res) => {
   db.query('SELECT * FROM historia', (err, results) => {
     if (err) throw err;

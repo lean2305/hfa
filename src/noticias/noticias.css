@@ -82,6 +82,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+   
     
   }
   
@@ -139,13 +140,15 @@
 
 
 .div_noticia_menu_noticia{
-    font-size: 2vh;
+    font-size: 2vh;    
+    padding-bottom: 20%;
 }
 
 .conteudo_menu_menu_noticia{
 
     padding-top: 15%;
     text-align: center;
+    
 }
 
 .menu_botao_menu_noticia{
