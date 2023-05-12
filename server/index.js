@@ -9,12 +9,12 @@ const path = require('path');
 
 
 const db = mysql.createPool({
-  host: "192.168.226.212",
-  port: "3306",
-  user: "diogo",
+  host: "localhost",
+  user: "root",
   password: "password",
   database: "banco",
 });
+
 
 app.use(express.json());
 app.use(cors());
@@ -30,14 +30,14 @@ app.get('/noticias/ultima', (req, res) => {
   });
 });
 
+
+
 app.get('/videos/ultima', (req, res) => {
   db.query('SELECT * FROM videos ORDER BY id_videos DESC LIMIT 1', (err, results) => {
     if (err) throw err;
     res.json(results);
   });
 });
-
-
 app.get('/noticias', (req, res) => {
   db.query('SELECT * FROM notev ORDER BY idnotev DESC', (err, results) => {
     if (err) throw err;
