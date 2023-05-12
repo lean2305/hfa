@@ -1,0 +1,12 @@
+.dashoard_esquerda{
+    background-color: #2596be;
+    height: 100%;
+    width: 20%;
+    display: flex;
+    color: white;
+    padding: 1%;
+}
+
+.titulo_esquerda{
+    font-weight: bolder;
+}

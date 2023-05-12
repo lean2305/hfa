@@ -18,17 +18,9 @@ class Quadrado extends Component{
             
             <div>
                 <div className='noticia_menu_noticia'>
-                    <div className='texto_menu_noticia'>
-                        <p  className='titulo_menu_noticia'>{this.props.quadrado_catgoria}</p>
-                        <br />
-                        <h3 className='titulo_menu_noticia'>{this.props.quadrado_titulo}</h3>
-                        <br /><br />
-                        <p className='titulo_menu_noticia'>{this.props.quadrado_texto}</p>
-                        <br /><br /><p className='titulo_menu_noticia'>{this.props.quadrado_data}</p> 
-                    </div>
-                        <div className='img_menu_noticia'>
-                            <img src={this.props.quadrado_img}/>
-                        </div>       
+                      
+                        <iframe style={{height: '100%' , width:'101%'}} src={this.props.videooo} title="YouTube video player" frameborder="0" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" ></iframe>
+                   
                 </div>
                 
             </div>
@@ -56,7 +48,7 @@ class Noticia extends Component{
         return(
             <div className='div_noticia_menu_noticia'>
 
-                <iframe style={{height: '100%' , width:'101%'}} src={this.props.videoo} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe style={{height: '100%' , width:'101%'}} src={this.props.videoo} title="YouTube video player" frameborder="0" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" ></iframe>
                 
             </div>
         );
@@ -160,9 +152,10 @@ function Videos() {
           console.error(error);
         });
       
-    axios.get(`${APIHOST}/noticias/ultima`)
-    .then((response) => {
-      setUltimaNoticia(response.data);
+    axios.get(`${APIHOST}/videos/ultima`)
+     .then((response) => {
+    
+    setUltimaNoticia(response.data[0]); // define o valor da última notícia
     })
     .catch((error) => {
       console.error(error);
@@ -173,21 +166,22 @@ function Videos() {
      <div className='pagina_menu_noticia'>
        
         <div className='esquerda_menu_noticia'>
-            <Quadrado
-                quadrado_catgoria={ultimaNoticia ? ultimaNoticia.categoria_notev : ''}
-                quadrado_titulo={ultimaNoticia ? ultimaNoticia.titulo_notev : ''}
-                quadrado_texto={ultimaNoticia ? ultimaNoticia.descr_notev.slice(0, 205)+"..." : ''}
-                quadrado_data={ultimaNoticia ? ultimaNoticia.data_notev.slice(0, 10) : ''}
-                quadrado_img={ultimaNoticia ? process.env.PUBLIC_URL  + ultimaNoticia.imagem_notev : ''}
-            />
+        {ultimaNoticia && (
 
+            <Quadrado
+                videooo={ultimaNoticia.url_video} 
+            
+            />
+            
+            )}
+            
             <Mais nomemeio="HFA - Eletrónica e Telecomunicações" />
             
             <div className="container_menu_noticia">
                 
                 <Container>
                         <Row>
-                        {noticias.slice(0).map((noticia) => (
+                        {noticias.slice(1).map((noticia) => (
                             <Col sm={3.98}> 
                             
                                 <Noticia 

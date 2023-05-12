@@ -23,9 +23,9 @@
     background-color: #002c4b;
     height: 32vh;
     display: flex;
-    margin-left: 2%;
-    margin-right: 2%;   
-   font-size: 2vh;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+    font-size: 2vh;
 }
 
 .titulo_menu_noticia{

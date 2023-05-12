@@ -29,6 +29,14 @@ app.get('/noticias/ultima', (req, res) => {
   });
 });
 
+app.get('/videos/ultima', (req, res) => {
+  db.query('SELECT * FROM videos ORDER BY id_videos DESC LIMIT 1', (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
+});
+
+
 app.get('/noticias', (req, res) => {
   db.query('SELECT * FROM notev ORDER BY idnotev DESC', (err, results) => {
     if (err) throw err;
