@@ -73,17 +73,10 @@ class Video extends Component {
       const videoId = this.extractVideoId(this.props.videoo);
       const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
       const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-  
-      const buttonStyle = {
-        border: 'none',
-       
-      };
-  
       
-  
       return (
         <div className="div_noticia_menu_noticia">
-          <button style={buttonStyle} onClick={this.handleVideoClick}>
+          <button style={{border: 'none',}} onClick={this.handleVideoClick}>
             <img style={{ height: '100%', width: '101%' }} src={thumbnailUrl} alt="Clique para assistir ao vídeo" />
           </button>
           <Modal
