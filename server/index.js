@@ -9,8 +9,9 @@ const path = require('path');
 
 
 const db = mysql.createPool({
-  host: "localhost",
-  user: "root",
+  host: "192.168.226.212",
+  port: "3306",
+  user: "diogo",
   password: "password",
   database: "banco",
 });
