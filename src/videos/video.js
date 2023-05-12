@@ -42,18 +42,70 @@ class Mais extends Component{
     }
 }
 
-{/* Parte onde ficam os videos */}
-class Noticia extends Component{
-    render() {
-        return(
-            <div className='div_noticia_menu_noticia'>
 
-                <iframe style={{height: '100%' , width:'101%'}} src={this.props.videoo} title="YouTube video player" frameborder="0" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" ></iframe>
-                
-            </div>
-        );
+class Video extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        isModalOpen: false,
+      };
     }
-}
+  
+    openModal = () => {
+      this.setState({ isModalOpen: true });
+    };
+  
+    closeModal = () => {
+      this.setState({ isModalOpen: false });
+    };
+  
+    handleVideoClick = () => {
+      this.openModal();
+    };
+  
+    extractVideoId(url) {
+      const regex = /(?:https?:\/\/)?(?:www\.)?youtu(?:\.be\/|be\.com\/(?:watch\?v=|v\/|embed\/|user\/[^/]+\/+[^#\&\?]*))?([^\#\&\?]{11})/;
+      const match = url.match(regex);
+      return match ? match[1] : null;
+    }
+  
+    render() {
+      const videoId = this.extractVideoId(this.props.videoo);
+      const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+  
+      const buttonStyle = {
+        border: 'none',
+       
+      };
+  
+      
+  
+      return (
+        <div className="div_noticia_menu_noticia">
+          <button style={buttonStyle} onClick={this.handleVideoClick}>
+            <img style={{ height: '100%', width: '101%' }} src={thumbnailUrl} alt="Clique para assistir ao vídeo" />
+          </button>
+          <Modal
+            isOpen={this.state.isModalOpen}
+            onRequestClose={this.closeModal}
+            contentLabel="Video Modal"
+          >
+            <button onClick={this.closeModal}>X</button>
+            <iframe
+              style={{ height: "100%", width: "100%" }}
+              src={embedUrl}
+              title="YouTube video player"
+              frameBorder="0"
+              allowFullScreen="true"
+              webkitallowfullscreen="true"
+              mozallowfullscreen="true"
+            ></iframe>
+          </Modal>
+        </div>
+      );
+    }
+  }
 
 
 {/* Rodapé dá pagina do lado esquerdo */}
@@ -141,8 +193,8 @@ class Btn_menu extends Component{
 {/* Exibição de todos os componentes */}
 function Videos() {
 
-    const [noticias, setNoticias] = useState([]);
-    const [ultimaNoticia, setUltimaNoticia] = useState(null);
+    const [video, setNoticias] = useState([]);
+    const [ultimoVideo, setUltimoVideo] = useState(null);
       useEffect(() => {
         axios.get(`${APIHOST}/videos`)
         .then((response) => {
@@ -155,7 +207,7 @@ function Videos() {
     axios.get(`${APIHOST}/videos/ultima`)
      .then((response) => {
     
-    setUltimaNoticia(response.data[0]); // define o valor da última notícia
+        setUltimoVideo(response.data[0]); // define o valor da última notícia
     })
     .catch((error) => {
       console.error(error);
@@ -166,10 +218,10 @@ function Videos() {
      <div className='pagina_menu_noticia'>
        
         <div className='esquerda_menu_noticia'>
-        {ultimaNoticia && (
+        {ultimoVideo && (
 
             <Quadrado
-                videooo={ultimaNoticia.url_video} 
+                videooo={ultimoVideo.url_video} 
             
             />
             
@@ -181,12 +233,12 @@ function Videos() {
                 
                 <Container>
                         <Row>
-                        {noticias.slice(1).map((noticia) => (
+                        {video.slice(1).map((video) => (
                             <Col sm={3.98}> 
                             
-                                <Noticia 
+                                <Video
                                   
-                                  videoo={noticia.url_video} 
+                                  videoo={video.url_video} 
                                   
                                 />
                                 
