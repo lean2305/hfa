@@ -141,34 +141,52 @@ class Objetivo extends Component{
 
 {/* Compromisso da hfa */}
 class Compromisso extends Component{
+    constructor(props) {
+        super(props);
+    
+        this.images = [
+          // Atualize o array de imagens para incluir texto
+          { url: 'https://www.hfa.pt/storage/files/original/CIT_IPCA610G_EN_2021_5ed660ba42913.png?text=Imagem+1', text: 'CERTIFICADO IPC TRAINER - IPC-A-610G' },
+          { url: 'https://www.hfa.pt/storage/files/original/CIT_IPC771121C_EN_2021_5ed660fbdfd1c.png?text=Imagem+2', text: 'CERTIFICADO IPC TRAINER - IPC-7711/7721' },
+          { url: 'https://www.hfa.pt/storage/files/original/HFAPGIpt_5ebacde586e1c.png?text=Imagem+3', text: 'POLÍTICA INTEGRADA 2021' },
+          { url: 'https://www.hfa.pt/storage/files/original/ISO_9001_2015_623c4b7632e3a.png?text=Imagem+4', text: 'CERTIFICADO IATF 16949:2016' },
+          { url: 'https://www.hfa.pt/storage/files/original/ISO_9001_2015_623c4b7632e3a.png?text=Imagem+5', text: 'CERTIFICADO NP EN ISO 9001: 2015' },
+        ];
+    
+        this.settings = {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          swipeToSlide: true,
+          arrows: false
+        };
+    
+        this.carouselContainerStyle = {
+          width: '60%',
+          margin: '0 auto'
+        };
+    
+        this.carouselImageStyle = {
+          width: '100%',
+          height: 'auto'
+        };
+      }
+    
     render() {
         return( 
             <div className='compromisso'>
                 <div className='compromisso_esquerda'>
-                    <div className='compromisso_fila1'>
-                        <div className='compromisso_fila1_img'>
-                            <img className='compromisso_img' src={this.props.certificado_img_610G} alt="Minha imagem" />
-                            <p className="compromisso_texto">{this.props.certificado_texto_G10G}</p>
-                        </div>
-                        <div className='compromisso_fila1_img'>
-                            <img className='compromisso_img' src={this.props.certificado_img_7711} alt="Minha imagem" />
-                            <p className="compromisso_texto">{this.props.certificado_texto_7711}</p>
-                        </div>
-                        <div className='compromisso_fila1_img'>
-                            <img className='compromisso_img' src={this.props.certificado_img_politica2021} alt="Minha imagem" />
-                            <p className="compromisso_texto">{this.props.certificado_texto_politica2021}</p>
-                        </div>
-                    </div>
-                    <div className='compromisso_fila2'>
-                        <div className='compromisso_div'>
-                            <img className='compromisso_img2' src={this.props.certificado_img_iatf} alt="Minha imagem" />
-                            <p className="compromisso_texto">{this.props.certificado_texto_iatf}</p>
-                        </div>
-                        <div className='compromisso_div'>
-                            <img className='compromisso_img2' src={this.props.certificado_img_iso2015} alt="Minha imagem" />
-                            <p className="compromisso_texto">{this.props.certificado_texto_iso2015}</p>
-                        </div>
-                        
+                    <div style={this.carouselContainerStyle}>
+                        <Slider {...this.settings}>
+                        {this.images.map((image, index) => (
+                            <div key={index}>
+                            <img style={this.carouselImageStyle} src={image.url} alt={`Imagem ${index + 1}`} />
+                            <p style={{ textAlign: 'center',maxWidth : '50%' , paddingLeft :'26%'}}>{image.text}</p> {/* Renderize o texto abaixo da imagem */}
+                            </div>
+                        ))}
+                        </Slider>
                     </div>
                 </div>
                 <div className='compromisso_direita'>
@@ -307,6 +325,10 @@ class Col_menu extends Component{
         );
     }
 }
+
+
+
+
 
 
 
