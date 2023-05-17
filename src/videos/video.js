@@ -19,7 +19,7 @@ class Quadrado extends Component{
             <div>
                 <div className='noticia_menu_noticia'>
                       
-                        <iframe style={{height: '100%' , width:'101%'}} src={this.props.videooo} title="YouTube video player" frameborder="0" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" ></iframe>
+                        <iframe style={{height: '100%' , width:'101%'}} src={`${this.props.videooo}?autoplay=1`} title="YouTube video player" frameborder="0" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" ></iframe>
                    
                 </div>
                 
@@ -71,20 +71,63 @@ class Video extends Component {
   
     render() {
       const videoId = this.extractVideoId(this.props.videoo);
-      const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+      const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
       const embedUrl = `https://www.youtube.com/embed/${videoId}`;
       
       return (
         <div className="div_noticia_menu_noticia">
-          <button style={{border: 'none',}} onClick={this.handleVideoClick}>
-            <img style={{ height: '100%', width: '101%' }} src={thumbnailUrl} alt="Clique para assistir ao vídeo" />
-          </button>
+    <button style={{ border: "none" }} onClick={this.handleVideoClick}>
+      <div className="video-thumbnail-inner">
+        <img className="miniatura" style={{ height: "100%", width: "101%" }} src={thumbnailUrl}/>
+        
+        <svg
+          className="play-button"
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        
+      </div>
+      <h3 style={{ height: "100%", width: "101%", fontFamily: "'Titillium Web', sans-serif" }}> {this.props.titulo_video} </h3>
+    </button>
+    
           <Modal
             isOpen={this.state.isModalOpen}
             onRequestClose={this.closeModal}
-            contentLabel="Video Modal"
-          >
-            <button onClick={this.closeModal}>X</button>
+            contentLabel="Video Modal" 
+            style={{
+                content: {
+                  overflowY: 'hidden',
+                },
+              }}
+    >
+
+<button style={{ display: "none" }} className="close-button" onClick={this.closeModal}>
+  {/* adicione o conteúdo do botão aqui, se necessário ...O btão está com display: "none" para não aparecer */}
+  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+</button>
+
             <iframe
               style={{ height: "100%", width: "100%" }}
               src={embedUrl}
@@ -232,6 +275,7 @@ function Videos() {
                                 <Video
                                   
                                   videoo={video.url_video} 
+                                  titulo_video={video.titulo_video}
                                   
                                 />
                                 

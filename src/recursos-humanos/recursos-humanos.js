@@ -171,8 +171,8 @@ function RecursosHumanos() {
     return (
      <div className='pagina'>
         <div className='esquerda'>
-            <Faça_parte />
-            <Texto />
+            {/*<Faça_parte />*/} 
+            {/*<Texto />*/}
             <Aviso />
             <Constante_Kelly />
             <Footer />

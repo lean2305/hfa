@@ -171,3 +171,24 @@
     font-size: 1vh;
 }
 
+
+
+.video-thumbnail-inner {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .miniatura {
+    display: block;
+  }
+  
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: rgba(255, 255, 255, 0.8);
+    stroke: rgba(0, 0, 0, 0.4);
+    stroke-width: 1px;
+    cursor: pointer;
+  }

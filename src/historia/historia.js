@@ -6,6 +6,11 @@ import ExibirDataAtual from '../data_hora/date';
 import { Link } from 'react-router-dom';
 import React, { useState , useEffect } from 'react';
 import axios from 'axios';
+import Html from '../html_parcerias';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 {/* Botão do menu direita */}
 class Menu extends Component{
@@ -346,20 +351,9 @@ function Historia() {
                 compromisso_texto2=" A atual política de gestão integrada, definida pela administração, reflete a preocupação da empresa na definição e implementação de um conjunto de processos e metodologias, que asseguram elevando padrões de qualidade, eficiência e performance."
                 compromisso_texto3="Neste sentido, todos assumem a responsabilidade de cumprir com o Sistema de Gestão da Qualidade, procurando permanentemente a otimização dos processos e recursos, enquanto fatores de melhoria contínua, e promover o desenvolvimento e a satisfação dos Colaboradores, levando em conta as diferentes aspirações sociais, económicas e ambientais."
                 />
-            
-            <Parceria 
-                parceria_titulo="PARCERIAS HFA" 
-                parceria_img_1="https://hfa.one/wp-content/uploads/2021/02/Uartronica-Logo-Dark-1024x347.png"
-                parceria_img_2="https://uploads-ssl.webflow.com/5fa309ec7a7638a3605f0b0c/5fa314a16dc9bd7596674ae6_logo-horizontal-no-slogan.svg"
-                parceria_img_3="https://hfa.one/wp-content/uploads/2021/02/Globaltronic-Logo-Dark-1024x347.png"
-                parceria_img_4="https://picadvanced.com/_next/static/images/PIC_logo_v3-29ea0d611901f4397dd8ae0b22bf6b62.png"
-                parceria_img_5="https://odoocdn.com/web/image/res.partner/4984573/avatar_512/Inova-Ria:%20Associa%C3%A7%C3%A3o%20De%20Empresas%20Para%20Uma%20Rede%20De%20Inova%C3%A7%C3%A3o%20Em%20Aveiro?unique=748ac40"
-                parceria_img_6="https://odoocdn.com/web/image/res.partner/4984573/avatar_512/Inova-Ria:%20Associa%C3%A7%C3%A3o%20De%20Empresas%20Para%20Uma%20Rede%20De%20Inova%C3%A7%C3%A3o%20Em%20Aveiro?unique=748ac40"
-                parceria_img_7="https://www.it.pt/img/IT-30years-logo_01_website.png"
-                parceria_img_8="https://storage-prtl-co.imgix.net/endor/organisations/772/logos/1547652569_logo_UA.png"
-                parceria_img_9="https://gbtembedded.com/assets/img/navbar-logo.png"
-                
-           />
+            <div style={{ height: '50vh' }}>
+            <Html />
+            </div>
             <Integrante 
                 integrante_subtitulo="Ética e responsabilidade social"
                 integrante_titulo="PARTE INTEGRANTE DO ADN DA HFA"
