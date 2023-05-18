@@ -17,7 +17,7 @@ class Conteudo_menu extends Component{
                     <Link to="/recursos-humanos" style={{ textDecoration: 'none' }}><h1 className="menu_h1">{this.props.btn_text3}</h1></Link>
                     <Link to="/historia" style={{ textDecoration: 'none' }}><h1 className="menu_h1">{this.props.btn_text4}</h1></Link>
                     <Link to="/" style={{ textDecoration: 'none' }}><h1 className="menu_h1">{this.props.btn_text5}</h1></Link>
-                    <Link to="/" style={{ textDecoration: 'none' }}><h1 className="menu_h1">{this.props.btn_text6}</h1></Link>
+                    <Link to="/login" style={{ textDecoration: 'none' }}><h1 className="menu_h1">{this.props.btn_text6}</h1></Link>
                 </div>
             </div>
         );

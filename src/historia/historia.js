@@ -4,13 +4,16 @@ import { Container, Row, Col } from 'react-grid-system';
 import Clock from '../data_hora/clock';
 import ExibirDataAtual from '../data_hora/date';
 import { Link } from 'react-router-dom';
-import React, { useState , useEffect } from 'react';
+import React, { useState , useEffect, useRef } from 'react';
 import axios from 'axios';
 import Html from '../html_parcerias';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+
+
 
 {/* Botão do menu direita */}
 class Menu extends Component{
@@ -333,17 +336,56 @@ class Col_menu extends Component{
 
 
 function Historia() {
-
+    const hiddenRef1 = useRef();
+    const hiddenRef2 = useRef();
+    const hiddenRef3 = useRef();
+  
+    useEffect(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          console.log(entry);
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          } else {
+            entry.target.classList.remove("show");
+          }
+        });
+      });
+  
+      if (hiddenRef1.current) {
+        observer.observe(hiddenRef1.current);
+      }
+      if (hiddenRef2.current) {
+        observer.observe(hiddenRef2.current);
+      }
+      if (hiddenRef3.current) {
+        observer.observe(hiddenRef3.current);
+      }
+  
+      return () => {
+        if (hiddenRef1.current) {
+          observer.unobserve(hiddenRef1.current);
+        }
+        if (hiddenRef2.current) {
+          observer.unobserve(hiddenRef2.current);
+        }
+        if (hiddenRef3.current) {
+          observer.unobserve(hiddenRef3.current);
+        }
+      };
+    }, []);
     return (
 
      <div className='pagina'>
        
         <div className='esquerda'>
+        <section className="hidden" ref={hiddenRef1}>
             <Img 
                 img_titulo="RIGOR E EXCELÊNCIA DESDE 1995"
                 
             />
-
+            
+            
             <Texto 
                 texto_texto_historia1="A HFA-Henrique, Fernando & Alves, S.A. é uma PME, especializada na assemblagem e teste de equipamento eletrónico e de telecomunicações, em regime de subcontratação.
                 Fundada em 1995, o crescimento contínuo da empresa demonstra o seu compromisso em providenciar serviços de elevado valor acrescentado"
@@ -351,31 +393,25 @@ function Historia() {
                 integrante_img="https://www.hfa.pt/storage/files/original/banner_noticias_5eb2851fc1bf8.jpg"
 
             />
+            </section>
+            
            <Objetivo 
                     visao01="01" visao="VISÃO" visaoT="Fazer da HFA uma referência a nivel mundial no setor da produção e teste de produtos de eletrónica" 
                     missao02="02" missao="MISSÃO" missaoT="Realizarde formasustentada, e com elevados padrões de qualidade, os produtos de eletrónica solicitados, sempre na vanguarda da tecnlogia."
                     valores03="03" valores="VALORES" valoresT="Qualidade; Know-How; Inovação; Flexibilidade; Dedicação; Confiança / Confidencialidade"/>
-            
+           
             <Compromisso 
-                certificado_img_610G="https://www.hfa.pt/storage/files/original/CIT_IPCA610G_EN_2021_5ed660ba42913.png" 
-                certificado_texto_G10G="CERTIFICADO IPC TRAINER - IPC-A-610G~"
-                certificado_img_7711 ="https://www.hfa.pt/storage/files/original/CIT_IPC771121C_EN_2021_5ed660fbdfd1c.png"
-                certificado_texto_7711="CERTIFICADO IPC TRAINER - IPC-7711/7721"
-                certificado_img_politica2021="https://www.hfa.pt/storage/files/original/HFAPGIpt_5ebacde586e1c.png"
-                certificado_texto_politica2021="POLÍTICA INTEGRADA 2021"
-                certificado_img_iatf="https://www.hfa.pt/storage/files/original/ISO_9001_2015_623c4b7632e3a.png"
-                certificado_texto_iatf="CERTIFICADO IATF 16949:2016"
-                certificado_img_iso2015="https://www.hfa.pt/storage/files/original/ISO_9001_2015_623c4b7632e3a.png"
-                certificado_texto_iso2015="CERTIFICADO NP EN ISO 9001: 2015"
                 compromisso_qualidade="Qualidade"
                 compromisso_titulo="O COMPROMISSO DA HFA"
                 compromisso_texto1="“A HFA tem o seu sistema de gestão da Qualidade certificado pelos referenciais NP EN ISO 9001:2015 e IATF 16949:2016. O Sistema de gestão da qualidade da empresa é um dos pilares fundamentais para o sucesso da mesma”"
                 compromisso_texto2=" A atual política de gestão integrada, definida pela administração, reflete a preocupação da empresa na definição e implementação de um conjunto de processos e metodologias, que asseguram elevando padrões de qualidade, eficiência e performance."
-                compromisso_texto3="Neste sentido, todos assumem a responsabilidade de cumprir com o Sistema de Gestão da Qualidade, procurando permanentemente a otimização dos processos e recursos, enquanto fatores de melhoria contínua, e promover o desenvolvimento e a satisfação dos Colaboradores, levando em conta as diferentes aspirações sociais, económicas e ambientais."
-                />
+                compromisso_texto3="Neste sentido, todos assumem a responsabilidade de cumprir com o Sistema de Gestão da Qualidade, procurando permanentemente a otimização dos processos e recursos, enquanto fatores de melhoria contínua, e promover o desenvolvimento e a satisfação dos Colaboradores, levando em conta as diferentes aspirações sociais, económicas e ambientais."/>
+                
             <div style={{ height: '50vh' }}>
+                
             <Html />
             </div>
+            <section className="hidden" ref={hiddenRef2}>
             <Integrante 
                 integrante_subtitulo="Ética e responsabilidade social"
                 integrante_titulo="PARTE INTEGRANTE DO ADN DA HFA"
@@ -383,7 +419,7 @@ function Historia() {
                 integrante_texto2="Temos a noção clara de que o desenvolvimento dos negócios nos dias de hoje deve pautar-se no respeito à integridade ecológica, na justiça social e económica, na democracia, na não-violência e na paz."
                 integrante_img='https://www.hfa.pt/storage/files/original/estica_responsabilidade_5ebbc6a26a684.jpg'
             />
-
+            </section>
             <Footer 
                 developed="Developed by " 
                 by="HFA" 

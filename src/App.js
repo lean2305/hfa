@@ -13,6 +13,8 @@ import Login from './dashboard/login';
 import Dashboard from './dashboard/dashboard';
 import Protected from './dashboard/protected';
 import Videos from './videos/video';
+import AdNoticia from './dashboard/noticias/ad-noticias';
+import Teste from './dashboard/teste/teste';
 
 
 function App() {
@@ -28,7 +30,9 @@ function App() {
           <Route path='/noticias' element={<Noticias />}/>
           <Route path='/login' element={<Login/>} />
           <Route path='/dashboard' element={<Protected><Dashboard  /></Protected>} />
+          <Route path='/adnoticia' element={<Protected><AdNoticia  /></Protected>} />
           <Route path='/videos' element={<Videos/>} />
+          <Route path='/teste' element={<Teste/>} />
           
       </Routes>
     </Router>

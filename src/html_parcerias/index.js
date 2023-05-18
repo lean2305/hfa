@@ -13,7 +13,7 @@ function Html() {
         --color-text: navy;
         --color-bg: papayawhip;
         --color-bg-accent: #ecdcc0;
-        --size: clamp(10rem, 1rem + 40vmin, 30rem);
+        --size: clamp(10rem, 1rem + 30vmin, 30rem);
         --gap: calc(var(--size) / 14);
         --duration: 60s;
         --scroll-start: 0;
@@ -44,6 +44,7 @@ function Html() {
         line-height: 1.5;
         color: var(--color-text);
         background-color: white;
+        
       }
       
       .marquee {
@@ -60,6 +61,7 @@ function Html() {
           hsl(0 0% 0% / 1) 20%,
           hsl(0 0% 0% / 1) 80%,
           hsl(0 0% 0% / 0)
+          
         );
                 mask-image: linear-gradient(
           var(--mask-direction, to right),
@@ -259,20 +261,20 @@ function Html() {
     <div class="marquee">
       <div class="marquee__group">
         
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
-          <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" />
+          <image x="-80" y="-80" width="350" height="350" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" />
 
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
-          <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" />
+          <image x="-80" y="-80" width="350" height="350" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" />
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
           <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" />
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
           <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" />
         </svg>

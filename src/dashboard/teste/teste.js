@@ -59,7 +59,7 @@ function Dashboard_conteudo() {
 
 
 
-function Dashboard() {
+function Teste() {
   return (
     <div>
         <Dashboard_conteudo />
@@ -67,4 +67,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Teste;
