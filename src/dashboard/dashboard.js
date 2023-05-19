@@ -3,19 +3,20 @@ import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './dashboard.css';
 
-const Submenu = ({ items }) => {
+const Submenu = ({ items, parentKey="dashboard" }) => {
   return (
     <ul className="submenu">
       {items.map((item) => (
-        <Link to={item.key} style={{ textDecoration: 'none' }}> 
-        <li key={item.key} onClick={item.onClick} className="menu-item">
-          {item.label}
-        </li>
+        <Link to={`/${parentKey}/${item.key}`} style={{ textDecoration: 'none' }}>
+          <li key={item.key} onClick={item.onClick} className="menu-item">
+            {item.label}
+          </li>
         </Link>
       ))}
     </ul>
   );
 };
+
 
 
 class Contador extends Component {
@@ -172,9 +173,11 @@ const Menu_esquerda = ({ handleMenuClick }) => {
 
   return (
     <div className="menu_dashboard_esquerda">
-      <div className="title">
-        <p className='p-principal'>Página Inicial</p>
-      </div>
+      <div className="title ativo">
+            <Link to={`/dashboard`} style={{ textDecoration: 'none' }}>
+                <p className="p-principal">Página Inicial</p>
+            </Link>
+        </div>
       {submenus.map((submenu, index) => (
         <div key={submenu.key}>
           <div className={`menu-item ${submenu.active ? 'ativo' : ''}`} onClick={() => handleSubMenuToggle(index)}>

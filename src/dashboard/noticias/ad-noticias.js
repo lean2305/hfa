@@ -1,18 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './ad-noticias.css';
 
-const Submenu = ({ items }) => {
-  return (
-    <ul className="submenu">
-      {items.map((item) => (
-        <li key={item.key} onClick={item.onClick} className="menu-item">
-          {item.label}
-        </li>
-      ))}
-    </ul>
-  );
-};
+const Submenu = ({ items, parentKey="dashboard" }) => {
+    return (
+      <ul className="submenu">
+        {items.map((item) => (
+          <Link to={`/${parentKey}/${item.key}`} style={{ textDecoration: 'none' }}>
+            <li key={item.key} onClick={item.onClick} className="menu-item">
+              {item.label}
+            </li>
+          </Link>
+        ))}
+      </ul>
+    );
+  };
+  
+  
 
 const Thumbnail = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -165,94 +170,32 @@ const Thumbnail = () => {
   );
 };
 
-  
+
 const MenuEsquerda = ({ handleMenuClick }) => {
-  const [submenus, setSubmenus] = useState([
-    {
-      key: 'noticias',
-      label: 'Notícias',
-      active: false,
-      items: [
-        {
-          key: 'adicionarNoticias',
-          label: 'Adicionar Notícias',
-          onClick: () => handleMenuClick('adicionarNoticias', '#4a81dd'),
-        },
-        {
-          key: 'listaNoticias',
-          label: 'Ver Lista de Notícias',
-          onClick: () => handleMenuClick('listaNoticias', '#4a81dd'),
-        },
-      ],
-    },
-    {
-      key: 'videos',
-      label: 'Vídeos',
-      active: false,
-      items: [
-        {
-          key: 'adicionarVideos',
-          label: 'Adicionar Vídeos',
-          onClick: () => handleMenuClick('adicionarVideos', '#ff0000'),
-        },
-        {
-          key: 'listaVideos',
-          label: 'Ver Lista de Vídeos',
-          onClick: () => handleMenuClick('listaVideos', '#ff0000'),
-        },
-      ],
-    },
-    {
-      key: 'eventos',
-      label: 'Eventos',
-      active: false,
-      items: [
-        {
-          key: 'adicionarEventos',
-          label: 'Adicionar Eventos',
-          onClick: () => handleMenuClick('adicionarEventos', '#00ff00'),
-        },
-        {
-          key: 'listaEventos',
-          label: 'Ver Lista de Eventos',
-          onClick: () => handleMenuClick('listaEventos', '#00ff00'),
-        },
-      ],
-    },
-    {
-      key: 'paginas',
-      label: 'Páginas',
-      active: false,
-      items: [
-        {
-          key: 'adicionarPaginas',
-          label: 'Adicionar Páginas',
-          onClick: () => handleMenuClick('adicionarPaginas', '#ffff00'),
-        },
-        {
-          key: 'listaPaginas',
-          label: 'Ver Lista de Páginas',
-          onClick: () => handleMenuClick('listaPaginas', '#ffff00'),
-        },
-        {
-          key: 'tabelaPaginas',
-          label: 'Tabela de Páginas',
-          onClick: () => handleMenuClick('tabelaPaginas', '#ffff00'),
-        },
-      ],
-    },
-    {
-      key: 'paginas',
-      label: 'Marcadores',
-      active: false,
-      items: [
-        {
-          key: 'adicionarPaginas',
-          label: 'Tabela de Paginas',
-          onClick: () => handleMenuClick('adicionarPaginas', '#ffff00'),
-        },
-      ],
-    },
+    const [submenus, setSubmenus] = useState([
+     
+      { key: 'noticias', label: 'Notícias', active: false, items: [
+        { key: 'adnoticias', label: 'Adicionar Notícias', onClick: () => handleMenuClick('adicionarNoticias', '#4a81dd') },
+        { key: 'listaNoticias', label: 'Ver Lista de Notícias', onClick: () => handleMenuClick('listaNoticias', '#4a81dd') }
+      ] },
+      { key: 'videos', label: 'Vídeos', active: false, items: [
+        { key: 'adicionarVideos', label: 'Adicionar Vídeos', onClick: () => handleMenuClick('adicionarVideos', '#ff0000') },
+        { key: 'listaVideos', label: 'Ver Lista de Vídeos', onClick: () => handleMenuClick('listaVideos', '#ff0000') }
+      ] },
+      { key: 'eventos', label: 'Eventos', active: false, items: [
+        { key: 'adicionarEventos', label: 'Adicionar Eventos', onClick: () => handleMenuClick('adicionarEventos', '#00ff00') },
+        { key: 'listaEventos', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') }
+      ] },
+      { key: 'paginas', label: 'Páginas', active: false, items: [
+        { key: 'adicionarPaginas', label: 'Adicionar Páginas', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') },
+        { key: 'listaPaginas', label: 'Ver Lista de Páginas', onClick: () => handleMenuClick('listaPaginas', '#ffff00') },
+        { key: 'tabelaPaginas', label: 'Tabela de Páginas', onClick: () => handleMenuClick('tabelaPaginas', '#ffff00') } // Novo item de menu
+      ] },
+      { key: 'paginas', label: 'Marcadores', active: false, items: [
+        { key: 'adicionarPaginas', label: 'Tabela de Paginas', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
+        
+      ] }
+   
   ]);
 
 
@@ -271,9 +214,13 @@ const MenuEsquerda = ({ handleMenuClick }) => {
 
   return (
     <div className="menu_dashboard_esquerda">
-      <div className="title">
-        <p className="p-principal">Página Inicial</p>
-      </div>
+       
+        <div className="title">
+            <Link to={`/dashboard`} style={{ textDecoration: 'none' }}>
+                <p className="p-principal">Página Inicial</p>
+            </Link>
+        </div>
+       
       {submenus.map((submenu, index) => (
         <div key={submenu.key}>
           <div

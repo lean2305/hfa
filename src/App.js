@@ -14,7 +14,7 @@ import Dashboard from './dashboard/dashboard';
 import Protected from './dashboard/protected';
 import Videos from './videos/video';
 import AdNoticia from './dashboard/noticias/ad-noticias';
-import Teste from './dashboard/teste/teste';
+
 
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
           <Route path='/dashboard' element={<Protected><Dashboard  /></Protected>} />
           <Route path='/dashboard/adnoticias' element={<Protected><AdNoticia  /></Protected>} />
           <Route path='/videos' element={<Videos/>} />
-          <Route path='/teste' element={<Teste/>} />
+          
           
       </Routes>
     </Router>
