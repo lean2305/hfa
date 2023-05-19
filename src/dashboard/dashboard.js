@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './dashboard.css';
 
 const Submenu = ({ items }) => {
   return (
     <ul className="submenu">
       {items.map((item) => (
+        <Link to={item.key} style={{ textDecoration: 'none' }}> 
         <li key={item.key} onClick={item.onClick} className="menu-item">
           {item.label}
         </li>
+        </Link>
       ))}
     </ul>
   );
@@ -131,8 +134,9 @@ class Top_contador extends Component {
 
 const Menu_esquerda = ({ handleMenuClick }) => {
   const [submenus, setSubmenus] = useState([
+   
     { key: 'noticias', label: 'Notícias', active: false, items: [
-      { key: 'adicionarNoticias', label: 'Adicionar Notícias', onClick: () => handleMenuClick('adicionarNoticias', '#4a81dd') },
+      { key: 'adnoticias', label: 'Adicionar Notícias', onClick: () => handleMenuClick('adicionarNoticias', '#4a81dd') },
       { key: 'listaNoticias', label: 'Ver Lista de Notícias', onClick: () => handleMenuClick('listaNoticias', '#4a81dd') }
     ] },
     { key: 'videos', label: 'Vídeos', active: false, items: [
@@ -174,6 +178,7 @@ const Menu_esquerda = ({ handleMenuClick }) => {
       {submenus.map((submenu, index) => (
         <div key={submenu.key}>
           <div className={`menu-item ${submenu.active ? 'ativo' : ''}`} onClick={() => handleSubMenuToggle(index)}>
+            
             <span style={{ display: 'flex', alignItems: 'center' }}>
               <p className='p-principal'>{submenu.label}</p>
               <svg

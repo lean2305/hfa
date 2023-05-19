@@ -1,106 +1,170 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Component } from 'react';
 import axios from 'axios';
 import './ad-noticias.css';
 
-
 const Submenu = ({ items }) => {
-    // Resto do código do componente Submenu
+  return (
+    <ul className="submenu">
+      {items.map((item) => (
+        <li key={item.key} onClick={item.onClick} className="menu-item">
+          {item.label}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const Thumbnail = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [showDefaultImage, setShowDefaultImage] = useState(true);
+  const fileInputRef = useRef(null); // Referência ao input do arquivo
+  const formRef = useRef(null); // Referência ao formulário
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, []);
+
+  const handleImageChange = (event) => {
+    setSelectedImage(event.target.files[0]);
+    setShowDefaultImage(false);
   };
-  
-  const Thumbnail = () => {
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [currentDate, setCurrentDate] = useState(new Date());
-    const [showDefaultImage, setShowDefaultImage] = useState(true);
-    const fileInputRef = useRef(null); // Referência ao input do arquivo
-  
-    useEffect(() => {
-      const timerId = setInterval(() => {
-        setCurrentDate(new Date());
-      }, 1000);
-  
-      return () => clearInterval(timerId);
-    }, []);
-  
-    const handleImageChange = (event) => {
-      setSelectedImage(event.target.files[0]);
-      setShowDefaultImage(false);
-    };
-  
-    const handleDefaultImageClick = () => {
-      // Ao clicar na imagem padrão, aciona o clique no input de arquivo
-      fileInputRef.current.click();
-    };
-  
-    const handleDragOver = (event) => {
-      event.preventDefault();
-    };
-  
-    const handleDrop = (event) => {
-      event.preventDefault();
-      setSelectedImage(event.dataTransfer.files[0]);
-      setShowDefaultImage(false);
-    };
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const formData = new FormData();
-      formData.append('image', selectedImage);
-  
-      axios
-        .post('http://localhost:3001/upload', formData)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-  
-    return (
-      <div>
-        <h2>Adicionar Notícia</h2>
-        <p style={{ paddingTop: '4%', fontWeight: 'bold' }}>Thumbnail</p>
-        <form onSubmit={handleSubmit}>
-          <div
-            className="image-preview"
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          >
-            {selectedImage && !showDefaultImage && (
-              <img
-                src={URL.createObjectURL(selectedImage)}
-                alt="Preview"
-                className="thumbnail"
-              />
-            )}
-            {showDefaultImage && (
-              <img
-                src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
-                alt="Default Preview"
-                className="thumbnail"
-                onClick={handleDefaultImageClick}
-              />
-            )}
-          </div>
-          {!selectedImage && (
-            <label htmlFor="imagem" className="image-label">
-              Arraste a imagem aqui ou clique para selecionar
-            </label>
+
+  const handleDefaultImageClick = () => {
+    // Ao clicar na imagem padrão, aciona o clique no input de arquivo
+    fileInputRef.current.click();
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setSelectedImage(event.dataTransfer.files[0]);
+    setShowDefaultImage(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('image', selectedImage);
+
+    axios
+      .post('http://localhost:3001/upload', formData)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleCancel = () => {
+    formRef.current.reset();
+    setSelectedImage(null);
+    setShowDefaultImage(true);
+  };
+
+  return (
+    <div>
+      <h2>Adicionar Notícia</h2>
+      <p style={{ paddingTop: '4%', fontWeight: 'bold' }}>Thumbnail</p>
+      <form onSubmit={handleSubmit} ref={formRef}>
+        <div
+          className="image-preview"
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+        >
+          {selectedImage && !showDefaultImage && (
+            <img
+              src={URL.createObjectURL(selectedImage)}
+              alt="Preview"
+              className="thumbnail"
+            />
           )}
-          <input
-            type="file"
-            name="imagem"
-            id="imagem"
-            onChange={handleImageChange}
-            ref={fileInputRef} // Atribui a referência ao input de arquivo
-            style={{ display: 'none' }} // Esconde o input de arquivo
-          />
-          {selectedImage && <button type="submit">Upload</button>}
-        </form>
-      </div>
-    );
-  };
+          {showDefaultImage && (
+            <img
+              src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
+              alt="Default Preview"
+              className="thumbnail"
+              onClick={handleDefaultImageClick}
+            />
+          )}
+        </div>
+        {!selectedImage && (
+          <label htmlFor="imagem" className="image-label">
+            Arraste a imagem aqui ou clique para selecionar
+          </label>
+        )}
+        <input
+          type="file"
+          name="imagem"
+          id="imagem"
+          onChange={handleImageChange}
+          ref={fileInputRef} // Atribui a referência ao input de arquivo
+          style={{ display: 'none' }} // Esconde o input de arquivo
+        />
+
+        <br/><br/>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"70vh" }}>
+              <p className="title_input">Título</p>
+              <input
+                style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                type="text"
+                name="titulo"
+                id="titulo"
+              />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <p className="title_input">Data</p>
+              <input
+                style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                type="text"
+                name="data"
+                id="data"
+                value={currentDate.toLocaleDateString()}
+                readOnly
+              />
+            </div>
+          </div>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <p className="title_input">Descrição</p>
+          <textarea
+            style={{
+              backgroundColor: 'rgb(201 200 200)',
+              border: 'none',
+              resize: 'none',
+              minHeight: '5rem',
+              marginRight: '4%',
+            }}
+            name="descricao"
+            id="descricao"
+          ></textarea>
+        </div>
+
+        {selectedImage && (
+          <div>
+            <button className="button-submit" type="submit">
+              SAVE
+            </button>
+            <button className="button-cancel" type="button" onClick={handleCancel}>
+              Cancel
+            </button>
+          </div>
+        )}
+      </form>
+    </div>
+  );
+};
+
   
 const MenuEsquerda = ({ handleMenuClick }) => {
   const [submenus, setSubmenus] = useState([
@@ -191,6 +255,9 @@ const MenuEsquerda = ({ handleMenuClick }) => {
     },
   ]);
 
+
+  
+
   const handleSubMenuToggle = (index) => {
     const updatedSubmenus = submenus.map((submenu, i) => {
       if (i === index) {
@@ -236,6 +303,8 @@ const MenuEsquerda = ({ handleMenuClick }) => {
     </div>
   );
 };
+
+
 
 const AdNoticia = () => {
   const [paginaSelecionada, setPaginaSelecionada] = useState('principal');

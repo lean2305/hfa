@@ -6,8 +6,8 @@
   
 }
 .menu_dashboard_esquerda {
-    width: 40vh;
-    height: 100vh;
+    width: 20%;
+    position: fixed;
     background-color: #4a81dd;
     display: flex;
     flex-direction: column;
@@ -65,14 +65,47 @@
   }
 
   .dashboard_direita{
-    width: 100%;
+    width: 80%;
     padding-left: 4%;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 20%;
+  }
+
+  .button-submit {
+    float: right;
+    margin-right: 4%;
+    margin-top: 3%;
+    background-color:#4a81dd ;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 1px;
+    padding: 1%;
+    width: 10%;
+  }
+
+  .button-cancel {
+    float: right;
+    margin-right: 4%;
+    margin-top: 3%;
+    color: gray;
+    font-weight: bold;
+    border: none;
+    border-radius: 1px;
+    padding: 1%;
+    width: 10%;
   }
 
   .thumbnail{
     width: 96%;
     height: 40vh;
     object-fit: cover;
+  }
+
+  .title_input{
+    margin-bottom: 0;
+    font-weight: 500;
   }
 
   
