@@ -63,7 +63,12 @@
   }
 
   .dashboard_direita{
-    width: 100%;
+    width: 80%;
+    padding-left: 4%;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 20%;
+    padding-right: 4%;
   }
 
   .contador-icon{
@@ -111,3 +116,7 @@
   .contador-p{
     float: right;
   }
+
+
+  
+  

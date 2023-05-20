@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './ad-noticias.css';
+import './evento.css';
 
 const Submenu = ({ items, parentKey="dashboard" }) => {
     return (
@@ -77,7 +77,7 @@ const Thumbnail = () => {
 
   return (
     <div>
-      <h2>Adicionar Notícia</h2>
+      <h2>Adicionar Evento</h2>
       <p style={{ paddingTop: '4%', fontWeight: 'bold' }}>Thumbnail</p>
       <form onSubmit={handleSubmit} ref={formRef}>
         <div
@@ -183,7 +183,7 @@ const MenuEsquerda = ({ handleMenuClick }) => {
         { key: 'listaVideos', label: 'Ver Lista de Vídeos', onClick: () => handleMenuClick('listaVideos', '#ff0000') }
       ] },
       { key: 'eventos', label: 'Eventos', active: false, items: [
-        { key: 'evento', label: 'Adicionar Eventos', onClick: () => handleMenuClick('adicionarEventos', '#00ff00') },
+        { key: 'adicionarEventos', label: 'Adicionar Eventos', onClick: () => handleMenuClick('adicionarEventos', '#00ff00') },
         { key: 'listaEventos', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') }
       ] },
       { key: 'paginas', label: 'Páginas', active: false, items: [
@@ -253,7 +253,7 @@ const MenuEsquerda = ({ handleMenuClick }) => {
 
 
 
-const AdNoticia = () => {
+const Evento = () => {
   const [paginaSelecionada, setPaginaSelecionada] = useState('principal');
   const [corDeFundo, setCorDeFundo] = useState('#3d6cbc');
 
@@ -274,4 +274,4 @@ const AdNoticia = () => {
   );
 };
 
-export default AdNoticia;
+export default Evento;

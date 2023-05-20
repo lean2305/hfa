@@ -138,14 +138,14 @@ const Menu_esquerda = ({ handleMenuClick }) => {
    
     { key: 'noticias', label: 'Notícias', active: false, items: [
       { key: 'adnoticias', label: 'Adicionar Notícias', onClick: () => handleMenuClick('adicionarNoticias', '#4a81dd') },
-      { key: 'listaNoticias', label: 'Ver Lista de Notícias', onClick: () => handleMenuClick('listaNoticias', '#4a81dd') }
+      { key: 'listanoticia', label: 'Ver Lista de Notícias', onClick: () => handleMenuClick('listaNoticias', '#4a81dd') }
     ] },
     { key: 'videos', label: 'Vídeos', active: false, items: [
       { key: 'adicionarVideos', label: 'Adicionar Vídeos', onClick: () => handleMenuClick('adicionarVideos', '#ff0000') },
       { key: 'listaVideos', label: 'Ver Lista de Vídeos', onClick: () => handleMenuClick('listaVideos', '#ff0000') }
     ] },
     { key: 'eventos', label: 'Eventos', active: false, items: [
-      { key: 'adicionarEventos', label: 'Adicionar Eventos', onClick: () => handleMenuClick('adicionarEventos', '#00ff00') },
+      { key: 'evento', label: 'Adicionar Eventos', onClick: () => handleMenuClick('adicionarEventos', '#00ff00') },
       { key: 'listaEventos', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') }
     ] },
     { key: 'paginas', label: 'Páginas', active: false, items: [

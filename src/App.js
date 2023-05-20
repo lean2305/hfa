@@ -14,8 +14,8 @@ import Dashboard from './dashboard/dashboard';
 import Protected from './dashboard/protected';
 import Videos from './videos/video';
 import AdNoticia from './dashboard/noticias/ad-noticias';
-
-
+import Listanoticia from './dashboard/listanoticia/listanoticia';
+import Evento from './dashboard/eventos/evento';
 
 function App() {
   return (
@@ -31,6 +31,8 @@ function App() {
           <Route path='/login' element={<Login/>} />
           <Route path='/dashboard' element={<Protected><Dashboard  /></Protected>} />
           <Route path='/dashboard/adnoticias' element={<Protected><AdNoticia  /></Protected>} />
+          <Route path='/dashboard/listanoticia' element={<Protected><Listanoticia  /></Protected>} />
+          <Route path='/dashboard/evento' element={<Protected><Evento  /></Protected>} />
           <Route path='/videos' element={<Videos/>} />
           
           
