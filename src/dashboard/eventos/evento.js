@@ -184,7 +184,7 @@ const MenuEsquerda = ({ handleMenuClick }) => {
       ] },
       { key: 'eventos', label: 'Eventos', active: false, items: [
         { key: 'adicionarEventos', label: 'Adicionar Eventos', onClick: () => handleMenuClick('adicionarEventos', '#00ff00') },
-        { key: 'listaEventos', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') }
+        { key: 'listaevento', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') }
       ] },
       { key: 'paginas', label: 'Páginas', active: false, items: [
         { key: 'adicionarPaginas', label: 'Adicionar Páginas', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') },

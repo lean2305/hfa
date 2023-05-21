@@ -16,6 +16,7 @@ import Videos from './videos/video';
 import AdNoticia from './dashboard/noticias/ad-noticias';
 import Listanoticia from './dashboard/listanoticia/listanoticia';
 import Evento from './dashboard/eventos/evento';
+import Listaevento from './dashboard/listaeventos/listaevento';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path='/dashboard/adnoticias' element={<Protected><AdNoticia  /></Protected>} />
           <Route path='/dashboard/listanoticia' element={<Protected><Listanoticia  /></Protected>} />
           <Route path='/dashboard/evento' element={<Protected><Evento  /></Protected>} />
+          <Route path='/dashboard/listaevento' element={<Protected><Listaevento  /></Protected>} />
           <Route path='/videos' element={<Videos/>} />
           
           
