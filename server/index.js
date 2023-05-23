@@ -4,9 +4,8 @@ const mysql = require("mysql");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const multer  = require('multer');
+const multer = require('multer');
 const path = require('path');
-
 
 const db = mysql.createPool({
   host: "localhost",
@@ -14,7 +13,6 @@ const db = mysql.createPool({
   password: "password",
   database: "banco",
 });
-
 
 app.use(express.json());
 app.use(cors());
@@ -30,14 +28,13 @@ app.get('/noticias/ultima', (req, res) => {
   });
 });
 
-
-
 app.get('/videos/ultima', (req, res) => {
   db.query('SELECT * FROM videos ORDER BY id_videos DESC LIMIT 1', (err, results) => {
     if (err) throw err;
     res.json(results);
   });
 });
+
 app.get('/noticias', (req, res) => {
   db.query('SELECT * FROM notev ORDER BY idnotev DESC', (err, results) => {
     if (err) throw err;
@@ -121,27 +118,41 @@ app.post("/login", (req, res) => {
   });
 });
 
-
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, '../public/')
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + path.extname(file.originalname))
-    }
-  })
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../public/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
 });
 
+const upload = multer({ storage });
+const moment = require('moment');
 
 app.use(express.static('public'));
-
 app.post('/upload', upload.single('image'), (req, res) => {
-  console.log(req.file);
-  res.send('File uploaded successfully');
+  const { filename, originalname } = req.file;
+  const { titulo, descricao, data } = req.body;
+  const categoria = 'Noticia'; // Valor padrão definido como 'Noticia'
+
+  // Converte a data para o formato correto (yyyy-mm-dd)
+  const dataFormatada = moment(data, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
+  db.query(
+    'INSERT INTO notev (titulo_notev, descr_notev, categoria_notev, data_notev, imagem_notev) VALUES (?, ?, ?, ?, ?)',
+    [titulo, descricao, categoria, dataFormatada, filename],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Erro ao salvar os dados do upload na base de dados');
+      } else {
+        res.send('File uploaded successfully and data saved to database');
+      }
+    }
+  );
 });
 
-
 app.listen(3001, () => {
-  console.log("rodando na porta 3001");
+  console.log("Rodando na porta 3001");
 });
