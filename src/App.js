@@ -9,7 +9,7 @@ import RecursosHumanos from './recursos-humanos/recursos-humanos';
 import Historia from './historia/historia';
 import Menu from './menu/menu';
 import PaginaNoticia from './pagina_noticia/pagina_noticia';
-import Login from './dashboard/login';
+import Loginantigo from './dashboard/loginantigo/login';
 import Dashboard from './dashboard/dashboard';
 import Protected from './dashboard/protected';
 import Videos from './videos/video';
@@ -17,6 +17,7 @@ import AdNoticia from './dashboard/noticias/ad-noticias';
 import Listanoticia from './dashboard/listanoticia/listanoticia';
 import Evento from './dashboard/eventos/evento';
 import Listaevento from './dashboard/listaeventos/listaevento';
+import Login from './dashboard/login/login';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path='/dashboard/evento' element={<Protected><Evento  /></Protected>} />
           <Route path='/dashboard/listaevento' element={<Protected><Listaevento  /></Protected>} />
           <Route path='/videos' element={<Videos/>} />
+          <Route path='/loginantigo' element={<Loginantigo/>} />
           
           
       </Routes>

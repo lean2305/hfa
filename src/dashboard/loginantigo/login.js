@@ -5,7 +5,7 @@ import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function App() {
+function Loginantigo() {
     const navigate = useNavigate();
    
   const handleLogin = (values) => {
@@ -152,4 +152,4 @@ function App() {
   );
 }
 
-export default App;
+export default Loginantigo;

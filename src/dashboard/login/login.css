@@ -1,0 +1,83 @@
+html, body{
+    margin: 0;
+    padding: 0;
+  }
+  
+  .main_container {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .form_container {
+    padding: 100px 0 0 100px;
+  }
+  
+  .title {
+    margin: 0;
+    padding: 10px 0 10px 0;
+    font-weight: bold;
+    font-size: xx-large;
+    color: #333;
+  }
+  
+  .noAccText {
+    font-weight: bold;
+    color: rgb(131, 131, 131);
+  }
+  
+  .createAccLink {
+    font-weight: bold;
+    color: rgb(27, 70, 170);
+  }
+  
+  .loginForm {
+    padding: 10px 0 0 0;
+  }
+  
+  .formInput[type="text"], .formInput[type="password"] {
+    width: 375px;
+    height: 40px;
+    border-radius: 7px;
+    outline: none;
+    padding: 0 10px 0 10px;
+    font-size: 17px;
+    background-color: #e3eaec;
+    border: none;
+    margin-bottom: 15px;
+  }
+  
+  .formLabel {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .formInput[type="text"]:focus, .formInput[type="password"]:focus {
+    outline: 3px solid #4ba4e8;
+  }
+  
+  .formInput[type="submit"] {
+    height: 40px;
+    width: 187.5px;
+    transform: translateX(50%);
+    margin-top: 10px;
+    border: none;
+    background-color: #4ba4e8;
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+    border-radius: 40px;
+  }
+  
+  .wavyComp {
+    background-image: url('https://www.hfa.pt/storage/files/original/BannerHomepage_5ecccdf533634.jpg');
+    background-repeat: no-repeat;
+    background-position: 50%;
+    height: 100vh;
+    width: 50vw;
+    float: right;
+    margin: 0;
+    padding: 0;
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 20% 100%, 14% 89%, 17.5% 67%, 12.5% 53%, 20% 37%, 15.5% 23%);
+    background-size : cover;
+}
