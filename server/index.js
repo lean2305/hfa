@@ -121,6 +121,7 @@ app.post("/login", (req, res) => {
   });
 });
 
+
 const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
@@ -131,6 +132,7 @@ const upload = multer({
     }
   })
 });
+
 
 app.use(express.static('public'));
 

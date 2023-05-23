@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-import './listanoticia.css';
+import './pagina.css';
 
 const Submenu = ({ items, parentKey="dashboard" }) => {
   return (
@@ -37,7 +37,7 @@ const Menu_esquerda = ({ handleMenuClick }) => {
       { key: 'listaEventos', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') }
     ] },
     { key: 'paginas', label: 'Páginas', active: false, items: [
-      { key: 'listapagina', label: 'Ver Lista de Páginas', onClick: () => handleMenuClick('listaPaginas', '#ffff00') }
+      { key: 'listaPaginas', label: 'Ver Lista de Páginas', onClick: () => handleMenuClick('listaPaginas', '#ffff00') }
     ] },
     { key: 'paginas', label: 'Marcadores', active: false, items: [
       { key: 'adicionarPaginas', label: 'Tabela de Paginas', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
@@ -129,8 +129,8 @@ class Lista extends Component {
         return texto.slice(0, limite) + "...";
       }
     render() {
-        const textoCompleto = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-        const limiteCaracteres = 35;
+        const textoCompleto = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        const limiteCaracteres = 60;
         const textoLimitado = this.limitarCaracteres(textoCompleto, limiteCaracteres);
       return (
         <div className='lista_div'>
@@ -139,13 +139,11 @@ class Lista extends Component {
                     <p>Título</p>
                 </div>
                 <div className="coluna">
-                    <p>Data</p>
+                    
                 </div>
                 <div className="coluna">
                 <Link to={`/dashboard/adnoticias`} style={{ textDecoration: 'none' }}>
-                    <div style={{backgroundColor :"#4a81dd" , color:"white" , borderRadius:"5px",marginLeft:"12vh", marginRight:"12vh"}}>
-                        <p>Adicionar Notícia</p>
-                    </div>
+                    
                     </Link>
                 </div>
             </div>
@@ -154,11 +152,11 @@ class Lista extends Component {
                     <p>{textoLimitado}</p>
                 </div>
                 <div className="coluna_conteudo">
-                    <p>dd/mm/aa</p>
+                    
                 </div>
                 <div className="coluna_conteudo_svg" >
-                    <p> <svg style={{float:"left", marginLeft:"12vh"}} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/> </svg>
-                        <svg style={{float:"right" ,marginRight:"12vh"}} xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 100 100">
+                    <p> <svg style={{float:"left", marginLeft:"8vh"}} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/> </svg>
+                        <svg style={{float:"right" ,marginRight:"8vh"}} xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 100 100">
                         <path d="M20 20 L80 80 M80 20 L20 80" stroke="black" stroke-width="10"/>
                         </svg>
                     </p>
@@ -194,7 +192,7 @@ class Lista extends Component {
 
 
 
-const Listanoticia = () => {
+const Listapagina = () => {
   const [paginaSelecionada, setPaginaSelecionada] = useState('principal');
   const [corDeFundo, setCorDeFundo] = useState('#3d6cbc');
 
@@ -218,4 +216,4 @@ const Listanoticia = () => {
   );
 };
 
-export default Listanoticia;
+export default Listapagina;

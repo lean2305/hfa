@@ -18,6 +18,8 @@ import Listanoticia from './dashboard/listanoticia/listanoticia';
 import Evento from './dashboard/eventos/evento';
 import Listaevento from './dashboard/listaeventos/listaevento';
 import Login from './dashboard/login/login';
+import Listapagina from './dashboard/pagina/pagina';
+import Edithistoria from './dashboard/editpagina/edithistoria';
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path='/dashboard/listanoticia' element={<Protected><Listanoticia  /></Protected>} />
           <Route path='/dashboard/evento' element={<Protected><Evento  /></Protected>} />
           <Route path='/dashboard/listaevento' element={<Protected><Listaevento  /></Protected>} />
+          <Route path='/dashboard/listapagina' element={<Protected><Listapagina  /></Protected>} />
+          <Route path='/dashboard/edithistoria' element={<Protected><Edithistoria  /></Protected>} />
           <Route path='/videos' element={<Videos/>} />
           <Route path='/loginantigo' element={<Loginantigo/>} />
           
