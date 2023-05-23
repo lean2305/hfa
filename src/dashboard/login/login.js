@@ -78,7 +78,7 @@ function Login() {
 
       <div className="form_container">
 
-        <p className="title">Iniciar sessão com a sua conta</p>
+        <p className="title_login">Iniciar sessão com a sua conta</p>
 
         <Formik
         initialValues={{}}
