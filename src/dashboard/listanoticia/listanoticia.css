@@ -125,6 +125,7 @@
     padding-right: 2%;
     font-weight: 500;
     text-align: center;
+    font-size: 2.4vh;
   }
 
   .coluna {
@@ -156,7 +157,11 @@
     float: right;
     margin-top: 2%;
     margin-right: 10%;
-    
+    padding-top: 2%;
+    position: fixed;
+    bottom: 20px; /* Ajuste a distância do fundo conforme necessário */
+    right: 20px; /* Ajuste a distância da direita conforme necessário */
+    padding: 10px;
   }
   
   .page {

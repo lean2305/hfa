@@ -36,8 +36,10 @@ app.get('/videos/ultima', (req, res) => {
   });
 });
 
-app.get('/dados', (req, res) => {
-  db.query('SELECT * FROM notev', (error, results) => {
+app.get('/dadosnoticia', (req, res) => {
+
+
+  db.query(`SELECT * FROM notev where categoria_notev ='Noticia'`, (error, results) => {
     if (error) {
       console.error(error);
       res.status(500).json({ error: 'Erro ao buscar os dados' });
@@ -46,6 +48,40 @@ app.get('/dados', (req, res) => {
     }
   });
 });
+
+app.get('/dadosevento', (req, res) => {
+
+
+  db.query(`SELECT * FROM notev where categoria_notev ='Evento'`, (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao buscar os dados' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+app.get('/noticias/:idnotev', (req, res) => {
+  const idnotev = req.params.idnotev;
+
+  // Consulta ao banco de dados para buscar a notícia com base no ID
+  const query = `SELECT * FROM notev WHERE idnotev = '${idnotev}'`;
+
+  db.query(query, (error, results) => {
+    if (error) {
+      console.error('Erro na consulta ao banco de dados:', error);
+      res.status(500).json({ message: 'Erro ao buscar os dados da notícia' });
+    } else {
+      if (results.length > 0) {
+        const noticia = results[0];
+        res.json(noticia); // Retorna a notícia encontrada como resposta JSON
+      } else {
+        res.status(404).json({ message: 'Notícia não encontrada' }); // Retorna um erro 404 se a notícia não for encontrada
+      }
+    }
+  });
+});
+
 
 app.get('/noticias', (req, res) => {
   db.query('SELECT * FROM notev ORDER BY idnotev DESC', (err, results) => {

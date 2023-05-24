@@ -27,7 +27,7 @@ function App() {
       <Routes>
         
           <Route path='/' element={<MenuInicial  />} />
-          <Route path='/pagina_noticia' element={<PaginaNoticia />} />
+          <Route path="/pagina_noticia/:idnotev" element={<PaginaNoticia/>} />
           <Route path='/menu' element={<Menu />} />
           <Route path='/historia' element={<Historia />} />
           <Route path='/recursos-humanos' element={<RecursosHumanos/>} />

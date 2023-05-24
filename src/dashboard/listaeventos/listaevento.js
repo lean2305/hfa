@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-import './listaevento.css';
+import './listaevento';
+import axios from 'axios';
+import APIHOST from '../../constant';
+import { format } from 'date-fns';
 
 const Submenu = ({ items, parentKey="dashboard" }) => {
   return (
@@ -34,7 +37,7 @@ const Menu_esquerda = ({ handleMenuClick }) => {
     ] },
     { key: 'eventos', label: 'Eventos', active: false, items: [
       { key: 'evento', label: 'Adicionar Eventos', onClick: () => handleMenuClick('adicionarEventos', '#00ff00') },
-      { key: 'listaEventos', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') }
+      { key: 'listaevento', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') }
     ] },
     { key: 'paginas', label: 'Páginas', active: false, items: [
       { key: 'listapagina', label: 'Ver Lista de Páginas', onClick: () => handleMenuClick('listaPaginas', '#ffff00') }
@@ -119,78 +122,125 @@ class Search_filter extends Component {
     }
   }
 
+  const Lista = () => {
+    const limitarCaracteres = (texto, limite) => {
+      if (texto.length <= limite) {
+        return texto;
+      }
+      return texto.slice(0, limite) + "...";
+    };
+  
+    const [noticias, setNoticias] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`${APIHOST}/dadosevento`);
+          setNoticias(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+  
+    const formatarData = (data) => {
+      return format(new Date(data), "yyyy-MM-dd");
+    };
+  
+    const indiceInicio = (currentPage - 1) * 7;
+    const noticiasExibidas = noticias.slice(indiceInicio, indiceInicio + 8);
+  
+    const handlePreviousPage = () => {
+      if (currentPage > 1) {
+        setCurrentPage(currentPage - 1);
+      }
+    };
+  
+    const handleNextPage = () => {
+      const totalPages = Math.ceil(noticias.length / 8);
+      if (currentPage < totalPages) {
+        setCurrentPage(currentPage + 1);
+      }
+    };
+  
+    return (
+      <div className="lista_div" style={{ maxHeight: "80vh"}}>
+        <div className="lista_conteudo">
+          <div className="coluna">
+            <p>Título</p>
+          </div>
+          <div className="coluna">
+            <p>Data</p>
+          </div>
+          <div className="coluna">
+            <Link to={`/dashboard/evento`} style={{ textDecoration: "none" }}>
+              <div
+                style={{
+                  backgroundColor: "#4a81dd",
+                  color: "white",
+                  borderRadius: "5px",
+                  marginLeft: "12vh",
+                  marginRight: "12vh",
+                }}
+              >
+                <p>Adicionar Evento</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+        {noticiasExibidas.map((noticia) => (
+          <div className="lista_conteudo" key={noticia.id}>
+            <div className="coluna_conteudo_titulo">
+              <p>{limitarCaracteres(noticia.titulo_notev, 35)}</p>
+            </div>
+            <div className="coluna_conteudo">
+              <p>{formatarData(noticia.data_notev)}</p>
+            </div>
+            <div className="coluna_conteudo_svg">
+              <p>
+                <svg
+                  style={{ float: "left", marginLeft: "12vh" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-pencil"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                </svg>
+                <svg
+                  style={{ float: "right", marginRight: "12vh" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  viewBox="0 0 100 100"
+                >
+                  <path d="M20 20 L80 80 M80 20 L20 80" stroke="black" strokeWidth="10" />
+                </svg>
+              </p>
+            </div>
+          </div>
+        ))}
+        <div>
+          <div className="pagination">
+            <div className="arrow left-arrow" onClick={handlePreviousPage}>
+              ◀
+            </div>
+            <div className="page">{currentPage}</div>
+            <div className="arrow right-arrow" onClick={handleNextPage}>
+              ▶
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   
-class Lista extends Component {
-    limitarCaracteres(texto, limite) {
-        if (texto.length <= limite) {
-          return texto;
-        }
-        return texto.slice(0, limite) + "...";
-      }
-    render() {
-        const textoCompleto = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-        const limiteCaracteres = 35;
-        const textoLimitado = this.limitarCaracteres(textoCompleto, limiteCaracteres);
-      return (
-        <div className='lista_div'>
-            <div className='lista_conteudo'>
-                <div className="coluna">
-                    <p>Título</p>
-                </div>
-                <div className="coluna">
-                    <p>Data</p>
-                </div>
-                <div className="coluna">
-                <Link to={`/dashboard/adnoticias`} style={{ textDecoration: 'none' }}>
-                    <div style={{backgroundColor :"#4a81dd" , color:"white" , borderRadius:"5px",marginLeft:"12vh", marginRight:"12vh"}}>
-                        <p>Adicionar Evento</p>
-                    </div>
-                    </Link>
-                </div>
-            </div>
-            <div className='lista_conteudo'>
-                <div className="coluna_conteudo_titulo">
-                    <p>{textoLimitado}</p>
-                </div>
-                <div className="coluna_conteudo">
-                    <p>dd/mm/aa</p>
-                </div>
-                <div className="coluna_conteudo_svg" >
-                    <p> <svg style={{float:"left", marginLeft:"12vh"}} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"> <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/> </svg>
-                        <svg style={{float:"right" ,marginRight:"12vh"}} xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 100 100">
-                        <path d="M20 20 L80 80 M80 20 L20 80" stroke="black" stroke-width="10"/>
-                        </svg>
-                    </p>
-                    
-                </div>
-                
-            </div>
-
-            
-        </div>
-        
-      );
-    }
-  }
-
-  class Pagincao extends Component {
-    render() {  
-      return (
-        <div >
-        
-            <div class="pagination">
-                <div class="arrow left-arrow">◀</div>
-                <div class="page">1</div>
-                <div class="arrow right-arrow">▶</div>
-            </div>
-
-        </div>
-        
-      );
-    }
-  }
-
 
 
 
@@ -211,7 +261,7 @@ const Listaevento = () => {
       <div className="listanoticia_direita" >
         <Search_filter />
         <Lista />
-        <Pagincao />
+        
         
       </div>
     </div>
