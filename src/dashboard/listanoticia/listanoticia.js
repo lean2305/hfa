@@ -132,6 +132,8 @@ class Lista extends Component {
         const textoCompleto = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
         const limiteCaracteres = 35;
         const textoLimitado = this.limitarCaracteres(textoCompleto, limiteCaracteres);
+
+        
       return (
         <div className='lista_div'>
             <div className='lista_conteudo'>

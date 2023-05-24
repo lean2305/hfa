@@ -7,6 +7,7 @@ const saltRounds = 10;
 const multer = require('multer');
 const path = require('path');
 
+
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
@@ -32,6 +33,17 @@ app.get('/videos/ultima', (req, res) => {
   db.query('SELECT * FROM videos ORDER BY id_videos DESC LIMIT 1', (err, results) => {
     if (err) throw err;
     res.json(results);
+  });
+});
+
+app.get('/dados', (req, res) => {
+  db.query('SELECT * FROM notev', (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao buscar os dados' });
+    } else {
+      res.json(results);
+    }
   });
 });
 
@@ -131,7 +143,7 @@ const upload = multer({ storage });
 const moment = require('moment');
 
 app.use(express.static('public'));
-app.post('/upload', upload.single('image'), (req, res) => {
+app.post('/uploadnoticia', upload.single('image'), (req, res) => {
   const { filename, originalname } = req.file;
   const { titulo, descricao, data } = req.body;
   const categoria = 'Noticia'; // Valor padrão definido como 'Noticia'
@@ -152,6 +164,32 @@ app.post('/upload', upload.single('image'), (req, res) => {
     }
   );
 });
+
+
+app.post('/uploadevento', upload.single('image'), (req, res) => {
+  const { filename, originalname } = req.file;
+  const { titulo, descricao, data } = req.body;
+  const categoria = 'Evento'; // Valor padrão definido como 'Evento'
+
+  // Converte a data para o formato correto (yyyy-mm-dd)
+  const dataFormatada = moment(data, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
+  db.query(
+    'INSERT INTO notev (titulo_notev, descr_notev, categoria_notev, data_notev, imagem_notev) VALUES (?, ?, ?, ?, ?)',
+    [titulo, descricao, categoria, dataFormatada, filename],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Erro ao salvar os dados do upload na base de dados');
+      } else {
+        res.send('File uploaded successfully and data saved to database');
+      }
+    }
+  );
+});
+
+
+
 
 app.listen(3001, () => {
   console.log("Rodando na porta 3001");

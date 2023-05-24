@@ -60,7 +60,7 @@ const Thumbnail = () => {
     formData.append('descricao', formRef.current.descricao.value);
 
     axios
-      .post('http://localhost:3001/upload', formData)
+      .post('http://localhost:3001/uploadnoticia', formData)
       .then((response) => {
         console.log(response.data);
         formRef.current.reset();
