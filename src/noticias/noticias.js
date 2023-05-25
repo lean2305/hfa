@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import APIHOST from '../constant';
 
+
+
 function Quadrado(props) {
   return (
     <div>
@@ -27,6 +29,8 @@ function Quadrado(props) {
   );
 }
 
+
+
 function Mais(props) {
   return (
     <div className='mais_noticias_menu_noticia'>
@@ -34,6 +38,8 @@ function Mais(props) {
     </div>
   );
 }
+
+
 
 function Noticia(props) {
   return (
@@ -48,6 +54,8 @@ function Noticia(props) {
     </div>
   );
 }
+
+
 
 function Footer(props) {
   return (
@@ -65,6 +73,8 @@ function Footer(props) {
   );
 }
 
+
+
 function ConteudoMenu(props) {
   return (
     <div className='conteudo_menu_menu_noticia'>
@@ -74,6 +84,8 @@ function ConteudoMenu(props) {
     </div>
   );
 }
+
+
 
 function Botao(props) {
   return (
@@ -86,6 +98,8 @@ function Botao(props) {
   );
 }
 
+
+
 function FooterMenu(props) {
   return (
     <Link to="/" style={{ textDecoration: 'none' }}>
@@ -95,6 +109,8 @@ function FooterMenu(props) {
     </Link>
   );
 }
+
+
 
 function BtnMenu(props) {
   return (
@@ -106,6 +122,9 @@ function BtnMenu(props) {
     </div>
   );
 }
+
+
+
 
 function Noticias() {
   const [noticias, setNoticias] = useState([]);
@@ -132,6 +151,8 @@ function Noticias() {
   return (
     <div className='pagina_menu_noticia'>
       <div className='esquerda_menu_noticia'>
+
+      <Link to={`/pagina_noticia/${ultimaNoticia ? ultimaNoticia.idnotev : ''}`} className="link-noticia">
         <Quadrado
           quadrado_catgoria={ultimaNoticia ? ultimaNoticia.categoria_notev : ''}
           quadrado_titulo={ultimaNoticia ? ultimaNoticia.titulo_notev : ''}
@@ -139,23 +160,26 @@ function Noticias() {
           quadrado_data={ultimaNoticia ? ultimaNoticia.data_notev.slice(0, 10) : ''}
           quadrado_img={ultimaNoticia ? process.env.PUBLIC_URL + ultimaNoticia.imagem_notev : ''}
         />
+         </Link>
+         
         <Mais nomemeio="MAIS NOTICIAS & EVENTOS" />
         <div className="container_menu_noticia">
           <Container>
             <Row>
               {noticias.slice(1).map((noticia) => (
-  <Col sm={4} key={noticia.idnotev}>
-    <Link to={`/pagina_noticia/${noticia.idnotev}`} className='div_noticia_menu_noticia'>
-      <Noticia
-        barra={noticia.categoria_notev}
-        noticia_titulo={noticia.titulo_notev}
-        noticia_texto={noticia.descr_notev.slice(0, 100) + "..."}
-        noticia_data={noticia.data_notev.slice(0, 10) + "       "}
-        noticia_img={process.env.PUBLIC_URL + noticia.imagem_notev}
-      />
-    </Link>
-  </Col>
-))}
+                <Col sm={4} key={noticia.idnotev}>
+                    <Link to={`/pagina_noticia/${noticia.idnotev}`} className="link-noticia">
+                    <Noticia
+                        barra={noticia.categoria_notev}
+                        noticia_titulo={noticia.titulo_notev}
+                        noticia_texto={noticia.descr_notev.slice(0, 100) + "..."}
+                        noticia_data={noticia.data_notev.slice(0, 10) + "       "}
+                        noticia_img={process.env.PUBLIC_URL + noticia.imagem_notev}
+                        
+                    />
+                    </Link>
+                </Col>
+               ))}
             </Row>
           </Container>
         </div>

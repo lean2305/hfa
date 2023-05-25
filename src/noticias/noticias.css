@@ -144,6 +144,12 @@
     padding-bottom: 20%;
 }
 
+.link-noticia {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+
 .conteudo_menu_menu_noticia{
 
     padding-top: 15%;

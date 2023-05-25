@@ -1,10 +1,12 @@
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import APIHOST from '../constant';
 import { Component } from "react";
+import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'react-grid-system';
-import './pagina_noticia.css';
 import Clock from '../data_hora/clock';
 import ExibirDataAtual from '../data_hora/date';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 
 
 {/* Conteudo do menu direito contendo imagem e texto */}
@@ -40,7 +42,6 @@ class Botao extends Component{
 
 class Noticia extends Component{
     render() {
-        const { idnotev } = useParams();
         return( 
             <div className="noticia">
                 <div className="noticia_esquerda_img">
@@ -134,83 +135,106 @@ class Col_menu extends Component{
 }
 
 
-function PaginaNoticia() {
-    return (
-     <div className='pagina'>
-        <div className='esquerda_pg'>
 
-            {/* Este é um componente que contém links para as imagens de cada quadrado e o texto da notícia correspondente.*/}
-            <Noticia 
-                NoticiasEventos="Noticias & Eventos"
-                noticia="https://www.platon.com.br/wp-content/uploads/2019/10/datacenter1-1200x480.jpg" 
-                strong="Mais Noticias"
-                noticia01="https://www.iol.pt/multimedia/oratvi/multimedia/imagem/id/61607d840cf241cadce2057c/1024.jpg"
-                noticia02="https://img.freepik.com/fotos-gratis/empresario-assinar-papeis-no-escritorio_23-2148377770.jpg?w=2000"
-                noticia03="https://images.rr.sapo.pt/advogado_homem_de_negocios_pessoa_gravata_foto_hunters_race_408744_unsplash1536897bdefaultlarge_1024.jpg"
-                titulo_noticia="Participação Feira Productrónica Munique"
-                data_noticia="15/02/2022"
-                texto_noticia1="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Loren ipsum is that it has a more-or-less normal distribution. "
-                texto_noticia2="of letters, as apposed to using, making it look like readable English. Many desktop publishing packages and web page editor "
-                texto_noticia3="now use Lorem Ipsum as their defautl model text, and a search for lorem ipsum will uncover many web sites still in "
-            
-            /> 
-                
-                <Footer 
-                developed="Developed by " 
-                by="HFA" 
-                copyright="© COPYRIGHT 2020 HFA / ALL RIGHTS RESERVED" 
-                termos="TERMOS & CONDIÇÕES"
-                politica="POLÍTICA DE PRIVACIDADE"
-                cookies="COOKIES "
-                />
-        </div>
-        
-        <div className='direita_pg' >
-            <div className='barra_hora'>
-                <Container>
-                    <Row>
-                        <Col sm={4}>
-                            <Col_menu col_text_menu="MENU" />
-                        </Col>
-                        <Col sm={4}>
-                            <Clock />
-                        </Col>
-                        <ExibirDataAtual />
-                    </Row>
-                </Container>
-                <Container>
-                    <Row>
-                        <Col>
-                            <Conteudo_menu 
-                                    menu_logo="https://showroom.portugalbikevalue.pt/wp-content/uploads/2021/05/HFA-Logo-Dark.png"
-                                    menu_titulo="ATENDIMENTO"
-                                    menu_texto1="Para ser atendido, consoante a sua necessidade, escolha nos botões abaixo o departamento. "
-                                    menu_texto2="Enquando aguarda, navegue pela nossa plataforma para saber mais sobre nós!"
-                                    />
-                        </Col>
-                        <Col>
-                            <Botao 
-                                    botao_1="Recursos Humanos"
-                                    botao_2="Compras"
-                                    botao_3="Planeamento"
-                                />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Footer_menu 
-                                footer_btn1="Voltar"
-                                footer_btn2="Página principal"
 
-                            />
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        </div>
-     </div>
-    );
+function PaginaNoticias() {
+  const { idnotev } = useParams();
+  const [noticia, setNoticia] = useState(null);
+  
+  useEffect(() => {
+    // Faz a chamada à API para buscar os dados da notícia com o ID fornecido
+    axios.get(`${APIHOST}/noticias/${idnotev}`)
+      .then((response) => {
+        setNoticia(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [idnotev]);
+
+  // Verifica se a notícia está sendo carregada
+  if (!noticia) {
+    return <div>Carregando...</div>;
   }
 
+  return (
 
-export default PaginaNoticia;
+
+
+<div className='pagina'>
+<div className='esquerda_pg'>
+
+    {/* Este é um componente que contém links para as imagens de cada quadrado e o texto da notícia correspondente.*/}
+    <Noticia 
+        NoticiasEventos={noticia.categoria_notev}
+        noticia={process.env.PUBLIC_URL + '/' + noticia.imagem_notev} 
+        strong="Mais Noticias"
+        noticia01="https://www.iol.pt/multimedia/oratvi/multimedia/imagem/id/61607d840cf241cadce2057c/1024.jpg"
+        noticia02="https://img.freepik.com/fotos-gratis/empresario-assinar-papeis-no-escritorio_23-2148377770.jpg?w=2000"
+        noticia03="https://images.rr.sapo.pt/advogado_homem_de_negocios_pessoa_gravata_foto_hunters_race_408744_unsplash1536897bdefaultlarge_1024.jpg"
+        titulo_noticia={noticia.titulo_notev}
+        data_noticia="15/02/2022"
+        texto_noticia1= {noticia.descr_notev}
+        texto_noticia2="of letters, as apposed to using, making it look like readable English. Many desktop publishing packages and web page editor "
+        texto_noticia3="now use Lorem Ipsum as their defautl model text, and a search for lorem ipsum will uncover many web sites still in "
+    
+    /> 
+        
+        <Footer 
+        developed="Developed by " 
+        by="HFA" 
+        copyright="© COPYRIGHT 2020 HFA / ALL RIGHTS RESERVED" 
+        termos="TERMOS & CONDIÇÕES"
+        politica="POLÍTICA DE PRIVACIDADE"
+        cookies="COOKIES "
+        />
+</div>
+
+<div className='direita_pg' >
+    <div className='barra_hora'>
+        <Container>
+            <Row>
+                <Col sm={4}>
+                    <Col_menu col_text_menu="MENU" />
+                </Col>
+                <Col sm={4}>
+                    <Clock />
+                </Col>
+                <ExibirDataAtual />
+            </Row>
+        </Container>
+        <Container>
+            <Row>
+                <Col>
+                    <Conteudo_menu 
+                            menu_logo="https://showroom.portugalbikevalue.pt/wp-content/uploads/2021/05/HFA-Logo-Dark.png"
+                            menu_titulo="ATENDIMENTO"
+                            menu_texto1="Para ser atendido, consoante a sua necessidade, escolha nos botões abaixo o departamento. "
+                            menu_texto2="Enquando aguarda, navegue pela nossa plataforma para saber mais sobre nós!"
+                            />
+                </Col>
+                <Col>
+                    <Botao 
+                            botao_1="Recursos Humanos"
+                            botao_2="Compras"
+                            botao_3="Planeamento"
+                        />
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Footer_menu 
+                        footer_btn1="Voltar"
+                        footer_btn2="Página principal"
+
+                    />
+                </Col>
+            </Row>
+        </Container>
+    </div>
+</div>
+</div>
+  );
+}
+
+export default PaginaNoticias;
