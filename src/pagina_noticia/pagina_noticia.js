@@ -74,7 +74,6 @@ class Noticia extends Component{
 
 
 {/* Rodapé dá pagina do lado esquerdo */}
-{/* Rodapé dá pagina do lado esquerdo */}
 class Footer extends Component{
     render() {
         return( 

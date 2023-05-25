@@ -106,9 +106,13 @@ class Video extends Component {
             style={{
                 content: {
                   overflowY: 'hidden',
+                  height: '50vh',
+                  marginLeft:'10%',
+                  marginRight : '10%',
+                  marginTop: '7%',
                 },
               }}
-    >
+    >  
 
 <button style={{ display: "none" }} className="close-button" onClick={this.closeModal}>
   {/* adicione o conteúdo do botão aqui, se necessário ...O btão está com display: "none" para não aparecer */}
@@ -203,7 +207,7 @@ class Footer_menu extends Component{
     render() {
         return(
             <Link to="/" style={{ textDecoration: 'none' }}> 
-            <div className='footer_menu_menu_noticia'>
+            <div className='footer_menu_menu_video'>
                 
                    <h1>{this.props.footer_texto}</h1>
                 
