@@ -29,6 +29,11 @@
     background-size: cover;
     background-position: center;
 }
+.scrollable {
+  overflow-y: scroll;
+  height: 100%;
+}
+
 
 
 .ImgText{

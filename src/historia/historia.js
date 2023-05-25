@@ -15,6 +15,7 @@ import 'slick-carousel/slick/slick-theme.css';
 
 
 
+
 {/* Botão do menu direita */}
 class Menu extends Component{
     render() {

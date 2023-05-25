@@ -40,38 +40,67 @@ class Botao extends Component{
         );
     }
 }
-
-
-class Noticia extends Component{
+class Noticia extends Component {
     render() {
-        
-        return( 
-            <div className="noticia">
-                <div className="noticia_esquerda_img">
-                    <img style={{paddingBottom :'4%' , objectFit:'cover'}} className="svg" width="100%" height="40%" src={this.props.noticia} alt="Logo" />
-                    <strong className="noticia_strong">{this.props.strong}</strong> <br /> <br />
-                    <div className="mais_noticias">
-                        <img style={{paddingBottom :'4%', paddingRight: '5%', objectFit:'cover'}} className="svg" width="30%" height="100vh" src={this.props.noticia01} alt="Logo" />
-                        <img style={{paddingBottom :'4%', paddingRight: '5%' , objectFit:'cover'}} className="svg" width="30%" height="100vh" src={this.props.noticia02} alt="Logo" />
-                        <img style={{paddingBottom :'4%', paddingRight: '5%' , objectFit:'cover'}} className="svg" width="30%" height="100vh" src={this.props.noticia02} alt="Logo" />
-                    
-                    </div>
-                </div>
-
-                <div className="noticia_direita">
-                    <strong className="noticia_strong">{this.props.NoticiasEventos}</strong>
-                    <h1>{this.props.titulo_noticia}</h1>
-                    <p style={{color:'rgb(165, 165, 165)'}}>{this.props.data_noticia}</p>
-                    <hr style={{border:'none', height:'3px', backgroundColor:'rgb(165, 165, 165)'}}/>
-                    <p style={{color:'#636363'}}>{this.props.texto_noticia1}</p>
-                    
-
-                </div>
+      return (
+        <div className="noticia">
+          <div className="noticia_esquerda_img">
+            <img
+              style={{ paddingBottom: '4%', objectFit: 'cover' }}
+              className="svg"
+              width="100%"
+              height="40%"
+              src={this.props.noticia}
+              alt="Logo"
+            />
+            <strong className="noticia_strong">{this.props.strong}</strong> <br /> <br />
+            <div className="mais_noticias">
+                
+              {this.props.noticia01 && (
+                <img
+                  style={{ paddingBottom: '4%', paddingRight: '5%', objectFit: 'cover' }}
+                  className="svg"
+                  width="30%"
+                  height="100vh"
+                  src={this.props.noticia01}
+                  alt="Logo"
+                />
+              )}
+              {this.props.noticia02 && (
+                <img
+                  style={{ paddingBottom: '4%', paddingRight: '5%', objectFit: 'cover' }}
+                  className="svg"
+                  width="30%"
+                  height="100vh"
+                  src={this.props.noticia02}
+                  alt="Logo"
+                />
+              )}
+              {this.props.noticia03 && (
+                <img
+                  style={{ paddingBottom: '4%', paddingRight: '5%', objectFit: 'cover' }}
+                  className="svg"
+                  width="30%"
+                  height="100vh"
+                  src={this.props.noticia03}
+                  alt="Logo"
+                />
+              )}
             </div>
-        );
+          </div>
+  
+          <div className="noticia_direita">
+            <strong className="noticia_strong">{this.props.NoticiasEventos}</strong>
+            <h1>{this.props.titulo_noticia}</h1>
+            <p style={{ color: 'rgb(165, 165, 165)' }}>{this.props.data_noticia}</p>
+            <hr style={{ border: 'none', height: '3px', backgroundColor: 'rgb(165, 165, 165)' }} />
+            <p style={{ color: '#636363' }}>{this.props.texto_noticia1}</p>
+          </div>
+        </div>
+      );
     }
-}
-
+  }
+  
 
 {/* Rodapé dá pagina do lado esquerdo */}
 class Footer extends Component{
@@ -134,27 +163,53 @@ class Col_menu extends Component{
         );
     }
 }
+
 function PaginaNoticia() {
     const { idnotev } = useParams();
     const [noticia, setNoticia] = useState(null);
+    const [noticiasAnteriores, setNoticiasAnteriores] = useState([]);
   
     useEffect(() => {
-      // Faz a chamada à API para buscar os dados da notícia com o ID fornecido
-      axios
-        .get(`${APIHOST}/noticias/${idnotev}`)
-        .then((response) => {
+      const fetchData = async () => {
+        try {
+          // Faz a chamada à API para buscar os dados da notícia com o ID fornecido
+          const response = await axios.get(`${APIHOST}/noticias/${idnotev}`);
           setNoticia(response.data);
-        })
-        .catch((error) => {
+  
+          // Calcula os IDs das notícias anteriores
+          const idAnterior1 = idnotev - 1;
+          const idAnterior2 = idnotev - 2;
+          const idAnterior3 = idnotev - 3;
+  
+          const promises = [];
+  
+          // Faz a chamada à API para buscar os dados das notícias anteriores
+          if (idAnterior1 > 0) {
+            promises.push(axios.get(`${APIHOST}/noticias/${idAnterior1}`));
+          }
+          if (idAnterior2 > 0) {
+            promises.push(axios.get(`${APIHOST}/noticias/${idAnterior2}`));
+          }
+          if (idAnterior3 > 0) {
+            promises.push(axios.get(`${APIHOST}/noticias/${idAnterior3}`));
+          }
+  
+          const results = await Promise.all(promises);
+          const noticias = results.map((result) => result.data);
+          setNoticiasAnteriores(noticias.reverse()); // Inverte a ordem das notícias anteriores para exibir corretamente
+  
+        } catch (error) {
           console.error(error);
-        });
+        }
+      };
+  
+      fetchData();
     }, [idnotev]);
   
     // Verifica se a notícia está sendo carregada
     if (!noticia) {
       return <div>Carregando...</div>;
     }
-  
     const linhas = noticia.descr_notev.split('.'); // Dividir o texto em linhas com base nos pontos finais
 
     const textoComQuebrasDeLinha = linhas.map((linha, index) => {
@@ -175,9 +230,9 @@ function PaginaNoticia() {
             NoticiasEventos={noticia.categoria_notev}
             noticia={process.env.PUBLIC_URL + '/' + noticia.imagem_notev}
             strong="Mais Noticias"
-            noticia01="https://www.iol.pt/multimedia/oratvi/multimedia/imagem/id/61607d840cf241cadce2057c/1024.jpg"
-            noticia02="https://img.freepik.com/fotos-gratis/empresario-assinar-papeis-no-escritorio_23-2148377770.jpg?w=2000"
-            noticia03="https://images.rr.sapo.pt/advogado_homem_de_negocios_pessoa_gravata_foto_hunters_race_408744_unsplash1536897bdefaultlarge_1024.jpg"
+            noticia01={noticiasAnteriores.length > 0 && noticiasAnteriores[0] ? process.env.PUBLIC_URL + '/' + noticiasAnteriores[0].imagem_notev : null}
+            noticia02={noticiasAnteriores.length > 1 && noticiasAnteriores[1] ? process.env.PUBLIC_URL + '/' + noticiasAnteriores[1].imagem_notev : null}
+            noticia03={noticiasAnteriores.length > 2 && noticiasAnteriores[2] ? process.env.PUBLIC_URL + '/' + noticiasAnteriores[2].imagem_notev : null}
             titulo_noticia={noticia.titulo_notev}
             data_noticia={noticia.data_notev.slice(0, 10)}
             texto_noticia1={<p style={{ color: '#636363' }}>{textoComQuebrasDeLinha}</p>}
