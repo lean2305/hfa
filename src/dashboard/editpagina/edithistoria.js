@@ -177,7 +177,7 @@ const Thumbnail = () => {
           </div>
           {!selectedImage && (
             <label htmlFor="imagem" className="image-label">
-              Arraste a imagem aqui ou clique para selecionar
+              Clique ou arraste para alterar o banner da página
             </label>
           )}
           <input
@@ -194,10 +194,11 @@ const Thumbnail = () => {
           <br/><br/>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', marginBottom: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"70vh" }}>
-                <p className="title_input">Título</p>
+              <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width: '68.5vw' }}>
+                <p className="title_input">Título da Página</p>
                 <input
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
+                  placeholder='Escreva o título da página'
                   type="text"
                   name="titulo"
                   id="titulo"
@@ -209,28 +210,34 @@ const Thumbnail = () => {
             
             {/* INPUT IMAGEM E TEXTO  */}
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <p className="title_input">Historia da HFA</p>
+            <p className="title_input">História da HFA (1º Parágrafo)</p>
             <textarea
               style={{
                 backgroundColor: 'rgb(201 200 200)',
                 border: 'none',
-                resize: 'none',
-                minHeight: '5rem',
+                minHeight: '4rem',
                 marginRight: '4%',
+                resize: 'vertical',
+                padding: 10,
+                borderRadius: 10
               }}
+              placeholder='Escreva aqui o primeiro parágrafo sobre a história da HFA'
               name="descricao"
               id="descricao"
             ></textarea>
             <br/>
-            <p className="title_input">Historia da HFA</p>
+            <p className="title_input">História da HFA (2º Parágrafo)</p>
             <textarea
               style={{
                 backgroundColor: 'rgb(201 200 200)',
                 border: 'none',
-                resize: 'none',
-                minHeight: '5rem',
+                minHeight: '4rem',
                 marginRight: '4%',
+                resize: 'vertical',
+                padding: 10,
+                borderRadius: 10
               }}
+              placeholder='Escreva aqui o segundo parágrafo sobre a história da HFA'
               name="descricao"
               id="descricao"
             ></textarea>
@@ -259,7 +266,7 @@ const Thumbnail = () => {
             </div>
             {!selectedImage && (
                 <label htmlFor="imagem" className="image-label">
-                Arraste a imagem aqui ou clique para selecionar
+                Clique ou arraste para alterar a imagem
                 </label>
             )}
             <input
@@ -277,94 +284,144 @@ const Thumbnail = () => {
             <br/><br/>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', marginBottom: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"70vh" }}>
-                <p className="title_input">Objetivo</p>
+              <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"68.5vw" }}>
+                <p className="title_input">1º Objetivo</p>
                 <input
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
+                  placeholder='Número do Objetivo'
                   name="titulo"
                   id="titulo"
                 /><br/>
                 <input
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
                   name="titulo"
-                  id="titulo"
+                  placeholder='Título do Objetivo'
+                  id='titulo'
                 /><br/>
                 <textarea
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, resize: 'vertical', minHeight: '4rem' }}
                   type="text"
                   name="titulo"
+                  placeholder='Descrição do Objetivo'
                   id="titulo"
                 />
               </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"70vh" }}>
-                <p className="title_input">----</p>
+            <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"68.5vw" }}>
+                <p className="title_input">2º Objetivo</p>
                 <input
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
                   name="titulo"
+                  placeholder='Número do Objetivo'
                   id="titulo"
                 /><br/>
                 <input
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
                   name="titulo"
+                  placeholder='Título do Objetivo'
                   id="titulo"
                 /><br/>
                 <textarea
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, resize: 'vertical', minHeight: '4rem' }}
                   type="text"
                   name="titulo"
+                  placeholder='Descrição do Objetivo'
                   id="titulo"
                 />
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"70vh" }}>
-                <p className="title_input">----</p>
+              <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"68.5vw" }}>
+                <p className="title_input">3º Objetivo</p>
                 <input
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
                   name="titulo"
+                  placeholder='Número do Objetivo'
                   id="titulo"
                 /><br/>
                 <input
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
                   name="titulo"
+                  placeholder='Título do Objetivo'
                   id="titulo"
                 /><br/>
                 <textarea
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, resize: 'vertical', minHeight: '4rem' }}
                   type="text"
                   name="titulo"
+                  placeholder='Descrição do Objetivo'
                   id="titulo"
                 />
               </div>
           </div>
             {/*FIM INPUTS DOS 3 OBJETIVOS */}
+
+              <br /><br />
+              <p className="title_input">Imagem objetivos</p>
+            <div
+            className="image-preview"
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+          >
+            {selectedImage && !showDefaultImage && (
+              <img
+                src={URL.createObjectURL(selectedImage)}
+                alt="Preview"
+                className="thumbnail"
+              />
+            )}
+            {showDefaultImage && (
+              <img
+                src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
+                alt="Default Preview"
+                className="thumbnail"
+                onClick={handleDefaultImageClick}
+              />
+            )}
+          </div>
+          {!selectedImage && (
+            <label htmlFor="imagem" className="image-label">
+              Clique ou arraste para alterar o background dos objetivos
+            </label>
+          )}
+          <input
+            type="file"
+            name="imagem"
+            id="imagem"
+            onChange={handleImageChange}
+            ref={fileInputRef} // Atribui a referência ao input de arquivo
+            style={{ display: 'none' }} // Esconde o input de arquivo
+          />
+
             {/* INPUT TEXTO COMPOMISSO HFA */}
             <br/><br/>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', marginBottom: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"70vh" }}>
-                <p className="title_input">O COMPROMISSO DA HFA</p>
+              <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"68.5vw" }}>
+                <p className="title_input">O Compromisso da HFA</p>
                 <textarea
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
                   type="text"
                   name="titulo"
+                  placeholder='1º Parágrafo'
                   id="titulo"
                 /><br/>
                 <textarea
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
                   type="text"
                   name="titulo"
+                  placeholder='2º Parágrafo'
                   id="titulo"
                 /><br/>
                 <textarea
-                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
                   type="text"
                   name="titulo"
+                  placeholder='3º Parágrafo'
                   id="titulo"
                 /><br/>
               </div>
@@ -374,14 +431,106 @@ const Thumbnail = () => {
           </div>
             {/*FIM DO INPUT TEXTO COMPOMISSO HFA */}
 
+            <p className="title_input">Imagem dos certificados</p>
+          <div
+            className="image-preview"
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+          >
+            {selectedImage && !showDefaultImage && (
+              <img
+                src={URL.createObjectURL(selectedImage)}
+                alt="Preview"
+                className="thumbnail"
+              />
+            )}
+            {showDefaultImage && (
+              <img
+                src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
+                alt="Default Preview"
+                className="thumbnail"
+                onClick={handleDefaultImageClick}
+              />
+            )}
+          </div>
+          {!selectedImage && (
+            <label htmlFor="imagem" className="image-label">
+              Clique ou arraste para alterar o background da imagem
+            </label>
+          )}
+          <input
+            type="file"
+            name="imagem"
+            id="imagem"
+            onChange={handleImageChange}
+            ref={fileInputRef} // Atribui a referência ao input de arquivo
+            style={{ display: 'none' }} // Esconde o input de arquivo
+          />
+<br /><br />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"68.5vw" }}>
+                <p className="title_input">Parte integrante do ADN da HFA</p>
+                <textarea
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
+                  type="text"
+                  name="titulo"
+                  placeholder='1º Parágrafo'
+                  id="titulo"
+                /><br/>
+                <textarea
+                  style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
+                  type="text"
+                  name="titulo"
+                  placeholder='2º Parágrafo'
+                  id="titulo"
+                /><br/>
+              </div>
+            </div>
+          </div>
+          <p className="title_input">Imagem da parte integrante da HFA</p>
+          <div
+            className="image-preview"
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+          >
+            {selectedImage && !showDefaultImage && (
+              <img
+                src={URL.createObjectURL(selectedImage)}
+                alt="Preview"
+                className="thumbnail"
+              />
+            )}
+            {showDefaultImage && (
+              <img
+                src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
+                alt="Default Preview"
+                className="thumbnail"
+                onClick={handleDefaultImageClick}
+              />
+            )}
+          </div>
+          {!selectedImage && (
+            <label htmlFor="imagem" className="image-label">
+              Clique ou arraste para alterar o background da imagem
+            </label>
+          )}
+          <input
+            type="file"
+            name="imagem"
+            id="imagem"
+            onChange={handleImageChange}
+            ref={fileInputRef} // Atribui a referência ao input de arquivo
+            style={{ display: 'none' }} // Esconde o input de arquivo
+          />
 
           {selectedImage && (
             <div>
               <button className="button-submit" type="submit">
-                SAVE
+                Guardar
               </button>
               <button className="button-cancel" type="button" onClick={handleCancel}>
-                Cancel
+                Cancelar
               </button>
             </div>
           )}

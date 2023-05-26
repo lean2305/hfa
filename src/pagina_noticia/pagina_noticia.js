@@ -76,6 +76,7 @@ class Noticia extends Component {
                     width="130vh"
                     height="100vh"
                     src={this.props.noticia02.imagem_notev}
+                    
                     alt="Logo"
                   />
                 </Link>
@@ -178,32 +179,18 @@ function PaginaNoticia() {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          // Faz a chamada à API para buscar os dados da notícia com o ID fornecido
           const response = await axios.get(`${APIHOST}/noticias/${idnotev}`);
           setNoticia(response.data);
   
-          // Calcula os IDs das notícias anteriores
-          const idAnterior1 = idnotev - 1;
-          const idAnterior2 = idnotev - 2;
-          const idAnterior3 = idnotev - 3;
+          const ultimasNoticiasResponse = await axios.get(`${APIHOST}/noticias/ultimas-tres/${idnotev}`);
+          const ultimasNoticias = ultimasNoticiasResponse.data;
   
-          const promises = [];
+          const noticiasImagens = ultimasNoticias.map((noticia) => ({
+            idnotev: noticia.idnotev,
+            imagem_notev: `${APIHOST}/${noticia.imagem_notev}`,
+          }));
   
-          // Faz a chamada à API para buscar os dados das notícias anteriores
-          if (idAnterior1 > 0) {
-            promises.push(axios.get(`${APIHOST}/noticias/${idAnterior1}`));
-          }
-          if (idAnterior2 > 0) {
-            promises.push(axios.get(`${APIHOST}/noticias/${idAnterior2}`));
-          }
-          if (idAnterior3 > 0) {
-            promises.push(axios.get(`${APIHOST}/noticias/${idAnterior3}`));
-          }
-  
-          const results = await Promise.all(promises);
-          const noticias = results.map((result) => result.data);
-          setNoticiasAnteriores(noticias.reverse()); // Inverte a ordem das notícias anteriores para exibir corretamente
-  
+          setNoticiasAnteriores(noticiasImagens);
         } catch (error) {
           console.error(error);
         }
@@ -211,6 +198,7 @@ function PaginaNoticia() {
   
       fetchData();
     }, [idnotev]);
+  
   
     // Verifica se a notícia está sendo carregada
     if (!noticia) {
@@ -231,18 +219,32 @@ function PaginaNoticia() {
     return (
       <div className='pagina'>
         <div className='esquerda_pg'>
-          {/* Este é um componente que contém links para as imagens de cada quadrado e o texto da notícia correspondente.*/}
-          <Noticia
-            NoticiasEventos={noticia.categoria_notev}
-            noticia={process.env.PUBLIC_URL + '/' + noticia.imagem_notev}
-            strong="Mais Noticias"
-            noticia01={noticiasAnteriores.length > 0 && noticiasAnteriores[0] ? { idnotev: noticiasAnteriores[0].idnotev, imagem_notev: process.env.PUBLIC_URL + '/' + noticiasAnteriores[0].imagem_notev } : null}
-            noticia02={noticiasAnteriores.length > 1 && noticiasAnteriores[1] ? { idnotev: noticiasAnteriores[1].idnotev, imagem_notev: process.env.PUBLIC_URL + '/' + noticiasAnteriores[1].imagem_notev } : null}
-            noticia03={noticiasAnteriores.length > 2 && noticiasAnteriores[2] ? { idnotev: noticiasAnteriores[2].idnotev, imagem_notev: process.env.PUBLIC_URL + '/' + noticiasAnteriores[2].imagem_notev } : null}
-            titulo_noticia={noticia.titulo_notev}
-            data_noticia={noticia.data_notev.slice(0, 10)}
-            texto_noticia1={textoComQuebrasDeLinha}
-        />
+     {/* Este é um componente que contém links para as imagens de cada quadrado e o texto da notícia correspondente.*/}
+    <Noticia
+        NoticiasEventos={noticia.categoria_notev}
+        noticia={`/${noticia.imagem_notev.replace('http://localhost:3001', '')}`} // Atualize esta linha
+        strong="Mais Noticias"
+        noticia01={
+            noticiasAnteriores.length > 0 && noticiasAnteriores[0]
+            ? { idnotev: noticiasAnteriores[0].idnotev, imagem_notev: `${noticiasAnteriores[0].imagem_notev.replace('http://localhost:3001', '')}` } // Atualize esta linha
+            : null
+        }
+        noticia02={
+            noticiasAnteriores.length > 1 && noticiasAnteriores[1]
+            ? { idnotev: noticiasAnteriores[1].idnotev, imagem_notev: `${noticiasAnteriores[1].imagem_notev.replace('http://localhost:3001', '')}` } // Atualize esta linha
+            : null
+        }
+        noticia03={
+            noticiasAnteriores.length > 2 && noticiasAnteriores[2]
+            ? { idnotev: noticiasAnteriores[2].idnotev, imagem_notev: `${noticiasAnteriores[2].imagem_notev.replace('http://localhost:3001', '')}` } // Atualize esta linha
+            : null
+        }
+        titulo_noticia={noticia.titulo_notev}
+        data_noticia={noticia.data_notev.slice(0, 10)}
+        texto_noticia1={textoComQuebrasDeLinha}
+    />
+
+
 
           
   

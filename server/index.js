@@ -61,6 +61,25 @@ app.get('/dadosevento', (req, res) => {
     }
   });
 });
+
+
+
+
+app.get('/dadospagina', (req, res) => {
+
+
+  db.query(`SELECT * FROM pagina `, (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao buscar os dados' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+
 app.get('/noticias/:idnotev', (req, res) => {
   const idnotev = req.params.idnotev;
 
@@ -223,6 +242,61 @@ app.post('/uploadevento', upload.single('image'), (req, res) => {
     }
   );
 });
+
+
+
+
+app.get('/noticias/:idnotev', (req, res) => {
+  const idnotev = req.params.idnotev;
+
+  // Consulta SQL para buscar a notícia com o ID fornecido
+  const query = `
+    SELECT *
+    FROM banco.notev
+    WHERE idnotev = ?
+  `;
+
+  // Execute a consulta SQL passando o valor de idnotev
+  db.query(query, [idnotev], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(500);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
+
+
+app.get('/noticias/ultimas-tres/:idnotev', (req, res) => {
+  const idnotev = req.params.idnotev;
+
+  // Consulta SQL para buscar as três últimas notícias antes do ID fornecido
+  const query = `
+    SELECT *
+    FROM (
+      SELECT *
+      FROM banco.notev
+      WHERE idnotev < ?
+      ORDER BY idnotev DESC
+      LIMIT 3
+    ) AS subquery
+    ORDER BY idnotev ASC;
+  `;
+
+  // Execute a consulta SQL passando o valor de idnotev
+  db.query(query, [idnotev], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(500);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 
 
 
