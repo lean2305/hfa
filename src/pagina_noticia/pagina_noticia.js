@@ -40,6 +40,7 @@ class Botao extends Component{
         );
     }
 }
+
 class Noticia extends Component {
     render() {
       return (
@@ -82,7 +83,7 @@ class Noticia extends Component {
               {this.props.noticia03 && (
                 <Link to={`/pagina_noticia/${this.props.noticia03.idnotev}`}>
                   <img
-                    style={{ paddingBottom: '4%', paddingRight: '5%', objectFit: 'cover' , marginRight: '4vh'}}
+                    style={{ paddingBottom: '4%', paddingRight: '5%', objectFit: 'cover', marginRight: '4vh' }}
                     className="svg"
                     width="130vh"
                     height="100vh"
