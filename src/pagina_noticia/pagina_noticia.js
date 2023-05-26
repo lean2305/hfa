@@ -55,36 +55,41 @@ class Noticia extends Component {
             />
             <strong className="noticia_strong">{this.props.strong}</strong> <br /> <br />
             <div className="mais_noticias">
-                
               {this.props.noticia01 && (
-                <img
-                  style={{ paddingBottom: '4%', paddingRight: '5%', objectFit: 'cover' }}
-                  className="svg"
-                  width="30%"
-                  height="100vh"
-                  src={this.props.noticia01}
-                  alt="Logo"
-                />
+                <Link to={`/pagina_noticia/${this.props.noticia01.idnotev}`}>
+                  <img
+                    style={{ paddingBottom: '4%', paddingRight: '5%', objectFit: 'cover', marginRight: '4vh' }}
+                    className="svg"
+                    width="130vh"
+                    height="100vh"
+                    src={this.props.noticia01.imagem_notev}
+                    alt="Logo"
+                  />
+                </Link>
               )}
               {this.props.noticia02 && (
-                <img
-                  style={{ paddingBottom: '4%', paddingRight: '5%', objectFit: 'cover' }}
-                  className="svg"
-                  width="30%"
-                  height="100vh"
-                  src={this.props.noticia02}
-                  alt="Logo"
-                />
+                <Link to={`/pagina_noticia/${this.props.noticia02.idnotev}`}>
+                  <img
+                    style={{ paddingBottom: '4%', paddingRight: '5%', objectFit: 'cover', marginRight: '4vh' }}
+                    className="svg"
+                    width="130vh"
+                    height="100vh"
+                    src={this.props.noticia02.imagem_notev}
+                    alt="Logo"
+                  />
+                </Link>
               )}
               {this.props.noticia03 && (
-                <img
-                  style={{ paddingBottom: '4%', paddingRight: '5%', objectFit: 'cover' }}
-                  className="svg"
-                  width="30%"
-                  height="100vh"
-                  src={this.props.noticia03}
-                  alt="Logo"
-                />
+                <Link to={`/pagina_noticia/${this.props.noticia03.idnotev}`}>
+                  <img
+                    style={{ paddingBottom: '4%', paddingRight: '5%', objectFit: 'cover' , marginRight: '4vh'}}
+                    className="svg"
+                    width="130vh"
+                    height="100vh"
+                    src={this.props.noticia03.imagem_notev}
+                    alt="Logo"
+                  />
+                </Link>
               )}
             </div>
           </div>
@@ -230,13 +235,15 @@ function PaginaNoticia() {
             NoticiasEventos={noticia.categoria_notev}
             noticia={process.env.PUBLIC_URL + '/' + noticia.imagem_notev}
             strong="Mais Noticias"
-            noticia01={noticiasAnteriores.length > 0 && noticiasAnteriores[0] ? process.env.PUBLIC_URL + '/' + noticiasAnteriores[0].imagem_notev : null}
-            noticia02={noticiasAnteriores.length > 1 && noticiasAnteriores[1] ? process.env.PUBLIC_URL + '/' + noticiasAnteriores[1].imagem_notev : null}
-            noticia03={noticiasAnteriores.length > 2 && noticiasAnteriores[2] ? process.env.PUBLIC_URL + '/' + noticiasAnteriores[2].imagem_notev : null}
+            noticia01={noticiasAnteriores.length > 0 && noticiasAnteriores[0] ? { idnotev: noticiasAnteriores[0].idnotev, imagem_notev: process.env.PUBLIC_URL + '/' + noticiasAnteriores[0].imagem_notev } : null}
+            noticia02={noticiasAnteriores.length > 1 && noticiasAnteriores[1] ? { idnotev: noticiasAnteriores[1].idnotev, imagem_notev: process.env.PUBLIC_URL + '/' + noticiasAnteriores[1].imagem_notev } : null}
+            noticia03={noticiasAnteriores.length > 2 && noticiasAnteriores[2] ? { idnotev: noticiasAnteriores[2].idnotev, imagem_notev: process.env.PUBLIC_URL + '/' + noticiasAnteriores[2].imagem_notev } : null}
             titulo_noticia={noticia.titulo_notev}
             data_noticia={noticia.data_notev.slice(0, 10)}
-            texto_noticia1={<p style={{ color: '#636363' }}>{textoComQuebrasDeLinha}</p>}
-          />
+            texto_noticia1={textoComQuebrasDeLinha}
+        />
+
+          
   
           <Footer
             developed="Developed by "
