@@ -41,6 +41,7 @@ class Botao extends Component{
     }
 }
 
+
 class Noticia extends Component {
     render() {
       return (

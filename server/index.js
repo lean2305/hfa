@@ -49,6 +49,21 @@ app.get('/dadosnoticia', (req, res) => {
 });
 
 
+app.get('/dadosnoticiaedit/:idnotev', (req, res) => {
+  const idnotev = req.params.idnotev;
+
+  db.query(`SELECT * FROM notev WHERE categoria_notev ='Noticia' AND idnotev ='${idnotev}'`, (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao buscar os dados' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+
 app.get('/dadosevento', (req, res) => {
 
 
@@ -198,6 +213,7 @@ const upload = multer({ storage });
 const moment = require('moment');
 
 app.use(express.static('public'));
+
 app.post('/uploadnoticia', upload.single('image'), (req, res) => {
   const { filename, originalname } = req.file;
   const { titulo, descricao, data } = req.body;
@@ -298,8 +314,30 @@ app.get('/noticias/ultimas-tres/:idnotev', (req, res) => {
 });
 
 
+app.post('/updateNoticia/:idnotev', (req, res) => {
+  const idnotev = req.params.idnotev;
+  const { titulo, descricao, categoria, data, imagem } = req.body;
 
+  // Check if the 'titulo' value is null or empty
+  if (!titulo) {
+    console.error('Error updating noticia: Invalid titulo');
+    return res.sendStatus(400);
+  }
 
+  // Construct the SQL query
+  const query = `UPDATE notev SET titulo_notev = ?, descr_notev = ?, categoria_notev = ?, data_notev = ?, imagem_notev = ? WHERE idnotev = ?`;
+
+  // Execute the query with the provided values
+  db.query(query, [titulo, descricao, categoria, data, imagem, idnotev], (error, results) => {
+    if (error) {
+      console.error('Error updating noticia:', error);
+      res.sendStatus(500);
+    } else {
+      console.log('Noticia updated successfully');
+      res.sendStatus(200);
+    }
+  });
+});
 
 
 

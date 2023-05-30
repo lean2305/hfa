@@ -192,7 +192,7 @@ const MenuEsquerda = ({ handleMenuClick }) => {
       active: false,
       items: [
         { key: 'evento', label: 'Adicionar Eventos', onClick: () => handleMenuClick('adicionarEventos', '#00ff00') },
-        { key: 'listaEventos', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') },
+        { key: 'listaevento', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') },
       ],
     },
     {
