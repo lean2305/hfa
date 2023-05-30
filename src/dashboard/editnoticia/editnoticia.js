@@ -93,15 +93,14 @@ const Thumbnail = () => {
   
     const handleSubmit = (event) => {
         event.preventDefault();
+        
         const formData = new FormData();
-        formData.append('image', selectedImage);
-        formData.append('titulo', formRef.current.titulo.value);
-        formData.append('descricao', formRef.current.descricao.value);
-        formData.append('categoria', 'your_categoria_value'); // Replace 'your_categoria_value' with the actual value
-        formData.append('data', 'your_data_value'); // Replace 'your_data_value' with the actual value
-      
-        axios
-          .post(`http://localhost:3001/updateNoticia/${idnotev}`, formData) // Make a POST request to the server's endpoint
+        formData.append('titulo', titulo);
+        formData.append('descricao', descr);
+        formData.append('data', data); // Substitua 'your_data_value' pelo valor real
+        formData.append('imagem', selectedImage);
+        
+        axios.post(`http://localhost:3001/updateNoticia/${idnotev}`, formData)
           .then((response) => {
             console.log(response.data);
             formRef.current.reset();
@@ -161,11 +160,12 @@ const Thumbnail = () => {
                 <input
                 style={{ backgroundColor: 'rgb(201 200 200)', border: 'none' }}
                 type="text"
-                name="titulo"
+                name="titulo" // Certifique-se de que o nome do campo seja "titulo"
                 id="titulo"
                 value={titulo}
                 onChange={(e) => setTitulo(e.target.value)}
                 />
+
               </div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <p className="title_input">Data</p>

@@ -313,32 +313,35 @@ app.get('/noticias/ultimas-tres/:idnotev', (req, res) => {
   });
 });
 
-
-app.post('/updateNoticia/:idnotev', (req, res) => {
+app.post('/updateNoticia/:idnotev', upload.single('imagem'), (req, res) => {
   const idnotev = req.params.idnotev;
-  const { titulo, descricao, categoria, data, imagem } = req.body;
+  const titulo = req.body.titulo;
+  const descricao = req.body.descricao;
+  const data = req.body.data.slice(0, 10);
+  const imagem = req.file;
 
-  // Check if the 'titulo' value is null or empty
-  if (!titulo) {
-    console.error('Error updating noticia: Invalid titulo');
-    return res.sendStatus(400);
+  // Lógica para atualizar os dados no banco de dados
+  let query = 'UPDATE notev SET titulo_notev = ?, descr_notev = ?, data_notev = ?';
+  let params = [titulo, descricao, data];
+
+  if (imagem) {
+    query += ', imagem_notev = ?';
+    params.push(imagem.filename);
   }
 
-  // Construct the SQL query
-  const query = `UPDATE notev SET titulo_notev = ?, descr_notev = ?, categoria_notev = ?, data_notev = ?, imagem_notev = ? WHERE idnotev = ?`;
+  query += ' WHERE idnotev = ?';
+  params.push(idnotev);
 
-  // Execute the query with the provided values
-  db.query(query, [titulo, descricao, categoria, data, imagem, idnotev], (error, results) => {
+  db.query(query, params, (error, results) => {
     if (error) {
-      console.error('Error updating noticia:', error);
-      res.sendStatus(500);
+      console.error('Erro ao atualizar notícia:', error);
+      res.status(500).json({ message: 'Erro ao atualizar notícia.' });
     } else {
-      console.log('Noticia updated successfully');
-      res.sendStatus(200);
+      console.log('Notícia atualizada:', results);
+      res.status(200).json({ message: 'Notícia atualizada com sucesso!' });
     }
   });
 });
-
 
 
 
