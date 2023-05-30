@@ -20,6 +20,8 @@ import Listaevento from './dashboard/listaeventos/listaevento';
 import Login from './dashboard/login/login';
 import Listapagina from './dashboard/pagina/pagina';
 import Edithistoria from './dashboard/editpagina/edithistoria';
+import Marcador from './dashboard/marcador/marcador';
+
 
 function App() {
   return (
@@ -28,7 +30,6 @@ function App() {
         
           <Route path='/' element={<MenuInicial  />} />
           <Route path="/pagina_noticia/:idnotev" element={<PaginaNoticia/>} />
-          
           <Route path='/menu' element={<Menu />} />
           <Route path='/historia' element={<Historia />} />
           <Route path='/recursos-humanos' element={<RecursosHumanos/>} />
@@ -41,6 +42,7 @@ function App() {
           <Route path='/dashboard/listaevento' element={<Protected><Listaevento  /></Protected>} />
           <Route path='/dashboard/listapagina' element={<Protected><Listapagina  /></Protected>} />
           <Route path='/dashboard/edithistoria' element={<Protected><Edithistoria  /></Protected>} />
+          <Route path='/dashboard/marcador' element={<Protected><Marcador  /></Protected>} />
           <Route path='/videos' element={<Videos/>} />
           <Route path='/loginantigo' element={<Loginantigo/>} />
           

@@ -36,9 +36,8 @@ app.get('/videos/ultima', (req, res) => {
   });
 });
 
+
 app.get('/dadosnoticia', (req, res) => {
-
-
   db.query(`SELECT * FROM notev where categoria_notev ='Noticia'`, (error, results) => {
     if (error) {
       console.error(error);
@@ -48,6 +47,7 @@ app.get('/dadosnoticia', (req, res) => {
     }
   });
 });
+
 
 app.get('/dadosevento', (req, res) => {
 
