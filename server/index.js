@@ -49,6 +49,19 @@ app.get('/dadosnoticia', (req, res) => {
 });
 
 
+
+app.get('/dadosvideo', (req, res) => {
+  db.query(`SELECT * FROM videos`, (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao buscar os dados' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
 app.get('/dadosnoticiaedit/:idnotev', (req, res) => {
   const idnotev = req.params.idnotev;
 
@@ -395,11 +408,28 @@ app.post('/updateEvento/:idnotev', upload.single('imagem'), (req, res) => {
 
 
 
-// Rota do servidor para obter dados de uma notícia
 app.get('/rota-do-servidor/:idnotev', (req, res) => {
   const idnotev = req.params.idnotev;
   console.log(idnotev);
   const query = `DELETE FROM notev WHERE idnotev = '${idnotev}'`;
+
+  // Executar a consulta
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(500);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
+// Rota do servidor para obter dados de uma notícia
+app.get('/apagarvideo/:id_videos', (req, res) => {
+  const idnotev = req.params.idnotev;
+  console.log(idnotev);
+  const query = `DELETE FROM videos WHERE idnotev = '${idnotev}'`;
 
   // Executar a consulta
   db.query(query, (err, result) => {
