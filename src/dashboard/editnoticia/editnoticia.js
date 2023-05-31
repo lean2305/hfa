@@ -106,6 +106,7 @@ const Thumbnail = () => {
             formRef.current.reset();
             setSelectedImage(null);
             setShowDefaultImage(true);
+            window.location.reload(); // Recarrega a página
           })
           .catch((error) => {
             console.log(error);
@@ -215,49 +216,25 @@ const Thumbnail = () => {
 
 const MenuEsquerda = ({ handleMenuClick }) => {
   const [submenus, setSubmenus] = useState([
-    {
-      key: 'noticias',
-      label: 'Notícias',
-      active: false,
-      items: [
-        { key: 'adnoticias', label: 'Adicionar Notícias', onClick: () => handleMenuClick('adicionarNoticias', '#4a81dd') },
-        { key: 'listanoticia', label: 'Ver Lista de Notícias', onClick: () => handleMenuClick('listaNoticias', '#4a81dd') },
-      ],
-    },
-    {
-      key: 'videos',
-      label: 'Vídeos',
-      active: false,
-      items: [
-        { key: 'adicionarVideos', label: 'Adicionar Vídeos', onClick: () => handleMenuClick('adicionarVideos', '#ff0000') },
-        { key: 'listaVideos', label: 'Ver Lista de Vídeos', onClick: () => handleMenuClick('listaVideos', '#ff0000') },
-      ],
-    },
-    {
-      key: 'eventos',
-      label: 'Eventos',
-      active: false,
-      items: [
-        { key: 'evento', label: 'Adicionar Eventos', onClick: () => handleMenuClick('adicionarEventos', '#00ff00') },
-        { key: 'listaEventos', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') },
-      ],
-    },
-    {
-      key: 'paginas',
-      label: 'Páginas',
-      active: false,
-      items: [
-        { key: 'listapagina', label: 'Ver Lista de Páginas', onClick: () => handleMenuClick('listaPaginas', '#ffff00') },
-      ],
-    },
-    {
-      key: 'marcadores',
-      label: 'Marcadores',
-      active: false,
-      items: [
-        { key: 'marcador', label: 'Marcadores', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
-      ],
-    },
+   
+    { key: 'noticias', label: 'Notícias', active: false, items: [
+      { key: 'adnoticias', label: 'Adicionar Notícias', onClick: () => handleMenuClick('adicionarNoticias', '#4a81dd') },
+      { key: 'listanoticia', label: 'Ver Lista de Notícias', onClick: () => handleMenuClick('listaNoticias', '#4a81dd') }
+    ] },
+    { key: 'videos', label: 'Vídeos', active: false, items: [
+      { key: 'advideo', label: 'Adicionar Vídeos', onClick: () => handleMenuClick('adicionarVideos', '#ff0000') },
+      { key: 'listaVideos', label: 'Ver Lista de Vídeos', onClick: () => handleMenuClick('listaVideos', '#ff0000') }
+    ] },
+    { key: 'eventos', label: 'Eventos', active: false, items: [
+      { key: 'evento', label: 'Adicionar Eventos', onClick: () => handleMenuClick('adicionarEventos', '#00ff00') },
+      { key: 'listaevento', label: 'Ver Lista de Eventos', onClick: () => handleMenuClick('listaEventos', '#00ff00') }
+    ] },
+    { key: 'paginas', label: 'Páginas', active: false, items: [
+      { key: 'listapagina', label: 'Ver Lista de Páginas', onClick: () => handleMenuClick('listaPaginas', '#ffff00') }
+    ] },
+    { key: 'paginas', label: 'Marcadores', active: false, items: [
+      { key: 'adicionarPaginas', label: 'Tabela de Paginas', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
+    ] }
   ]);
 
 

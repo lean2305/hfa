@@ -33,7 +33,7 @@ const Menu_esquerda = ({ handleMenuClick }) => {
       { key: 'listanoticia', label: 'Ver Lista de Notícias', onClick: () => handleMenuClick('listaNoticias', '#4a81dd') }
     ] },
     { key: 'videos', label: 'Vídeos', active: false, items: [
-      { key: 'adicionarVideos', label: 'Adicionar Vídeos', onClick: () => handleMenuClick('adicionarVideos', '#ff0000') },
+      { key: 'advideo', label: 'Adicionar Vídeos', onClick: () => handleMenuClick('adicionarVideos', '#ff0000') },
       { key: 'listaVideos', label: 'Ver Lista de Vídeos', onClick: () => handleMenuClick('listaVideos', '#ff0000') }
     ] },
     { key: 'eventos', label: 'Eventos', active: false, items: [
@@ -44,8 +44,7 @@ const Menu_esquerda = ({ handleMenuClick }) => {
       { key: 'listapagina', label: 'Ver Lista de Páginas', onClick: () => handleMenuClick('listaPaginas', '#ffff00') }
     ] },
     { key: 'paginas', label: 'Marcadores', active: false, items: [
-      { key: 'marcador', label: 'Marcadores', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
-      
+      { key: 'adicionarPaginas', label: 'Tabela de Paginas', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
     ] }
  
 

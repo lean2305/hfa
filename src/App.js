@@ -22,6 +22,9 @@ import Listapagina from './dashboard/pagina/pagina';
 import Edithistoria from './dashboard/editpagina/edithistoria';
 import Marcador from './dashboard/marcador/marcador';
 import Editnoticia from './dashboard/editnoticia/editnoticia';
+import Editevento from './dashboard/editevento/editevento';
+import Advideo from './dashboard/advideo/advideos';
+
 
 function App() {
   return (
@@ -44,6 +47,8 @@ function App() {
           <Route path='/dashboard/edithistoria' element={<Protected><Edithistoria  /></Protected>} />
           <Route path='/dashboard/marcador' element={<Protected><Marcador  /></Protected>} />
           <Route path='/dashboard/editnoticia/:idnotev' element={<Protected><Editnoticia  /></Protected>} />
+          <Route path='/dashboard/editevento/:idnotev' element={<Protected><Editevento  /></Protected>} />
+          <Route path='/dashboard/advideo' element={<Protected><Advideo  /></Protected>} />
           <Route path='/videos' element={<Videos/>} />
           <Route path='/loginantigo' element={<Loginantigo/>} />
           

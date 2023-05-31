@@ -27,12 +27,13 @@ const Submenu = ({ items, parentKey="dashboard" }) => {
 const Menu_esquerda = ({ handleMenuClick }) => {
   const [submenus, setSubmenus] = useState([
    
+   
     { key: 'noticias', label: 'Notícias', active: false, items: [
       { key: 'adnoticias', label: 'Adicionar Notícias', onClick: () => handleMenuClick('adicionarNoticias', '#4a81dd') },
       { key: 'listanoticia', label: 'Ver Lista de Notícias', onClick: () => handleMenuClick('listaNoticias', '#4a81dd') }
     ] },
     { key: 'videos', label: 'Vídeos', active: false, items: [
-      { key: 'adicionarVideos', label: 'Adicionar Vídeos', onClick: () => handleMenuClick('adicionarVideos', '#ff0000') },
+      { key: 'advideo', label: 'Adicionar Vídeos', onClick: () => handleMenuClick('adicionarVideos', '#ff0000') },
       { key: 'listaVideos', label: 'Ver Lista de Vídeos', onClick: () => handleMenuClick('listaVideos', '#ff0000') }
     ] },
     { key: 'eventos', label: 'Eventos', active: false, items: [
@@ -43,8 +44,7 @@ const Menu_esquerda = ({ handleMenuClick }) => {
       { key: 'listapagina', label: 'Ver Lista de Páginas', onClick: () => handleMenuClick('listaPaginas', '#ffff00') }
     ] },
     { key: 'paginas', label: 'Marcadores', active: false, items: [
-      { key: 'marcador', label: 'Marcadores', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
-      
+      { key: 'adicionarPaginas', label: 'Tabela de Paginas', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
     ] }
  
 
@@ -165,6 +165,17 @@ class Search_filter extends Component {
         setCurrentPage(currentPage + 1);
       }
     };
+
+    const enviarSolicitacao = (idnotev) => {
+      axios.get(`${APIHOST}/rota-do-servidor/${idnotev}`)
+        .then(response => {
+          // Trate a resposta do servidor aqui
+          window.location.reload(); // Recarrega a página
+        })
+        .catch(error => {
+          // Lide com erros de solicitação aqui
+        });
+    };
   
     return (
       <div className="lista_div" style={{ maxHeight: "80vh"}}>
@@ -201,26 +212,28 @@ class Search_filter extends Component {
             </div>
             <div className="coluna_conteudo_svg">
               <p>
-                <svg
-                  style={{ float: "left", marginLeft: "12vh" }}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-pencil"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                </svg>
-                <svg
-                  style={{ float: "right", marginRight: "12vh" }}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="17"
-                  height="17"
-                  viewBox="0 0 100 100"
-                >
-                  <path d="M20 20 L80 80 M80 20 L20 80" stroke="black" strokeWidth="10" />
-                </svg>
+                <Link to={`/dashboard/editevento/${noticia.idnotev}`} className="link-noticia">
+                  <svg
+                    style={{ float: "left", marginLeft: "12vh" }}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-pencil"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                  </svg>
+                </Link>
+                  <svg
+                    style={{ float: "right", marginRight: "12vh" }}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="17"
+                    height="17"
+                    viewBox="0 0 100 100"
+                    onClick={() => enviarSolicitacao(noticia.idnotev)}>
+                    <path d="M20 20 L80 80 M80 20 L20 80" stroke="black" strokeWidth="10" />
+                  </svg>
               </p>
             </div>
           </div>

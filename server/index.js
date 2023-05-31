@@ -52,7 +52,7 @@ app.get('/dadosnoticia', (req, res) => {
 app.get('/dadosnoticiaedit/:idnotev', (req, res) => {
   const idnotev = req.params.idnotev;
 
-  db.query(`SELECT * FROM notev WHERE categoria_notev ='Noticia' AND idnotev ='${idnotev}'`, (error, results) => {
+  db.query(`SELECT * FROM notev WHERE idnotev ='${idnotev}'`, (error, results) => {
     if (error) {
       console.error(error);
       res.status(500).json({ error: 'Erro ao buscar os dados' });
@@ -61,6 +61,23 @@ app.get('/dadosnoticiaedit/:idnotev', (req, res) => {
     }
   });
 });
+
+
+app.get('/dadoseventoedit/:idnotev', (req, res) => {
+  const idnotev = req.params.idnotev;
+
+  db.query(`SELECT * FROM notev WHERE idnotev ='${idnotev}'`, (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao buscar os dados' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+
 
 
 
@@ -345,6 +362,38 @@ app.post('/updateNoticia/:idnotev', upload.single('imagem'), (req, res) => {
 });
 
 
+app.post('/updateEvento/:idnotev', upload.single('imagem'), (req, res) => {
+  const idnotev = req.params.idnotev;
+  const titulo = req.body.titulo;
+  const descricao = req.body.descricao;
+  const data = req.body.data.slice(0, 10);
+  const imagem = req.file;
+
+  // Lógica para atualizar os dados no banco de dados
+  let query = 'UPDATE notev SET titulo_notev = ?, descr_notev = ?, data_notev = ?';
+  let params = [titulo, descricao, data];
+
+  if (imagem) {
+    query += ', imagem_notev = ?';
+    params.push(imagem.filename);
+  }
+
+  query += ' WHERE idnotev = ?';
+  params.push(idnotev);
+
+  db.query(query, params, (error, results) => {
+    if (error) {
+      console.error('Erro ao atualizar notícia:', error);
+      res.status(500).json({ message: 'Erro ao atualizar notícia.' });
+    } else {
+      console.log('Notícia atualizada:', results);
+      res.status(200).json({ message: 'Notícia atualizada com sucesso!' });
+    }
+  });
+});
+
+
+
 
 // Rota do servidor para obter dados de uma notícia
 app.get('/rota-do-servidor/:idnotev', (req, res) => {
@@ -364,10 +413,21 @@ app.get('/rota-do-servidor/:idnotev', (req, res) => {
 });
 
 
+// Rota para adicionar vídeo
+app.post('/adicionar-video', (req, res) => {
+  const { titulo, url } = req.body;
 
-
-
-
+  // Executar a consulta INSERT
+  const query = `INSERT INTO videos (url_video, titulo_video) VALUES (?, ?)`;
+  db.query(query, [url, titulo], (error, results) => {
+    if (error) {
+      console.error('Erro ao adicionar o vídeo:', error);
+      res.status(500).json({ message: 'Erro ao adicionar o vídeo' });
+    } else {
+      res.status(200).json({ message: 'Vídeo adicionado com sucesso!' });
+    }
+  });
+});
 
 
 app.listen(3001, () => {

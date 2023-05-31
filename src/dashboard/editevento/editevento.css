@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.dashboard {
+  display: flex;
+  height: 100vh;
+  
+}
+.menu_dashboard_esquerda {
+    width: 20%;
+    position: fixed;
+    background-color: #4a81dd;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+.title{
+    padding-left: 8%; 
+}  
+
+
+.p-principal{
+    padding-left: 3%;
+    color: white;
+    font-weight: bold;
+}
+  
+.menu-item {
+    color: white;
+    list-style-type: none; /* Remove os pontos da lista */
+    padding-left: 20px; /* Adiciona um espaçamento à esquerda */
+  }
+  
+  
+  
+  .ativo {
+    background-color: #3d6cbc;
+  }
+
+  
+  .submenu {
+    background-color: white;
+    margin: 0;
+    font-weight: bold;
+  }
+ 
+  .submenu .menu-item {
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.right-panel {
+    display: flex;
+  }
+  
+  .contador-direita {
+    display: flex;
+    border-radius: 6px;
+    margin: 5px;
+    justify-content: center;
+    
+  }
+
+  .adnoticias_direita{
+    width: 80%;
+    padding-left: 4%;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 20%;
+    padding-right: 2%;
+  }
+
+  .button-submit {
+    float: right;
+    margin-right: 4%;
+    margin-top: 3%;
+    background-color:#4a81dd ;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 1px;
+    padding: 1%;
+    width: 10%;
+  }
+
+  .button-cancel {
+    float: right;
+    margin-right: 4%;
+    margin-top: 3%;
+    color: gray;
+    font-weight: bold;
+    border: none;
+    border-radius: 1px;
+    padding: 1%;
+    width: 10%;
+  }
+
+  .thumbnail{
+    width: 96%;
+    height: 40vh;
+    object-fit: cover;
+  }
+
+  .title_input{
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+
+  

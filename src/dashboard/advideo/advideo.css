@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.dashboard {
+  display: flex;
+  height: 100vh;
+  
+}
+.menu_dashboard_esquerda {
+    width: 40vh;
+    height: 100vh;
+    background-color: #4a81dd;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .title{
+    padding-left: 8%; 
+}  
+
+
+.p-principal{
+    padding-left: 3%;
+    color: white;
+    font-weight: bold;
+}
+  
+.menu-item {
+    color: white;
+    list-style-type: none; /* Remove os pontos da lista */
+    padding-left: 20px; /* Adiciona um espaçamento à esquerda */
+  }
+  
+  
+  
+  .ativo {
+    background-color: #3d6cbc;
+  }
+
+  
+  .submenu {
+    background-color: white;
+    margin: 0;
+    font-weight: bold;
+  }
+ 
+  .submenu .menu-item {
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.right-panel {
+    display: flex;
+  }
+  
+  .contador-direita {
+    display: flex;
+    border-radius: 6px;
+    margin: 5px;
+    justify-content: center;
+  }
+
+  .dashboard_direita{
+    width: 80%;
+    padding-left: 4%;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 20%;
+    padding-right: 4%;
+  }
+
+  .contador-icon{
+    margin-left: 60%;
+    height: 15;
+    width: 15;
+  }
+
+
+  .contador-item{
+    margin: 3%;
+    background-color: #d8ecf3;
+    border-radius: 3%;
+    height: 15vh;
+    width: 40vh;
+    padding-left: 2%;
+    font-weight: 600;
+    font-size: 2.6vh;
+    box-shadow: -3px 3px 6px 0 rgb(4 0 0 / 16%);
+  }
+
+  
+  .contador-top{
+    margin: 3%;
+    background-color: #ffffff;
+    border-radius: 3%;
+    height: 100%;
+    width: 40vh;
+    padding-left: 2%;
+    font-weight: 400;
+    font-size: 2.6vh;
+    box-shadow: 0px 7px 7px 0 rgb(4 0 0 / 26%);
+    padding-right: 2%;
+  }
+
+  .contador-view {
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+    margin: 3%;
+  }
+  
+  
+  
+  .contador-p{
+    float: right;
+  }
+
+  
+
+  
+  

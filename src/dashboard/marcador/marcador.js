@@ -22,12 +22,13 @@ const Submenu = ({ items, parentKey="dashboard" }) => {
 const Menu_esquerda = ({ handleMenuClick }) => {
   const [submenus, setSubmenus] = useState([
    
+  
     { key: 'noticias', label: 'Notícias', active: false, items: [
       { key: 'adnoticias', label: 'Adicionar Notícias', onClick: () => handleMenuClick('adicionarNoticias', '#4a81dd') },
       { key: 'listanoticia', label: 'Ver Lista de Notícias', onClick: () => handleMenuClick('listaNoticias', '#4a81dd') }
     ] },
     { key: 'videos', label: 'Vídeos', active: false, items: [
-      { key: 'adicionarVideos', label: 'Adicionar Vídeos', onClick: () => handleMenuClick('adicionarVideos', '#ff0000') },
+      { key: 'advideo', label: 'Adicionar Vídeos', onClick: () => handleMenuClick('adicionarVideos', '#ff0000') },
       { key: 'listaVideos', label: 'Ver Lista de Vídeos', onClick: () => handleMenuClick('listaVideos', '#ff0000') }
     ] },
     { key: 'eventos', label: 'Eventos', active: false, items: [

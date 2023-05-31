@@ -69,7 +69,7 @@ class Quadrados extends Component{
 
                     <div style={{backgroundImage:"url('https://s1.static.brasilescola.uol.com.br/be/vestibular/notebook-ferramenta-trabalho-varios-profissionais-599844f1a665d.jpg')"}} className="quadrado_menor_menu_inicial">
                     <Link to="/historia" style={{ textDecoration: 'none' }}> 
-                        <img className="svg_menu_inicial" width="20%" height="20%" src="https://www.hfa.pt/storage/company/grupo-78_2020-05-27-13-28-34.svg" alt="Logo" />
+                        <img className="svg_menu_inicial" width="30%" height="30%" src="https://www.hfa.pt/storage/company/grupo-78_2020-05-27-13-28-34.svg" alt="Logo" />
                         <h1 className="quadrado_h1_menu_inicial">{this.props.quadrado_text_3}</h1>
                     </Link>
                     </div>
