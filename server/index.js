@@ -313,6 +313,7 @@ app.get('/noticias/ultimas-tres/:idnotev', (req, res) => {
   });
 });
 
+
 app.post('/updateNoticia/:idnotev', upload.single('imagem'), (req, res) => {
   const idnotev = req.params.idnotev;
   const titulo = req.body.titulo;
@@ -342,6 +343,30 @@ app.post('/updateNoticia/:idnotev', upload.single('imagem'), (req, res) => {
     }
   });
 });
+
+
+
+// Rota do servidor para obter dados de uma notícia
+app.get('/rota-do-servidor/:idnotev', (req, res) => {
+  const idnotev = req.params.idnotev;
+  console.log(idnotev);
+  const query = `DELETE FROM notev WHERE idnotev = '${idnotev}'`;
+
+  // Executar a consulta
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(500);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
+
+
+
 
 
 
