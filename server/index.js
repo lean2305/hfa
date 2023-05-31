@@ -425,11 +425,10 @@ app.get('/rota-do-servidor/:idnotev', (req, res) => {
 });
 
 
-// Rota do servidor para obter dados de uma notícia
 app.get('/apagarvideo/:id_videos', (req, res) => {
-  const idnotev = req.params.idnotev;
-  console.log(idnotev);
-  const query = `DELETE FROM videos WHERE idnotev = '${idnotev}'`;
+  const id_videos = req.params.id_videos;
+  console.log(id_videos);
+  const query = `DELETE FROM videos WHERE id_videos = '${id_videos}'`;
 
   // Executar a consulta
   db.query(query, (err, result) => {
