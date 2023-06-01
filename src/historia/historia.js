@@ -203,7 +203,7 @@ class Compromisso extends Component{
     }
 }
 
-{/* Componente das parcerias da hfa */}
+{/* Componente das parcerias da hfa não está a ser usado é o antigo */}
 class Parceria extends Component{
     render() {
         return(

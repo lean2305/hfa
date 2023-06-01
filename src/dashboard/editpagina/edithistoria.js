@@ -92,6 +92,8 @@ const Menu_esquerda = ({ handleMenuClick }) => {
 };
 
 
+
+
 const Thumbnail = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [currentDate, setCurrentDate] = useState(new Date());

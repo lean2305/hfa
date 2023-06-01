@@ -158,7 +158,7 @@ function Noticias() {
           quadrado_titulo={ultimaNoticia ? ultimaNoticia.titulo_notev : ''}
           quadrado_texto={ultimaNoticia ? ultimaNoticia.descr_notev.slice(0, 205) + "..." : ''}
           quadrado_data={ultimaNoticia ? ultimaNoticia.data_notev.slice(0, 10) : ''}
-          quadrado_img={ultimaNoticia ? process.env.PUBLIC_URL + ultimaNoticia.imagem_notev : ''}
+          quadrado_img={ultimaNoticia ? process.env.PUBLIC_URL + '/uploads/' + ultimaNoticia.imagem_notev : ''}
         />
          </Link>
          
@@ -174,7 +174,7 @@ function Noticias() {
                         noticia_titulo={noticia.titulo_notev}
                         noticia_texto={noticia.descr_notev.slice(0, 100) + "..."}
                         noticia_data={noticia.data_notev.slice(0, 10) + "       "}
-                        noticia_img={process.env.PUBLIC_URL + noticia.imagem_notev}
+                        noticia_img={process.env.PUBLIC_URL+ '/uploads/'  + noticia.imagem_notev}
                         
                     />
                     </Link>

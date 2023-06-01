@@ -50,7 +50,7 @@ function App() {
           <Route path='/dashboard/editnoticia/:idnotev' element={<Protected><Editnoticia  /></Protected>} />
           <Route path='/dashboard/editevento/:idnotev' element={<Protected><Editevento  /></Protected>} />
           <Route path='/dashboard/advideo' element={<Protected><Advideo  /></Protected>} />
-          <Route path='/dashboard/listavideo' element={<Protected><Listavideo  /></Protected>} />
+          <Route path='/dashboard/listavideos' element={<Protected><Listavideo  /></Protected>} />
           <Route path='/videos' element={<Videos/>} />
           <Route path='/loginantigo' element={<Loginantigo/>} />
           

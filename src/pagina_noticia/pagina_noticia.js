@@ -188,7 +188,7 @@ function PaginaNoticia() {
   
           const noticiasImagens = ultimasNoticias.map((noticia) => ({
             idnotev: noticia.idnotev,
-            imagem_notev: `${APIHOST}/${noticia.imagem_notev}`,
+            imagem_notev: `${APIHOST}/uploads/${noticia.imagem_notev}`,
           }));
   
           setNoticiasAnteriores(noticiasImagens);
@@ -223,7 +223,7 @@ function PaginaNoticia() {
      {/* Este é um componente que contém links para as imagens de cada quadrado e o texto da notícia correspondente.*/}
     <Noticia
         NoticiasEventos={noticia.categoria_notev}
-        noticia={`/${noticia.imagem_notev.replace('http://localhost:3001', '')}`} // Atualize esta linha
+        noticia={`/uploads/${noticia.imagem_notev.replace('http://localhost:3001', '')}`} // Atualize esta linha
         strong="Mais Noticias"
         noticia01={
             noticiasAnteriores.length > 0 && noticiasAnteriores[0]

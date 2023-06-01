@@ -198,7 +198,7 @@ class Search_filter extends Component {
                   marginRight: "12vh",
                 }}
               >
-                <p>Adicionar Notícia</p>
+                <p>Adicionar Vídeo</p>
               </div>
             </Link>
           </div>
