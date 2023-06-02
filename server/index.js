@@ -168,6 +168,8 @@ app.get('/historia', (req, res) => {
   });
 });
 
+
+
 app.post("/register", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;

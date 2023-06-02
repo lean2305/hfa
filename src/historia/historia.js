@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import APIHOST from '../constant';
 
 
 
@@ -31,29 +32,91 @@ class Menu extends Component{
 
 
 {/* Primeiro background com texto por cima */}
-class Img extends Component{
-    render() {
-        return(
-            <div className='img_fundo'>
-                <h1 className='ImgText'>{this.props.img_titulo}</h1>
-            </div>
-        );
+
+class Img extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        titulo: '',
+        imagemTitulo: '' // Adicionar estado para o valor de imagem_titulo
+      };
     }
-}
+  
+    componentDidMount() {
+        axios.get(`${APIHOST}/historia`)
+        .then(response => {
+          const data = response.data;
+          console.log('Dados da tabela "historia":', data);
+  
+          if (data && data.length > 0) {
+            const titulo = data[0].titulo;
+            const imagemTitulo = data[0].imagem_titulo; // Obter o valor de imagem_titulo
+            this.setState({ titulo, imagemTitulo });
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao buscar dados na tabela:', error);
+        });
+    }
+  
+    render() {
+      const { titulo, imagemTitulo } = this.state;
+  
+      return (
+        <div className='img_fundo' style={{ backgroundImage: `url(/historia_img/${imagemTitulo})` }}>
+          <h1 className='ImgText'>{titulo}</h1>
+        </div>
+      );
+    }
+  }
+
 
 
 {/* Componente contendo a historia da hfa com uma imagem de lado */}
-class Texto extends Component{
-    render() {
-        return(
-            <div className='historia'>
-                <p className='texto_historia'><p>{this.props.texto_texto_historia1}
-                </p><p>{this.props.integrante_texto2}</p></p>
-                <img className='img' src={this.props.integrante_img}  />
-            </div>
-        );
+
+class Texto extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        textoHistoria1: '',
+        texto2: '',
+        imgHistoria: ''
+      };
     }
-}
+  
+    componentDidMount() {
+      axios.get(`${APIHOST}/historia`)
+        .then(response => {
+          const data = response.data;
+          console.log('Dados da tabela "historia":', data);
+  
+          if (data && data.length > 0) {
+            const textoHistoria1 = data[0].texto_1;
+            const texto2 = data[0].texto_2;
+            const imgHistoria = data[0].img_historia;
+            this.setState({ textoHistoria1, texto2, imgHistoria });
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao buscar dados na tabela:', error);
+        });
+    }
+  
+    render() {
+      const { textoHistoria1, texto2, imgHistoria } = this.state;
+  
+      return (
+        <div className='historia'>
+          <p className='texto_historia'>
+            <p>{textoHistoria1}</p>
+            <p>{texto2}</p>
+          </p>
+          <img className='img' src={`/historia_img/${imgHistoria}`} alt="Imagem da História" />
+        </div>
+      );
+    }
+  }
+
 
 
 {/* Conteudo do menu direito contendo imagem e texto */}
@@ -69,8 +132,9 @@ class Conteudo_menu extends Component{
     }
 }
 
-{/* Rodapé do menu direito */}
 
+
+{/* Rodapé do menu direito */}
 class Footer_menu extends Component{
     render() {
         return(
@@ -105,81 +169,186 @@ class Botao extends Component{
 
 
 {/* Objetivo da hfa */}
-
-class Objetivo extends Component{
-    render() {
-        return(
-            <div className='objetivo'>
-                <div className='objetivo_conteudo'>
-                   <Container>
-                    <Row>
-                        <Col className='texto_objetivo'>
-                            <h3 className='no-center'>{this.props.visao01}</h3>
-                            <h2 className='no-center'>{this.props.visao}</h2>
-                            <p className='obetivo_p'>{this.props.visaoT}</p>
-                        
-                        </Col>
-                        <Col className='texto_objetivo'>
-                            <h3 className='no-center'>{this.props.missao02}</h3>
-                            <h2 className='no-center'>{this.props.missao}</h2>
-                            <p className='obetivo_p'>{this.props.missaoT}</p>
-                        
-                        </Col>
-                        <Col className='texto_objetivo'>
-                            <h3 className='no-center'>{this.props.valores03}</h3>
-                            <h2 className='no-center'>{this.props.valores}</h2>
-                            <p className='obetivo_p'>{this.props.valoresT}</p>
-                        
-                        </Col>
-                    </Row>
-                   </Container>
-                </div>
-            </div>
-        );
+class Objetivo extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        objetivo01: '',
+        objetivo01Titulo: '',
+        objetivo01Texto: '',
+        objetivo02: '',
+        objetivo02Titulo: '',
+        objetivo02Texto: '',
+        objetivo03: '',
+        objetivo03Titulo: '',
+        objetivo03Texto: ''
+      };
     }
-}
+  
+    componentDidMount() {
+        axios.get(`${APIHOST}/historia`)
+          .then(response => {
+            const data = response.data;
+            console.log('Dados da tabela "historia":', data);
+      
+            if (data && data.length > 0) {
+              const {
+                objetivo_01,
+                objetivo_01_titulo,
+                objetivo_01_texto,
+                objetivo_02,
+                objetivo_02_titulo,
+                objetivo_02_texto,
+                objetivo_03,
+                objetivo_03_titulo,
+                objetivo_03_texto,
+                objetivo_img
+              } = data[0];
+      
+              this.setState({
+                objetivo01: objetivo_01,
+                objetivo01Titulo: objetivo_01_titulo,
+                objetivo01Texto: objetivo_01_texto,
+                objetivo02: objetivo_02,
+                objetivo02Titulo: objetivo_02_titulo,
+                objetivo02Texto: objetivo_02_texto,
+                objetivo03: objetivo_03,
+                objetivo03Titulo: objetivo_03_titulo,
+                objetivo03Texto: objetivo_03_texto,
+                objetivoImg: objetivo_img
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Erro ao buscar dados na tabela:', error);
+          });
+      }
+      
+  
+    render() {
+      return (
+        <div className='objetivo' style={{backgroundImage: `url(${process.env.PUBLIC_URL}/historia_img/${this.state.objetivoImg})`}}>
+
+          <div className='objetivo_conteudo'>
+            <Container>
+              <Row>
+                <Col className='texto_objetivo'>
+                  <h3 className='no-center'>{this.state.objetivo01}</h3>
+                  <h2 className='no-center'>{this.state.objetivo01Titulo}</h2>
+                  <p className='obetivo_p'>{this.state.objetivo01Texto}</p>
+                </Col>
+                <Col className='texto_objetivo'>
+                  <h3 className='no-center'>{this.state.objetivo02}</h3>
+                  <h2 className='no-center'>{this.state.objetivo02Titulo}</h2>
+                  <p className='obetivo_p'>{this.state.objetivo02Texto}</p>
+                </Col>
+                <Col className='texto_objetivo'>
+                  <h3 className='no-center'>{this.state.objetivo03}</h3>
+                  <h2 className='no-center'>{this.state.objetivo03Titulo}</h2>
+                  <p className='obetivo_p'>{this.state.objetivo03Texto}</p>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </div>
+      );
+    }
+  }
 
 
 
 
 
 {/* Compromisso da hfa */}
-class Compromisso extends Component{
+class Compromisso extends Component {
     constructor(props) {
-        super(props);
-    
-        this.images = [
-          // Atualize o array de imagens para incluir texto
-          { url: '/certificados/CIT_IPCA610G_EN_2021.png', text: 'CERTIFICADO IPC TRAINER - IPC-A-610G' },
-          { url:'/certificados/CIT_IPC771121C_EN_2021.png', text: 'CERTIFICADO IPC TRAINER - IPC-7711/7721' },
-          { url:'/certificados/HFAPGIpt.png', text: 'POLÍTICA INTEGRADA 2021' },
-          { url:'/certificados/ISO_9001_IATF.png', text: 'CERTIFICADO IATF 16949:2016' },
-          { url:'/certificados/ISO_9001_np.png', text: 'CERTIFICADO NP EN ISO 9001: 2015' },
-        ];
-    
-        this.settings = {
-          dots: true,
-          infinite: true,
-          speed: 500,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          swipeToSlide: true,
-          arrows: false
-        };
-    
-        this.carouselContainerStyle = {
-          width: '60%',
-          margin: '0 auto'
-        };
-    
-        this.carouselImageStyle = {
-          width: '100%',
-          height: 'auto'
-        };
-      }
-    
+      super(props);
+  
+      this.state = {
+        certificado1: '',
+        certificado2: '',
+        certificado3: '',
+        certificado4: '',
+        certificado5: '',
+        compromissoQualidade: '',
+        compromissoTitulo: '',
+        compromissoTexto1: '',
+        compromissoTexto2: '',
+        compromissoTexto3: ''
+      };
+  
+      this.settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        swipeToSlide: true,
+        arrows: false
+      };
+  
+      this.carouselContainerStyle = {
+        width: '60%',
+        margin: '0 auto'
+      };
+  
+      this.carouselImageStyle = {
+        width: '100%',
+        height: 'auto'
+      };
+    }
+  
+    componentDidMount() {
+      axios.get(`${APIHOST}/historia`)
+        .then(response => {
+          const data = response.data;
+          console.log('Dados da tabela "historia":', data);
+  
+          if (data && data.length > 0) {
+            const {
+              certificado1,
+              certificado2,
+              certificado3,
+              certificado4,
+              certificado5,
+              compromisso_qualidade,
+              compromisso_titulo,
+              compromisso_texto1,
+              compromisso_texto2,
+              compromisso_texto3
+            } = data[0];
+  
+            this.setState({
+              certificado1: certificado1,
+              certificado2: certificado2,
+              certificado3: certificado3,
+              certificado4: certificado4,
+              certificado5: certificado5,
+              compromissoQualidade: compromisso_qualidade,
+              compromissoTitulo: compromisso_titulo,
+              compromissoTexto1: compromisso_texto1,
+              compromissoTexto2: compromisso_texto2,
+              compromissoTexto3: compromisso_texto3
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao buscar dados na tabela:', error);
+        });
+    }
+  
     render() {
-        return( 
+      const { certificado1, certificado2, certificado3, certificado4, certificado5 } = this.state;
+  
+      this.images = [
+        { url: `/certificados/${certificado1}`, text: 'CERTIFICADO IPC TRAINER - IPC-A-610G' },
+        { url: `/certificados/${certificado2}`, text: 'CERTIFICADO IPC TRAINER - IPC-7711/7721' },
+        { url: `/certificados/${certificado3}`, text: 'POLÍTICA INTEGRADA 2021' },
+        { url: `/certificados/${certificado4}`, text: 'CERTIFICADO IATF 16949:2016' },
+        { url: `/certificados/${certificado5}`, text: 'CERTIFICADO NP EN ISO 9001: 2015' },
+      ];
+  
+      return (
             <div className='compromisso'>
                 <div className='compromisso_esquerda'>
                     <div style={this.carouselContainerStyle}>
@@ -202,6 +371,9 @@ class Compromisso extends Component{
         );
     }
 }
+
+
+
 
 {/* Componente das parcerias da hfa não está a ser usado é o antigo */}
 class Parceria extends Component{
