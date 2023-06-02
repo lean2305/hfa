@@ -130,12 +130,13 @@ const Thumbnail = () => {
           )}
           
           {showDefaultImage && (
-            <img
-            src={imagem ? '/' + imagem : ''}
-              alt="Default Preview"
-              className="thumbnail"
-              onClick={handleDefaultImageClick}
-            />
+           <img
+           src={imagem ? `/uploads/${imagem}` : ''}
+           alt="Default Preview"
+           className="thumbnail"
+           onClick={handleDefaultImageClick}
+         />
+         
           )}
         </div>
         {!selectedImage && (

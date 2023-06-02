@@ -262,59 +262,59 @@ function Html() {
     <div class="marquee">
       <div class="marquee__group">
         
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180 180">
+        <svg  viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
-          <image x="-80" y="-80" width="350" height="350" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" />
+          <image x="-80" y="-80" width="350" height="350" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png"  loading="eager"/>
 
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180 180">
+        <svg   viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
-          <image x="-80" y="-80" width="350" height="350" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" />
+          <image x="-80" y="-80" width="350" height="350" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" loading="eager"/>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180 180">
+        <svg   viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
-          <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" />
+          <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" loading="eager"/>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180 180">
+        <svg  viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
-          <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" />
+          <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" loading="eager"/>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+        <svg   viewBox="0 0 200 200">
           <!-- Adicionar a imagem -->
-          <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" />
+          <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" loading="eager"/>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+        <svg   viewBox="0 0 200 200">
           <!-- Adicionar a imagem -->
-          <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" />
+          <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" loading="eager"/>
         </svg>
         
       </div>
   
       <div aria-hidden="true" class="marquee__group">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+      <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" loading="eager"/>
 
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" />
+      <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" loading="eager"/>
     </svg>
     
       </div>
@@ -322,59 +322,59 @@ function Html() {
   
     <div class="marquee marquee--reverse">
       <div class="marquee__group">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+      <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" loading="eager"/>
 
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" />
+      <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" loading="eager"/>
     </svg>
     
       </div>
   
       <div aria-hidden="true" class="marquee__group">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+      <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" loading="eager"/>
 
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" />
+      <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" loading="eager"/>
     </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+    <svg  viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" />
+      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" loading="eager"/>
     </svg>
     
       </div>

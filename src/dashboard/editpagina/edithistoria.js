@@ -91,6 +91,99 @@ const Menu_esquerda = ({ handleMenuClick }) => {
   );
 };
 
+const Testando = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [showDefaultImage, setShowDefaultImage] = useState(true);
+  const fileInputRef = useRef(null); // Referência ao input do arquivo
+  const formRef = useRef(null); // Referência ao formulário
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, []);
+
+  const handleImageChange = (event) => {
+    setSelectedImage(event.target.files[0]);
+    setShowDefaultImage(false);
+  };
+
+  const handleDefaultImageClick = () => {
+    // Ao clicar na imagem padrão, aciona o clique no input de arquivo
+    fileInputRef.current.click();
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setSelectedImage(event.dataTransfer.files[0]);
+    setShowDefaultImage(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('image', selectedImage);
+
+    axios
+      .post('http://localhost:3001/upload', formData)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleCancel = () => {
+    formRef.current.reset();
+    setSelectedImage(null);
+    setShowDefaultImage(true);
+  };
+
+  return (
+    <div>
+      {/*INPUT IMAGEM PRINCIPAL */}
+      <div
+        className="image-preview"
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+      >
+        {selectedImage && !showDefaultImage && (
+          <img
+            src={URL.createObjectURL(selectedImage)}
+            alt="Preview"
+            className="thumbnail"
+          />
+        )}
+        {showDefaultImage && (
+          <img
+            src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
+            alt="Default Preview"
+            className="thumbnail"
+            onClick={handleDefaultImageClick}
+          />
+        )}
+      </div>
+     
+      <input
+        type="file"
+        name="imagem"
+        id="imagem"
+        onChange={handleImageChange}
+        ref={fileInputRef} // Atribui a referência ao input de arquivo
+        style={{ display: 'none' }} // Esconde o input de arquivo
+      />
+    </div>
+  );
+};
+
 
 
 
@@ -157,42 +250,11 @@ const Thumbnail = () => {
         <form onSubmit={handleSubmit} ref={formRef}>
 
             {/*INPUT IMAGEM PRINCIPAL */}
-          <div
-            className="image-preview"
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          >
-            {selectedImage && !showDefaultImage && (
-              <img
-                src={URL.createObjectURL(selectedImage)}
-                alt="Preview"
-                className="thumbnail"
-              />
-            )}
-            {showDefaultImage && (
-              <img
-                src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
-                alt="Default Preview"
-                className="thumbnail"
-                onClick={handleDefaultImageClick}
-              />
-            )}
-          </div>
-          {!selectedImage && (
-            <label htmlFor="imagem" className="image-label">
-              Clique ou arraste para alterar o banner da página
-            </label>
-          )}
-          <input
-            type="file"
-            name="imagem"
-            id="imagem"
-            onChange={handleImageChange}
-            ref={fileInputRef} // Atribui a referência ao input de arquivo
-            style={{ display: 'none' }} // Esconde o input de arquivo
-          />
+          <Testando />
             {/*FIM INPUT IMAGEM PRINCIPAL */}
-
+            <label htmlFor="imagem" className="image-label">
+              Clique ou arraste
+            </label>
             {/*INPUT TITULO */}
           <br/><br/>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -246,40 +308,12 @@ const Thumbnail = () => {
             ></textarea>
             <br/>
             <p className="title_input">Imagem historia</p>
-            <div
-            className="image-preview"
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          >
-            {selectedImage && !showDefaultImage && (
-              <img
-                src={URL.createObjectURL(selectedImage)}
-                alt="Preview"
-                className="thumbnail"
-              />
-            )}
-            {showDefaultImage && (
-              <img
-                src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
-                alt="Default Preview"
-                className="thumbnail"
-                onClick={handleDefaultImageClick}
-              />
-            )}
-            </div>
+            <Testando />
             {!selectedImage && (
-                <label htmlFor="imagem" className="image-label">
-                Clique ou arraste para alterar a imagem
-                </label>
-            )}
-            <input
-                type="file"
-                name="imagem"
-                id="imagem"
-                onChange={handleImageChange}
-                ref={fileInputRef} // Atribui a referência ao input de arquivo
-                style={{ display: 'none' }} // Esconde o input de arquivo
-            />
+            <label htmlFor="imagem" className="image-label">
+              Clique ou arraste
+            </label>
+          )}
           </div>
             {/* FIM DO INPUT IMAGEM ESQUERDA DO TEXTO DA HISTORIA */}
 
@@ -365,27 +399,7 @@ const Thumbnail = () => {
 
               <br /><br />
               <p className="title_input">Imagem objetivos</p>
-            <div
-            className="image-preview"
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          >
-            {selectedImage && !showDefaultImage && (
-              <img
-                src={URL.createObjectURL(selectedImage)}
-                alt="Preview"
-                className="thumbnail"
-              />
-            )}
-            {showDefaultImage && (
-              <img
-                src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
-                alt="Default Preview"
-                className="thumbnail"
-                onClick={handleDefaultImageClick}
-              />
-            )}
-          </div>
+              <Testando />
           {!selectedImage && (
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste para alterar o background dos objetivos
@@ -435,30 +449,20 @@ const Thumbnail = () => {
             {/*FIM DO INPUT TEXTO COMPOMISSO HFA */}
 
             <p className="title_input">Imagem dos certificados</p>
-          <div
-            className="image-preview"
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          >
-            {selectedImage && !showDefaultImage && (
-              <img
-                src={URL.createObjectURL(selectedImage)}
-                alt="Preview"
-                className="thumbnail"
-              />
-            )}
-            {showDefaultImage && (
-              <img
-                src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
-                alt="Default Preview"
-                className="thumbnail"
-                onClick={handleDefaultImageClick}
-              />
-            )}
-          </div>
+              <div style={{display:'flex'}}>
+                <Testando />
+                <Testando />
+                <Testando />
+                
+              </div>
+              <div style={{display:'flex'}}>
+                <Testando />
+                <Testando />
+                
+              </div>
           {!selectedImage && (
             <label htmlFor="imagem" className="image-label">
-              Clique ou arraste para alterar o background da imagem
+              Arraste 
             </label>
           )}
           <input
@@ -492,27 +496,7 @@ const Thumbnail = () => {
             </div>
           </div>
           <p className="title_input">Imagem da parte integrante da HFA</p>
-          <div
-            className="image-preview"
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          >
-            {selectedImage && !showDefaultImage && (
-              <img
-                src={URL.createObjectURL(selectedImage)}
-                alt="Preview"
-                className="thumbnail"
-              />
-            )}
-            {showDefaultImage && (
-              <img
-                src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
-                alt="Default Preview"
-                className="thumbnail"
-                onClick={handleDefaultImageClick}
-              />
-            )}
-          </div>
+          <Testando />
           {!selectedImage && (
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste para alterar o background da imagem

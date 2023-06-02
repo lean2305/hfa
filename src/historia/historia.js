@@ -150,11 +150,11 @@ class Compromisso extends Component{
     
         this.images = [
           // Atualize o array de imagens para incluir texto
-          { url: 'https://www.hfa.pt/storage/files/original/CIT_IPCA610G_EN_2021_5ed660ba42913.png?text=Imagem+1', text: 'CERTIFICADO IPC TRAINER - IPC-A-610G' },
-          { url: 'https://www.hfa.pt/storage/files/original/CIT_IPC771121C_EN_2021_5ed660fbdfd1c.png?text=Imagem+2', text: 'CERTIFICADO IPC TRAINER - IPC-7711/7721' },
-          { url: 'https://www.hfa.pt/storage/files/original/HFAPGIpt_5ebacde586e1c.png?text=Imagem+3', text: 'POLÍTICA INTEGRADA 2021' },
-          { url: 'https://www.hfa.pt/storage/files/original/ISO_9001_2015_623c4b7632e3a.png?text=Imagem+4', text: 'CERTIFICADO IATF 16949:2016' },
-          { url: 'https://www.hfa.pt/storage/files/original/ISO_9001_2015_623c4b7632e3a.png?text=Imagem+5', text: 'CERTIFICADO NP EN ISO 9001: 2015' },
+          { url: '/certificados/CIT_IPCA610G_EN_2021.png', text: 'CERTIFICADO IPC TRAINER - IPC-A-610G' },
+          { url:'/certificados/CIT_IPC771121C_EN_2021.png', text: 'CERTIFICADO IPC TRAINER - IPC-7711/7721' },
+          { url:'/certificados/HFAPGIpt.png', text: 'POLÍTICA INTEGRADA 2021' },
+          { url:'/certificados/ISO_9001_IATF.png', text: 'CERTIFICADO IATF 16949:2016' },
+          { url:'/certificados/ISO_9001_np.png', text: 'CERTIFICADO NP EN ISO 9001: 2015' },
         ];
     
         this.settings = {
@@ -316,6 +316,7 @@ class Footer extends Component{
         );
     }
 }
+
 
 class Col_menu extends Component{
     render() {
