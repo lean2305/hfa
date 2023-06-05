@@ -3,6 +3,7 @@ import { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './edithistoria.css';
+import APIHOST from '../../constant';
 
 const Submenu = ({ items, parentKey="dashboard" }) => {
   return (
@@ -40,7 +41,7 @@ const Menu_esquerda = ({ handleMenuClick }) => {
       { key: 'listapagina', label: 'Ver Lista de Páginas', onClick: () => handleMenuClick('listaPaginas', '#ffff00') }
     ] },
     { key: 'paginas', label: 'Marcadores', active: false, items: [
-      { key: 'adicionarPaginas', label: 'Tabela de Paginas', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
+      { key: 'marcador', label: 'Tabela de marcadores', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
     ] }
  
 
@@ -91,10 +92,11 @@ const Menu_esquerda = ({ handleMenuClick }) => {
   );
 };
 
-const Testando = () => {
+const Testando = (props) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [showDefaultImage, setShowDefaultImage] = useState(true);
+ 
   const fileInputRef = useRef(null); // Referência ao input do arquivo
   const formRef = useRef(null); // Referência ao formulário
 
@@ -105,6 +107,7 @@ const Testando = () => {
 
     return () => clearInterval(timerId);
   }, []);
+
 
   const handleImageChange = (event) => {
     setSelectedImage(event.target.files[0]);
@@ -162,14 +165,15 @@ const Testando = () => {
             className="thumbnail"
           />
         )}
-        {showDefaultImage && (
-          <img
-            src="https://www.decomat.pt/index/images/joomlart/demo/default.jpg"
-            alt="Default Preview"
-            className="thumbnail"
-            onClick={handleDefaultImageClick}
-          />
-        )}
+       {showDefaultImage ? (
+  <img
+    src={props.imagem}
+    alt="Imagem do Título"
+    className="thumbnail"
+    onClick={handleDefaultImageClick}
+  />
+) : null}
+
       </div>
      
       <input
@@ -193,14 +197,114 @@ const Thumbnail = () => {
     const [showDefaultImage, setShowDefaultImage] = useState(true);
     const fileInputRef = useRef(null); // Referência ao input do arquivo
     const formRef = useRef(null); // Referência ao formulário
-  
+
+    //imagens e texto
+    const [imagemTitulo, setImagemTitulo] = useState('');
+    const [titulo, setTitulo] = useState('');
+    const [texto1, setTexto1] = useState('');
+    const [texto2, setTexto2] = useState('');
+    const [imgHistoria, setImgHistoria] = useState('');
+    const [objetivo01, setObjetivo01] = useState('');
+    const [objetivo01Titulo, setObjetivo01Titulo] = useState('');
+    const [objetivo01Texto, setObjetivo01Texto] = useState('');
+    const [objetivo02, setObjetivo02] = useState('');
+    const [objetivo02Titulo, setObjetivo02Titulo] = useState('');
+    const [objetivo02Texto, setObjetivo02Texto] = useState('');
+    const [objetivo03, setObjetivo03] = useState('');
+    const [objetivo03Titulo, setObjetivo03Titulo] = useState('');
+    const [objetivo03Texto, setObjetivo03Texto] = useState('');
+    const [objetivoImg, setObjetivoImg] = useState('');
+    const [compromisso1, setCompromisso1] = useState('');
+    const [compromisso2, setCompromisso2] = useState('');
+    const [compromisso3, setCompromisso3] = useState('');
+    const [certificado1, setCertificado1] = useState('');
+    const [certificado2, setCertificado2] = useState('');
+    const [certificado3, setCertificado3] = useState('');
+    const [certificado4, setCertificado4] = useState('');
+    const [certificado5, setCertificado5] = useState('');
+    const [texto1_integrante, setTexto1integrante] = useState('');
+    const [texto2_integrante, setTexto2integrante] = useState('');
+    const [img_integrante, setImgIntegrante] = useState('');
+
+    //carregar dados apenas
+    const [dadosCarregados, setDadosCarregados] = useState(false);
+    
     useEffect(() => {
-      const timerId = setInterval(() => {
-        setCurrentDate(new Date());
-      }, 1000);
-  
-      return () => clearInterval(timerId);
+      const fetchNoticia = async () => {
+        try {
+          const response = await axios.get(`${APIHOST}/historia`);
+          console.log(response.data); // Verifique os dados retornados no console
+    
+          if (response.data.length > 0) {
+            const {
+              imagem_titulo,
+              titulo,
+              texto_1,
+              texto_2,
+              img_historia,
+              objetivo_01,
+              objetivo_01_titulo,
+              objetivo_01_texto,
+              objetivo_02,
+              objetivo_02_titulo,
+              objetivo_02_texto,
+              objetivo_03,
+              objetivo_03_titulo,
+              objetivo_03_texto,
+              objetivo_img,
+              compromisso1,
+              compromisso2,
+              compromisso3,
+              certificado1,
+              certificado2,
+              certificado3,
+              certificado4,
+              certificado5,
+              texto1_integrante,
+              texto2_integrante,
+              img_integrante,
+            } = response.data[0];
+    
+            setImagemTitulo(imagem_titulo);
+            setTitulo(titulo);
+            setTexto1(texto_1);
+            setTexto2(texto_2);
+            setImgHistoria(img_historia);
+            setObjetivo01(objetivo_01);
+            setObjetivo01Titulo(objetivo_01_titulo);
+            setObjetivo01Texto(objetivo_01_texto);
+            setObjetivo02(objetivo_02);
+            setObjetivo02Titulo(objetivo_02_titulo);
+            setObjetivo02Texto(objetivo_02_texto);
+            setObjetivo03(objetivo_03);
+            setObjetivo03Titulo(objetivo_03_titulo);
+            setObjetivo03Texto(objetivo_03_texto);
+            setObjetivoImg(objetivo_img);
+            setCompromisso1(compromisso1);
+            setCompromisso2(compromisso2);
+            setCompromisso3(compromisso3);
+            setCertificado1(certificado1);
+            setCertificado2(certificado2);
+            setCertificado3(certificado3);
+            setCertificado4(certificado4);
+            setCertificado5(certificado5);
+            setTexto1integrante(texto1_integrante);
+            setTexto2integrante(texto2_integrante);
+            setImgIntegrante(img_integrante);
+          } else {
+            // Lógica para lidar com o caso em que não há dados na resposta da API
+            console.log('Dados não encontrados');
+          }
+          setDadosCarregados(true);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+    
+      fetchNoticia();
     }, []);
+    
+    
   
     const handleImageChange = (event) => {
       setSelectedImage(event.target.files[0]);
@@ -221,21 +325,22 @@ const Thumbnail = () => {
       setSelectedImage(event.dataTransfer.files[0]);
       setShowDefaultImage(false);
     };
+
+    const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  // Get all the input values
+  const form = new FormData(formRef.current);
   
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const formData = new FormData();
-      formData.append('image', selectedImage);
-  
-      axios
-        .post('http://localhost:3001/upload', formData)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
+  // Make the Axios POST request
+  try {
+    const response = await axios.post(`${APIHOST}/uploadhistoria`, form);
+    console.log(response.data); // Handle the response from the server
+  } catch (error) {
+    console.error(error); // Handle any errors that occurred during the request
+  }
+};
+
   
     const handleCancel = () => {
       formRef.current.reset();
@@ -244,13 +349,15 @@ const Thumbnail = () => {
     };
   
     return (
-      <div>
+      <div id="myForm">
         <h2>Editar Página</h2>
         <p style={{ paddingTop: '4%', fontWeight: 'bold' }}>Alterar Thumbnail</p>
         <form onSubmit={handleSubmit} ref={formRef}>
 
             {/*INPUT IMAGEM PRINCIPAL */}
-          <Testando />
+            {dadosCarregados && (
+        <Testando imagem={`/historia_img/${imagemTitulo}`} />
+      )}
             {/*FIM INPUT IMAGEM PRINCIPAL */}
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste
@@ -263,7 +370,7 @@ const Thumbnail = () => {
                 <p className="title_input">Título da Página</p>
                 <input
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
-                  placeholder='Escreva o título da página'
+                  value={titulo}
                   type="text"
                   name="titulo"
                   id="titulo"
@@ -286,7 +393,7 @@ const Thumbnail = () => {
                 padding: 10,
                 borderRadius: 10
               }}
-              placeholder='Escreva aqui o primeiro parágrafo sobre a história da HFA'
+              value={texto1}
               name="descricao"
               id="descricao"
             ></textarea>
@@ -302,13 +409,13 @@ const Thumbnail = () => {
                 padding: 10,
                 borderRadius: 10
               }}
-              placeholder='Escreva aqui o segundo parágrafo sobre a história da HFA'
+              value={texto2}
               name="descricao"
               id="descricao"
             ></textarea>
             <br/>
             <p className="title_input">Imagem historia</p>
-            <Testando />
+            <Testando imagem={`/historia_img/${imgHistoria}`} />
             {!selectedImage && (
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste
@@ -326,7 +433,7 @@ const Thumbnail = () => {
                 <input
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
-                  placeholder='Número do Objetivo'
+                  value={objetivo01}
                   name="titulo"
                   id="titulo"
                 /><br/>
@@ -334,14 +441,14 @@ const Thumbnail = () => {
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
                   name="titulo"
-                  placeholder='Título do Objetivo'
+                  value={objetivo01Titulo}
                   id='titulo'
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, resize: 'vertical', minHeight: '4rem' }}
                   type="text"
                   name="titulo"
-                  placeholder='Descrição do Objetivo'
+                  value={objetivo01Texto}
                   id="titulo"
                 />
               </div>
@@ -352,21 +459,21 @@ const Thumbnail = () => {
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
                   name="titulo"
-                  placeholder='Número do Objetivo'
+                  value={objetivo02}
                   id="titulo"
                 /><br/>
                 <input
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
                   name="titulo"
-                  placeholder='Título do Objetivo'
+                  value={objetivo02Titulo}
                   id="titulo"
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, resize: 'vertical', minHeight: '4rem' }}
                   type="text"
                   name="titulo"
-                  placeholder='Descrição do Objetivo'
+                  value={objetivo02Texto}
                   id="titulo"
                 />
               </div>
@@ -376,21 +483,21 @@ const Thumbnail = () => {
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
                   name="titulo"
-                  placeholder='Número do Objetivo'
+                  value={objetivo03}
                   id="titulo"
                 /><br/>
                 <input
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
                   type="text"
                   name="titulo"
-                  placeholder='Título do Objetivo'
+                  value={objetivo03Titulo}
                   id="titulo"
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, resize: 'vertical', minHeight: '4rem' }}
                   type="text"
                   name="titulo"
-                  placeholder='Descrição do Objetivo'
+                  value={objetivo03Texto}
                   id="titulo"
                 />
               </div>
@@ -399,7 +506,7 @@ const Thumbnail = () => {
 
               <br /><br />
               <p className="title_input">Imagem objetivos</p>
-              <Testando />
+              <Testando imagem={`/historia_img/${objetivoImg}`} />
           {!selectedImage && (
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste para alterar o background dos objetivos
@@ -424,21 +531,21 @@ const Thumbnail = () => {
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
                   type="text"
                   name="titulo"
-                  placeholder='1º Parágrafo'
+                  value={compromisso1}
                   id="titulo"
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
                   type="text"
                   name="titulo"
-                  placeholder='2º Parágrafo'
+                  value={compromisso2}
                   id="titulo"
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
                   type="text"
                   name="titulo"
-                  placeholder='3º Parágrafo'
+                  value={compromisso3}
                   id="titulo"
                 /><br/>
               </div>
@@ -450,14 +557,14 @@ const Thumbnail = () => {
 
             <p className="title_input">Imagem dos certificados</p>
               <div style={{display:'flex'}}>
-                <Testando />
-                <Testando />
-                <Testando />
+                <Testando imagem={`/certificados/${certificado1}`} />
+                <Testando imagem={`/certificados/${certificado2}`} />
+                <Testando imagem={`/certificados/${certificado3}`} />
                 
               </div>
               <div style={{display:'flex'}}>
-                <Testando />
-                <Testando />
+                <Testando imagem={`/certificados/${certificado4}`} />
+                <Testando imagem={`/certificados/${certificado5}`} />
                 
               </div>
           {!selectedImage && (
@@ -482,21 +589,21 @@ const Thumbnail = () => {
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
                   type="text"
                   name="titulo"
-                  placeholder='1º Parágrafo'
+                  value={texto1_integrante}
                   id="titulo"
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
                   type="text"
                   name="titulo"
-                  placeholder='2º Parágrafo'
+                  value={texto2_integrante}
                   id="titulo"
                 /><br/>
               </div>
             </div>
           </div>
           <p className="title_input">Imagem da parte integrante da HFA</p>
-          <Testando />
+          <Testando imagem={`/historia_img/${img_integrante}`} />
           {!selectedImage && (
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste para alterar o background da imagem
@@ -511,7 +618,7 @@ const Thumbnail = () => {
             style={{ display: 'none' }} // Esconde o input de arquivo
           />
 
-          {selectedImage && (
+          
             <div>
               <button className="button-submit" type="submit">
                 Guardar
@@ -520,7 +627,7 @@ const Thumbnail = () => {
                 Cancelar
               </button>
             </div>
-          )}
+          
         </form>
       </div>
     );

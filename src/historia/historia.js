@@ -226,6 +226,7 @@ class Objetivo extends Component {
       
   
     render() {
+        
       return (
         <div className='objetivo' style={{backgroundImage: `url(${process.env.PUBLIC_URL}/historia_img/${this.state.objetivoImg})`}}>
 
@@ -272,9 +273,9 @@ class Compromisso extends Component {
         certificado5: '',
         compromissoQualidade: '',
         compromissoTitulo: '',
-        compromissoTexto1: '',
-        compromissoTexto2: '',
-        compromissoTexto3: ''
+        compromisso1: '',
+        compromisso2: '',
+        compromisso3: ''
       };
   
       this.settings = {
@@ -316,6 +317,7 @@ class Compromisso extends Component {
               compromisso_texto1,
               compromisso_texto2,
               compromisso_texto3
+              
             } = data[0];
   
             this.setState({
@@ -326,19 +328,73 @@ class Compromisso extends Component {
               certificado5: certificado5,
               compromissoQualidade: compromisso_qualidade,
               compromissoTitulo: compromisso_titulo,
-              compromissoTexto1: compromisso_texto1,
-              compromissoTexto2: compromisso_texto2,
-              compromissoTexto3: compromisso_texto3
+              compromisso1: compromisso_texto1,
+              compromisso2: compromisso_texto2,
+              compromisso3: compromisso_texto3
             });
           }
         })
         .catch(error => {
           console.error('Erro ao buscar dados na tabela:', error);
         });
+        axios.get(`${APIHOST}/historia`)
+        .then(response => {
+          const data = response.data;
+          console.log('Dados da tabela "historia":', data);
+    
+          if (data && data.length > 0) {
+            const {
+              objetivo_01,
+              objetivo_01_titulo,
+              objetivo_01_texto,
+              objetivo_02,
+              objetivo_02_titulo,
+              objetivo_02_texto,
+              objetivo_03,
+              objetivo_03_titulo,
+              objetivo_03_texto,
+              objetivo_img,
+              compromisso1,
+              compromisso2,
+              compromisso3
+            } = data[0];
+    
+            this.setState({
+              objetivo01: objetivo_01,
+              objetivo01Titulo: objetivo_01_titulo,
+              objetivo01Texto: objetivo_01_texto,
+              objetivo02: objetivo_02,
+              objetivo02Titulo: objetivo_02_titulo,
+              objetivo02Texto: objetivo_02_texto,
+              objetivo03: objetivo_03,
+              objetivo03Titulo: objetivo_03_titulo,
+              objetivo03Texto: objetivo_03_texto,
+              objetivoImg: objetivo_img,
+              compromisso1:compromisso1,
+              compromisso2:compromisso1,
+              compromisso3:compromisso1
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao buscar dados na tabela:', error);
+        });
+    
     }
   
     render() {
-      const { certificado1, certificado2, certificado3, certificado4, certificado5 } = this.state;
+      const {
+        certificado1,
+        certificado2,
+        certificado3,
+        certificado4,
+        certificado5,
+        compromissoQualidade,
+        compromissoTitulo,
+        compromisso1,
+        compromisso2,
+        compromisso3
+      } = this.state;
   
       this.images = [
         { url: `/certificados/${certificado1}`, text: 'CERTIFICADO IPC TRAINER - IPC-A-610G' },
@@ -365,7 +421,7 @@ class Compromisso extends Component {
                 <div className='compromisso_direita'>
                     <p className='compromisso_direita_p'>{this.props.compromisso_qualidade}</p>
                     <h2 className='compromisso_direita_h2'>{this.props.compromisso_titulo}</h2>
-                    <p className='compromisso_texto_p'><p style={{ color: '#0d344e' }}>{this.props.compromisso_texto1}</p>{this.props.compromisso_texto2}</p><p>{this.props.compromisso_texto3}</p>
+                    <p className='compromisso_texto_p'><p style={{ color: '#0d344e' }}>{this.state.compromisso1}</p>{this.state.compromisso2}</p><p>{this.state.compromisso3}</p>
                 </div>
             </div>
         );
@@ -447,27 +503,64 @@ class Parceria extends Component{
 
 {/* Componente integrante*/}
 class Integrante extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+          texto1_integrante:'',
+          texto2_integrante:'',
+          img_integrante:'',
+        };
+      }
+    
+      componentDidMount() {
+          axios.get(`${APIHOST}/historia`)
+            .then(response => {
+              const data = response.data;
+              console.log('Dados da tabela "historia":', data);
+        
+              if (data && data.length > 0) {
+                const {
+                  texto1_integrante,
+                  texto2_integrante,
+                  img_integrante,
+                } = data[0];
+        
+                this.setState({
+                  texto1_integrante :texto1_integrante,
+                  texto2_integrante :texto2_integrante,
+                  img_integrante:img_integrante,
+                });
+              }
+            })
+            .catch(error => {
+              console.error('Erro ao buscar dados na tabela:', error);
+            });
+        }
+        
     render() {
         return(
             <div className='integrante'>
                 <div className='integrante_esquerda'>
                     <p style={{color :'#022d4b', fontWeight:'bold', fontSize: '2.2vh'}}>{this.props.integrante_subtitulo}</p>
                     <h1 style={{color :'#3ba5dd', fontWeight:'bold', fontSize:'4.4vh'}}>{this.props.integrante_titulo}</h1>
-                    <p className='integrante_p'><p>{this.props.integrante_texto1}
-                    </p><p>{this.props.integrante_texto2}</p> 
+                    <p className='integrante_p'><p>{this.state.texto1_integrante}
+                    </p><p>{this.state.texto2_integrante}</p> 
                     </p>
 
                 </div>
 
                 <div  className='integrante_direita'>
                     <div className='integrante_direita_border'>
-                        <img className='integrante_img' width="300" height="300"  src={this.props.integrante_img} />
+                    <img className="integrante_img" width="300" height="300" src={process.env.PUBLIC_URL + '/historia_img/' + this.state.img_integrante} />
+
                     </div>
                 </div>
             </div>
         );
     }
 }
+
+
 
 {/* Rodapé dá pagina do lado esquerdo */}
 class Footer extends Component{
@@ -488,6 +581,8 @@ class Footer extends Component{
         );
     }
 }
+
+
 
 
 class Col_menu extends Component{

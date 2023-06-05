@@ -168,6 +168,12 @@ app.get('/historia', (req, res) => {
   });
 });
 
+app.post('/uploadhistoria', (req, res) => {
+  const historiaData = req.body;
+  console.log(historiaData);
+  res.send('Dados de história recebidos com sucesso!');
+});
+
 
 
 app.post("/register", (req, res) => {
