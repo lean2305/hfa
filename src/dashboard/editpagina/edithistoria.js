@@ -191,6 +191,7 @@ const Testando = (props) => {
 
 const Thumbnail = () => {
     const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImagee, setSelectedImagee] = useState(null);
     const [currentDate, setCurrentDate] = useState(new Date());
     const [showDefaultImage, setShowDefaultImage] = useState(true);
     const fileInputRef = useRef(null); // Referência ao input do arquivo
@@ -227,6 +228,7 @@ const Thumbnail = () => {
     //carregar dados apenas
     const [dadosCarregados, setDadosCarregados] = useState(false);
     const inputValue = `${imagemTitulo}`;
+    const img_Historia = `${imgHistoria}`;
     
 
     
@@ -306,7 +308,9 @@ const Thumbnail = () => {
       fetchNoticia();
     }, []);
     
-    
+    const handleImgHistoriaChange = (event) => {
+      setImgHistoria(event.target.value);
+    };
   
     const handleImageChange = (event) => {
       setSelectedImage(event.target.files[0]);
@@ -337,7 +341,7 @@ const Thumbnail = () => {
   
     
       const inputStyle = {
-        display:'none',
+       
       };
 
       const handleImageSelect = (selectedImage) => {
@@ -347,7 +351,17 @@ const Thumbnail = () => {
         if (selectedImage) {
           const imageName = selectedImage.name;
           setImagemTitulo(imageName); // Assuming you want to update the `imagemTitulo` state with the image name
-          // You can update other state variables related to the image name here if needed
+         
+        }
+      };
+
+      const handleImgHistoria = (selectedImage) => {
+        setSelectedImage(selectedImage);
+        setShowDefaultImage(false);
+      
+        if (selectedImage) {
+          const imgHistororia = selectedImage.name;
+          setImgHistoria(imgHistororia);
         }
       };
 
@@ -362,7 +376,8 @@ const Thumbnail = () => {
           inputValue: inputValue,
           titulo: titulo,
           texto1: texto1,
-          texto2: texto2
+          texto2: texto2,
+          imgHistoria: imgHistoria
         };
       
         axios
@@ -450,7 +465,15 @@ const Thumbnail = () => {
             ></textarea>
             <br/>
             <p className="title_input">Imagem historia</p>
-            <Testando imagem={`/historia_img/${imgHistoria}`} />
+            {dadosCarregados && (<Testando imagem={`/historia_img/${imgHistoria}`} onImageSelect={handleImgHistoria} />)}
+            <input
+                type="text"
+                value={imgHistoria}
+                style={inputStyle}
+                onChange={handleImgHistoriaChange}
+            />
+
+
             {!selectedImage && (
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste

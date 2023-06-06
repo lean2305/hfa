@@ -175,11 +175,14 @@ app.post('/uploadhistoria', (req, res) => {
   const titulo = req.body.titulo;
   const texto1 = req.body.texto1;
   const texto2 = req.body.texto2;
+  const imgHistoria = req.body.imgHistoria;
 
+  
   console.log('Imagem título:', inputValue);
   console.log('Título da imagem:', titulo);
   console.log('Texto 1:', texto1);
   console.log('Texto 2:', texto2);
+  console.log('Img historia:', imgHistoria);
 
   // Lógica de processamento adicional aqui
 
