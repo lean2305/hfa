@@ -168,11 +168,24 @@ app.get('/historia', (req, res) => {
   });
 });
 
+
+
 app.post('/uploadhistoria', (req, res) => {
-  const historiaData = req.body;
-  console.log(historiaData);
-  res.send('Dados de história recebidos com sucesso!');
+  const inputValue = req.body.inputValue;
+  const titulo = req.body.titulo;
+  const texto1 = req.body.texto1;
+  const texto2 = req.body.texto2;
+
+  console.log('Imagem título:', inputValue);
+  console.log('Título da imagem:', titulo);
+  console.log('Texto 1:', texto1);
+  console.log('Texto 2:', texto2);
+
+  // Lógica de processamento adicional aqui
+
+  res.send('Dados recebidos com sucesso!');
 });
+
 
 
 

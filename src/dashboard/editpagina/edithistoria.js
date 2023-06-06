@@ -57,6 +57,7 @@ const Menu_esquerda = ({ handleMenuClick }) => {
     setSubmenus(updatedSubmenus);
   };
 
+  
   return (
     <div className="menu_dashboard_esquerda">
       <div className="title ativo">
@@ -92,26 +93,20 @@ const Menu_esquerda = ({ handleMenuClick }) => {
   );
 };
 
+
+
+
 const Testando = (props) => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [currentDate, setCurrentDate] = useState(new Date());
   const [showDefaultImage, setShowDefaultImage] = useState(true);
  
   const fileInputRef = useRef(null); // Referência ao input do arquivo
   const formRef = useRef(null); // Referência ao formulário
 
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
-
-    return () => clearInterval(timerId);
-  }, []);
-
-
   const handleImageChange = (event) => {
     setSelectedImage(event.target.files[0]);
     setShowDefaultImage(false);
+    props.onImageSelect(event.target.files[0]); // Chama a função de callback com a imagem selecionada
   };
 
   const handleDefaultImageClick = () => {
@@ -127,12 +122,17 @@ const Testando = (props) => {
     event.preventDefault();
     setSelectedImage(event.dataTransfer.files[0]);
     setShowDefaultImage(false);
+    props.onImageSelect(event.dataTransfer.files[0]); // Chama a função de callback com a imagem selecionada
   };
 
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('image', selectedImage);
+
+    // Enviar nome da imagem para o servidor
+    props.onSubmit(selectedImage.name);
 
     axios
       .post('http://localhost:3001/upload', formData)
@@ -149,7 +149,7 @@ const Testando = (props) => {
     setSelectedImage(null);
     setShowDefaultImage(true);
   };
-
+  
   return (
     <div>
       {/*INPUT IMAGEM PRINCIPAL */}
@@ -166,14 +166,13 @@ const Testando = (props) => {
           />
         )}
        {showDefaultImage ? (
-  <img
-    src={props.imagem}
-    alt="Imagem do Título"
-    className="thumbnail"
-    onClick={handleDefaultImageClick}
-  />
-) : null}
-
+          <img
+            src={props.imagem}
+            alt="Imagem do Título"
+            className="thumbnail"
+            onClick={handleDefaultImageClick}
+          />
+        ) : null}
       </div>
      
       <input
@@ -187,7 +186,6 @@ const Testando = (props) => {
     </div>
   );
 };
-
 
 
 
@@ -228,6 +226,10 @@ const Thumbnail = () => {
 
     //carregar dados apenas
     const [dadosCarregados, setDadosCarregados] = useState(false);
+    const inputValue = `${imagemTitulo}`;
+    
+
+    
     
     useEffect(() => {
       const fetchNoticia = async () => {
@@ -325,29 +327,57 @@ const Thumbnail = () => {
       setSelectedImage(event.dataTransfer.files[0]);
       setShowDefaultImage(false);
     };
-
-    const handleSubmit = async (event) => {
-  event.preventDefault();
-
-  // Get all the input values
-  const form = new FormData(formRef.current);
-  
-  // Make the Axios POST request
-  try {
-    const response = await axios.post(`${APIHOST}/uploadhistoria`, form);
-    console.log(response.data); // Handle the response from the server
-  } catch (error) {
-    console.error(error); // Handle any errors that occurred during the request
-  }
-};
-
-  
+    
+      
     const handleCancel = () => {
       formRef.current.reset();
       setSelectedImage(null);
       setShowDefaultImage(true);
     };
   
+    
+      const inputStyle = {
+        display:'none',
+      };
+
+      const handleImageSelect = (selectedImage) => {
+        setSelectedImage(selectedImage);
+        setShowDefaultImage(false);
+      
+        if (selectedImage) {
+          const imageName = selectedImage.name;
+          setImagemTitulo(imageName); // Assuming you want to update the `imagemTitulo` state with the image name
+          // You can update other state variables related to the image name here if needed
+        }
+      };
+
+      const handleTituloChange = (event) => {
+        setTitulo(event.target.value);
+      };
+      
+      const handleSubmit = async (event) => {
+        event.preventDefault();
+      
+        const requestData = {
+          inputValue: inputValue,
+          titulo: titulo,
+          texto1: texto1,
+          texto2: texto2
+        };
+      
+        axios
+          .post(`${APIHOST}/uploadhistoria`, requestData)
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+      
+      
+      
+      
     return (
       <div id="myForm">
         <h2>Editar Página</h2>
@@ -355,9 +385,9 @@ const Thumbnail = () => {
         <form onSubmit={handleSubmit} ref={formRef}>
 
             {/*INPUT IMAGEM PRINCIPAL */}
-            {dadosCarregados && (
-        <Testando imagem={`/historia_img/${imagemTitulo}`} />
-      )}
+            {dadosCarregados && (<Testando imagem={`/historia_img/${imagemTitulo}`} onImageSelect={handleImageSelect} />)}
+            <input type="text" value={inputValue} style={inputStyle} />
+
             {/*FIM INPUT IMAGEM PRINCIPAL */}
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste
@@ -374,7 +404,9 @@ const Thumbnail = () => {
                   type="text"
                   name="titulo"
                   id="titulo"
+                  onChange={handleTituloChange}
                 />
+
               </div>
             </div>
           </div>
@@ -396,7 +428,9 @@ const Thumbnail = () => {
               value={texto1}
               name="descricao"
               id="descricao"
+              onChange={(event) => setTexto1(event.target.value)}
             ></textarea>
+
             <br/>
             <p className="title_input">História da HFA (2º Parágrafo)</p>
             <textarea
@@ -412,6 +446,7 @@ const Thumbnail = () => {
               value={texto2}
               name="descricao"
               id="descricao"
+              onChange={(event) => setTexto2(event.target.value)}
             ></textarea>
             <br/>
             <p className="title_input">Imagem historia</p>
