@@ -192,6 +192,7 @@ const Testando = (props) => {
 const Thumbnail = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedImagee, setSelectedImagee] = useState(null);
+    const [selectedImageee, setSelectedImageee] = useState(null);
     const [currentDate, setCurrentDate] = useState(new Date());
     const [showDefaultImage, setShowDefaultImage] = useState(true);
     const fileInputRef = useRef(null); // Referência ao input do arquivo
@@ -229,6 +230,7 @@ const Thumbnail = () => {
     const [dadosCarregados, setDadosCarregados] = useState(false);
     const inputValue = `${imagemTitulo}`;
     const img_Historia = `${imgHistoria}`;
+    const img_Objetivo = `${objetivoImg}`;
     
 
     
@@ -311,11 +313,16 @@ const Thumbnail = () => {
     const handleImgHistoriaChange = (event) => {
       setImgHistoria(event.target.value);
     };
+
+    const handleImgObjetivoChange = (event) => {
+      setObjetivoImg(event.target.value);
+    };
   
     const handleImageChange = (event) => {
       setSelectedImage(event.target.files[0]);
       setShowDefaultImage(false);
     };
+    
   
     const handleDefaultImageClick = () => {
       // Ao clicar na imagem padrão, aciona o clique no input de arquivo
@@ -365,6 +372,19 @@ const Thumbnail = () => {
         }
       };
 
+      
+
+      const handleImgObjetivo = (selectedImage) => {
+        setSelectedImage(selectedImage);
+        setShowDefaultImage(false);
+      
+        if (selectedImage) {
+          const imgObjetivoo = selectedImage.name;
+          setObjetivoImg(imgObjetivoo);
+        }
+      };
+
+
       const handleTituloChange = (event) => {
         setTitulo(event.target.value);
       };
@@ -377,7 +397,20 @@ const Thumbnail = () => {
           titulo: titulo,
           texto1: texto1,
           texto2: texto2,
-          imgHistoria: imgHistoria
+          imgHistoria: imgHistoria,
+          objetivo01:objetivo01,
+          objetivo01Titulo:objetivo01Titulo,
+          objetivo01Texto : objetivo01Texto,
+          objetivo02 : objetivo02,
+          objetivo02Titulo : objetivo02Titulo,
+          objetivo02Texto : objetivo02Texto,
+          objetivo03 : objetivo03,
+          objetivo03Titulo : objetivo03Titulo,
+          objetivo03Texto : objetivo03Texto,
+          objetivoImg : objetivoImg,
+          compromisso1 : compromisso1,
+          compromisso2 : compromisso2,
+          compromisso3 : compromisso3,
         };
       
         axios
@@ -494,6 +527,7 @@ const Thumbnail = () => {
                   value={objetivo01}
                   name="titulo"
                   id="titulo"
+                  onChange={(event) =>  setObjetivo01(event.target.value)}
                 /><br/>
                 <input
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
@@ -501,6 +535,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={objetivo01Titulo}
                   id='titulo'
+                  onChange={(event) =>  setObjetivo01Titulo(event.target.value)}
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, resize: 'vertical', minHeight: '4rem' }}
@@ -508,6 +543,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={objetivo01Texto}
                   id="titulo"
+                  onChange={(event) =>  setObjetivo01Texto(event.target.value)}
                 />
               </div>
             </div>
@@ -519,6 +555,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={objetivo02}
                   id="titulo"
+                  onChange={(event) =>  setObjetivo02(event.target.value)}
                 /><br/>
                 <input
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
@@ -526,6 +563,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={objetivo02Titulo}
                   id="titulo"
+                  onChange={(event) =>  setObjetivo02Titulo(event.target.value)}
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, resize: 'vertical', minHeight: '4rem' }}
@@ -533,6 +571,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={objetivo02Texto}
                   id="titulo"
+                  onChange={(event) =>  setObjetivo02Texto(event.target.value)}
                 />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', marginRight: '1rem', width:"68.5vw" }}>
@@ -543,6 +582,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={objetivo03}
                   id="titulo"
+                  onChange={(event) =>  setObjetivo03(event.target.value)}
                 /><br/>
                 <input
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
@@ -550,6 +590,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={objetivo03Titulo}
                   id="titulo"
+                  onChange={(event) =>  setObjetivo03Titulo (event.target.value)}
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, resize: 'vertical', minHeight: '4rem' }}
@@ -557,6 +598,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={objetivo03Texto}
                   id="titulo"
+                  onChange={(event) =>  setObjetivo03Texto(event.target.value)}
                 />
               </div>
           </div>
@@ -564,7 +606,14 @@ const Thumbnail = () => {
 
               <br /><br />
               <p className="title_input">Imagem objetivos</p>
-              <Testando imagem={`/historia_img/${objetivoImg}`} />
+              {dadosCarregados && (<Testando imagem={`/historia_img/${objetivoImg}`} onImageSelect={handleImgObjetivo} />)}
+            <input
+                type="text"
+                value={objetivoImg}
+                style={inputStyle}
+                onChange={handleImgObjetivoChange}
+                
+            />
           {!selectedImage && (
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste para alterar o background dos objetivos
@@ -591,6 +640,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={compromisso1}
                   id="titulo"
+                  onChange={(event) =>  setCompromisso1(event.target.value)}
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
@@ -598,6 +648,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={compromisso2}
                   id="titulo"
+                  onChange={(event) =>  setCompromisso2(event.target.value)}
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
@@ -605,6 +656,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={compromisso3}
                   id="titulo"
+                  onChange={(event) =>  setCompromisso3(event.target.value)}
                 /><br/>
               </div>
             </div>

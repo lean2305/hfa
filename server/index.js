@@ -176,6 +176,19 @@ app.post('/uploadhistoria', (req, res) => {
   const texto1 = req.body.texto1;
   const texto2 = req.body.texto2;
   const imgHistoria = req.body.imgHistoria;
+  const objetivo01 = req.body.objetivo01;
+  const objetivo01Titulo = req.body.objetivo01Titulo;
+  const objetivo01Texto = req.body.objetivo01Texto;
+  const objetivo02 = req.body.objetivo02;
+  const objetivo02Titulo = req.body.objetivo02Titulo;
+  const objetivo02Texto = req.body.objetivo02Texto;
+  const objetivo03 = req.body.objetivo03;
+  const objetivo03Titulo = req.body.objetivo03Titulo;
+  const objetivo03Texto = req.body.objetivo03Texto;
+  const objetivoImg = req.body.objetivoImg;
+  const compromisso1 = req.body.compromisso1;
+  const compromisso2 = req.body.compromisso2;
+  const compromisso3 = req.body.compromisso3;
 
   
   console.log('Imagem título:', inputValue);
@@ -183,6 +196,19 @@ app.post('/uploadhistoria', (req, res) => {
   console.log('Texto 1:', texto1);
   console.log('Texto 2:', texto2);
   console.log('Img historia:', imgHistoria);
+  console.log('Objetivo 01:', objetivo01);
+  console.log('objetivo01Titulo :', objetivo01Titulo);
+  console.log('objetivo01Texto:', objetivo01Texto)
+  console.log('objetivo02: ', objetivo02);
+  console.log('objetivo02Titulo:' , objetivo02Titulo);
+  console.log('objetivo02Texto:', objetivo02Texto);
+  console.log('objetivo03', objetivo03);
+  console.log('objetivo03Titulo:', objetivo03Titulo);
+  console.log('objetivo03Texto:',objetivo03Texto);
+  console.log('objetivoImg:', objetivoImg);
+  console.log('compromisso1: ', compromisso1);
+  console.log('compromisso2: ', compromisso2);
+  console.log('compromisso3: ', compromisso3);
 
   // Lógica de processamento adicional aqui
 

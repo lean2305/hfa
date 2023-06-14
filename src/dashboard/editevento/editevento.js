@@ -133,7 +133,7 @@ const Thumbnail = () => {
           
           {showDefaultImage && (
             <img
-            src={imagem ? '/' + imagem : ''}
+            src={imagem ? `/uploads/${imagem}` : ''}s
               alt="Default Preview"
               className="thumbnail"
               onClick={handleDefaultImageClick}
