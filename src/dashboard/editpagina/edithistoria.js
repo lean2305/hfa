@@ -522,7 +522,7 @@ const Thumbnail = () => {
 
             {/*INPUT IMAGEM PRINCIPAL */}
             {dadosCarregados && (<Testando imagem={`/historia_img/${imagemTitulo}`} onImageSelect={handleImageSelect} />)}
-            <input type="text" value={inputValue} style={inputStyle} />
+            
 
             {/*FIM INPUT IMAGEM PRINCIPAL */}
             <label htmlFor="imagem" className="image-label">
@@ -587,12 +587,7 @@ const Thumbnail = () => {
             <br/>
             <p className="title_input">Imagem historia</p>
             {dadosCarregados && (<Testando imagem={`/historia_img/${imgHistoria}`} onImageSelect={handleImgHistoria} />)}
-            <input
-                type="text"
-                value={imgHistoria}
-                style={inputStyle}
-                onChange={handleImgHistoriaChange}
-            />
+           
 
 
             {!selectedImage && (
@@ -695,13 +690,7 @@ const Thumbnail = () => {
               <br /><br />
               <p className="title_input">Imagem objetivos</p>
               {dadosCarregados && (<Testando imagem={`/historia_img/${objetivoImg}`} onImageSelect={handleImgObjetivo} />)}
-            <input
-                type="text"
-                value={objetivoImg}
-                style={inputStyle}
-                onChange={handleImgObjetivoChange}
-                
-            />
+          
           {!selectedImage && (
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste para alterar o background dos objetivos

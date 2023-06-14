@@ -169,67 +169,50 @@ app.get('/historia', (req, res) => {
 });
 
 
-
 app.post('/uploadhistoria', (req, res) => {
-  const inputValue = req.body.inputValue;
-  const titulo = req.body.titulo;
-  const texto1 = req.body.texto1;
-  const texto2 = req.body.texto2;
-  const imgHistoria = req.body.imgHistoria;
-  const objetivo01 = req.body.objetivo01;
-  const objetivo01Titulo = req.body.objetivo01Titulo;
-  const objetivo01Texto = req.body.objetivo01Texto;
-  const objetivo02 = req.body.objetivo02;
-  const objetivo02Titulo = req.body.objetivo02Titulo;
-  const objetivo02Texto = req.body.objetivo02Texto;
-  const objetivo03 = req.body.objetivo03;
-  const objetivo03Titulo = req.body.objetivo03Titulo;
-  const objetivo03Texto = req.body.objetivo03Texto;
-  const objetivoImg = req.body.objetivoImg;
-  const compromisso1 = req.body.compromisso1;
-  const compromisso2 = req.body.compromisso2;
-  const compromisso3 = req.body.compromisso3;
-  const certificado1 = req.body.certificado1;
-  const certificado2 = req.body.certificado2;
-  const certificado3 = req.body.certificado3;
-  const certificado4 = req.body.certificado4;
-  const certificado5 = req.body.certificado5;
-  const texto1_integrante = req.body.texto1_integrante;
-  const texto2_integrante = req.body.texto2_integrante;
-  const img_integrante = req.body.img_integrante;
+  // Retrieve data from the request body
+  const inputData = {
+    imagem_titulo: req.body.inputValue,
+    titulo: req.body.titulo,
+    texto_1: req.body.texto1,
+    texto_2: req.body.texto2,
+    img_historia: req.body.imgHistoria,
+    objetivo_01: req.body.objetivo01,
+    objetivo_01_titulo: req.body.objetivo01Titulo,
+    objetivo_01_texto: req.body.objetivo01Texto,
+    objetivo_02: req.body.objetivo02,
+    objetivo_02_titulo: req.body.objetivo02Titulo,
+    objetivo_02_texto: req.body.objetivo02Texto,
+    objetivo_03: req.body.objetivo03,
+    objetivo_03_titulo: req.body.objetivo03Titulo,
+    objetivo_03_texto: req.body.objetivo03Texto,
+    objetivo_img: req.body.objetivoImg,
+    compromisso1: req.body.compromisso1,
+    compromisso2: req.body.compromisso2,
+    compromisso3: req.body.compromisso3,
+    certificado1: req.body.certificado1,
+    certificado2: req.body.certificado2,
+    certificado3: req.body.certificado3,
+    certificado4: req.body.certificado4,
+    certificado5: req.body.certificado5,
+    texto1_integrante: req.body.texto1_integrante,
+    texto2_integrante: req.body.texto2_integrante,
+    img_integrante: req.body.img_integrante
+  };
 
-  
-  console.log('Imagem título:', inputValue);
-  console.log('Título da imagem:', titulo);
-  console.log('Texto 1:', texto1);
-  console.log('Texto 2:', texto2);
-  console.log('Img historia:', imgHistoria);
-  console.log('Objetivo 01:', objetivo01);
-  console.log('objetivo01Titulo :', objetivo01Titulo);
-  console.log('objetivo01Texto:', objetivo01Texto)
-  console.log('objetivo02: ', objetivo02);
-  console.log('objetivo02Titulo:' , objetivo02Titulo);
-  console.log('objetivo02Texto:', objetivo02Texto);
-  console.log('objetivo03', objetivo03);
-  console.log('objetivo03Titulo:', objetivo03Titulo);
-  console.log('objetivo03Texto:',objetivo03Texto);
-  console.log('objetivoImg:', objetivoImg);
-  console.log('compromisso1: ', compromisso1);
-  console.log('compromisso2: ', compromisso2);
-  console.log('compromisso3: ', compromisso3);
-  console.log('certificado1:', certificado1);
-  console.log('certificado2:' , certificado2);
-  console.log('certificado3:', certificado3);
-  console.log('certificado4 :', certificado4);
-  console.log('certificado5:', certificado5);
-  console.log('texto1_integrante:',texto1_integrante);
-  console.log('texto2_integrante:' ,texto2_integrante);
-  console.log('img_integrante:',img_integrante);
-
-  // Lógica de processamento adicional aqui
-
-  res.send('Dados recebidos com sucesso!');
+  // Update the data in the 'historia' table for the record with ID 1
+  db.query('UPDATE historia SET ? WHERE id_historia = 1', inputData, (error, results, fields) => {
+    if (error) {
+      console.error('Erro ao colocar no servidor:', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log('Dados trocados com sucesso!');
+      res.send('Dados recebidos com sucesso!');
+    }
+  });
 });
+
+
 
 
 
