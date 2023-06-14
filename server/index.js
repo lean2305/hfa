@@ -189,6 +189,14 @@ app.post('/uploadhistoria', (req, res) => {
   const compromisso1 = req.body.compromisso1;
   const compromisso2 = req.body.compromisso2;
   const compromisso3 = req.body.compromisso3;
+  const certificado1 = req.body.certificado1;
+  const certificado2 = req.body.certificado2;
+  const certificado3 = req.body.certificado3;
+  const certificado4 = req.body.certificado4;
+  const certificado5 = req.body.certificado5;
+  const texto1_integrante = req.body.texto1_integrante;
+  const texto2_integrante = req.body.texto2_integrante;
+  const img_integrante = req.body.img_integrante;
 
   
   console.log('Imagem título:', inputValue);
@@ -209,6 +217,14 @@ app.post('/uploadhistoria', (req, res) => {
   console.log('compromisso1: ', compromisso1);
   console.log('compromisso2: ', compromisso2);
   console.log('compromisso3: ', compromisso3);
+  console.log('certificado1:', certificado1);
+  console.log('certificado2:' , certificado2);
+  console.log('certificado3:', certificado3);
+  console.log('certificado4 :', certificado4);
+  console.log('certificado5:', certificado5);
+  console.log('texto1_integrante:',texto1_integrante);
+  console.log('texto2_integrante:' ,texto2_integrante);
+  console.log('img_integrante:',img_integrante);
 
   // Lógica de processamento adicional aqui
 

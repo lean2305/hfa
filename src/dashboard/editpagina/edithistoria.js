@@ -317,6 +317,26 @@ const Thumbnail = () => {
     const handleImgObjetivoChange = (event) => {
       setObjetivoImg(event.target.value);
     };
+
+    const handleCertificado1Change = (event) => {
+      setCertificado1(event.target.value);
+    };
+    const handleCertificado2Change = (event) => {
+      setCertificado2(event.target.value);
+    };
+
+    const handleCertificado3Change = (event) => {
+      setCertificado3(event.target.value);
+    };
+    const handleCertificado4Change = (event) => {
+      setCertificado4(event.target.value);
+    };
+    const handleCertificado5Change = (event) => {
+      setCertificado5(event.target.value);
+    };
+    const handleIntegranteChange = (event) => {
+      setImgIntegrante(event.target.value);
+    };
   
     const handleImageChange = (event) => {
       setSelectedImage(event.target.files[0]);
@@ -384,6 +404,66 @@ const Thumbnail = () => {
         }
       };
 
+      const handleCertificado1 = (selectedImage) => {
+        setSelectedImage(selectedImage);
+        setShowDefaultImage(false);
+      
+        if (selectedImage) {
+          const iimgcertificado1 = selectedImage.name;
+          setCertificado1(iimgcertificado1);
+        }
+      };
+
+      const handleCertificado2 = (selectedImage) => {
+        setSelectedImage(selectedImage);
+        setShowDefaultImage(false);
+      
+        if (selectedImage) {
+          const iimgcertificado2 = selectedImage.name;
+          setCertificado2(iimgcertificado2);
+        }
+      };
+
+      const handleCertificado3 = (selectedImage) => {
+        setSelectedImage(selectedImage);
+        setShowDefaultImage(false);
+      
+        if (selectedImage) {
+          const iimgcertificado3 = selectedImage.name;
+          setCertificado3(iimgcertificado3);
+        }
+      };
+
+      const handleCertificado4 = (selectedImage) => {
+        setSelectedImage(selectedImage);
+        setShowDefaultImage(false);
+      
+        if (selectedImage) {
+          const iimgcertificado4 = selectedImage.name;
+          setCertificado4(iimgcertificado4);
+        }
+      };
+
+      const handleCertificado5 = (selectedImage) => {
+        setSelectedImage(selectedImage);
+        setShowDefaultImage(false);
+      
+        if (selectedImage) {
+          const iimgcertificado5 = selectedImage.name;
+          setCertificado5(iimgcertificado5);
+        }
+      };
+
+      const handleIntegrante = (selectedImage) => {
+        setSelectedImage(selectedImage);
+        setShowDefaultImage(false);
+      
+        if (selectedImage) {
+          const iimgintegrante = selectedImage.name;
+          setImgIntegrante(iimgintegrante);
+        }
+      };
+
 
       const handleTituloChange = (event) => {
         setTitulo(event.target.value);
@@ -411,6 +491,14 @@ const Thumbnail = () => {
           compromisso1 : compromisso1,
           compromisso2 : compromisso2,
           compromisso3 : compromisso3,
+          certificado1 : certificado1,
+          certificado2 : certificado2,
+          certificado3 : certificado3,
+          certificado4 : certificado4,
+          certificado5 : certificado5,
+          texto1_integrante : texto1_integrante,
+          texto2_integrante : texto2_integrante,
+          img_integrante : img_integrante,
         };
       
         axios
@@ -667,14 +755,16 @@ const Thumbnail = () => {
 
             <p className="title_input">Imagem dos certificados</p>
               <div style={{display:'flex'}}>
-                <Testando imagem={`/certificados/${certificado1}`} />
-                <Testando imagem={`/certificados/${certificado2}`} />
-                <Testando imagem={`/certificados/${certificado3}`} />
+
+                {dadosCarregados && (<Testando imagem={`/certificados/${certificado1}`} onImageSelect={handleCertificado1} />)}
+
+                {dadosCarregados && (<Testando imagem={`/certificados/${certificado2}`} onImageSelect={handleCertificado2} />)}
+                {dadosCarregados && (<Testando imagem={`/certificados/${certificado3}`} onImageSelect={handleCertificado3} />)}
                 
               </div>
               <div style={{display:'flex'}}>
-                <Testando imagem={`/certificados/${certificado4}`} />
-                <Testando imagem={`/certificados/${certificado5}`} />
+                {dadosCarregados && (<Testando imagem={`/certificados/${certificado4}`}  onImageSelect={handleCertificado4} />)}
+                {dadosCarregados && (<Testando imagem={`/certificados/${certificado5}`}  onImageSelect={handleCertificado5} />)}
                 
               </div>
           {!selectedImage && (
@@ -701,6 +791,7 @@ const Thumbnail = () => {
                   name="titulo"
                   value={texto1_integrante}
                   id="titulo"
+                  onChange={(event) =>   setTexto1integrante(event.target.value)}
                 /><br/>
                 <textarea
                   style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10, minHeight: '4rem', resize: 'vertical' }}
@@ -708,12 +799,14 @@ const Thumbnail = () => {
                   name="titulo"
                   value={texto2_integrante}
                   id="titulo"
+                  onChange={(event) =>   setTexto2integrante(event.target.value)}
                 /><br/>
               </div>
             </div>
           </div>
           <p className="title_input">Imagem da parte integrante da HFA</p>
-          <Testando imagem={`/historia_img/${img_integrante}`} />
+          {dadosCarregados && (<Testando imagem={`/historia_img/${img_integrante}`}   onImageSelect={handleIntegrante} />)}
+         
           {!selectedImage && (
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste para alterar o background da imagem
