@@ -6,6 +6,8 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs-extra');
+const bodyParser = require('body-parser');
 
 
 const db = mysql.createPool({
@@ -213,8 +215,46 @@ app.post('/uploadhistoria', (req, res) => {
 });
 
 
+app.get('/recrutamento', (req, res) => {
+  const query = 'SELECT * FROM recrutamento';
+
+  db.query(query, (error, results) => {
+    if (error) {
+      console.error('Erro ao buscar dados de recrutamento:', error);
+      res.status(500).json({ error: 'Erro ao buscar dados de recrutamento' });
+      return;
+    }
+
+    res.json(results);
+  });
+});
 
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.post('/recursoupdate', (req, res) => {
+  const { imgEsquerda, emailEsquerda, telefoneEsquerda, moradaEsquerda, imgDireita, emailDireita, telefoneDireita, moradaDireita } = req.body;
+
+  // Executa a consulta SQL para atualizar os dados na tabela recrutamento
+  const query = `
+    UPDATE recrutamento
+    SET img_esquerda = ?, email_esquerda = ?, telefone_esquerda = ?, morada_esquerda = ?, img_direita = ?, email_direita = ?, telefone_direita = ?, morada_direita = ?
+    WHERE id_recrutamento = 1
+  `;
+
+  // Executa a consulta SQL usando os dados recebidos do componente React
+  db.query(query, [imgEsquerda, emailEsquerda, telefoneEsquerda, moradaEsquerda, imgDireita, emailDireita, telefoneDireita, moradaDireita], (error, results) => {
+    if (error) {
+      console.error('Erro ao atualizar os dados:', error);
+      res.status(500).send('Erro ao atualizar os dados');
+      return;
+    }
+
+    // Os dados foram atualizados com sucesso
+    res.send('Dados atualizados com sucesso!');
+  });
+});
 
 
 app.post("/register", (req, res) => {

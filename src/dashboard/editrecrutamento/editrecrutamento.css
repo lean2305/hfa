@@ -125,3 +125,7 @@
     font-weight: 500;
 }
 
+.thumbnailrecrutamento{
+  width: 96%;
+  object-fit: cover;
+}

@@ -4,7 +4,7 @@ import './recursos-humanos.css';
 import Clock from '../data_hora/clock';
 import ExibirDataAtual from '../data_hora/date';
 import { Link } from 'react-router-dom';
-
+import APIHOST from '../constant';
 
 
 
@@ -129,37 +129,57 @@ class Aviso extends Component{
     }
 }
 
-
-class Constante_Kelly extends Component{
-    render() {
-        return(
-            <div className="contacto">
-                <div className="contacto_esquerda">
-                    <div className="contacto_logo">
-                        <img className="contacto_img_esquerda" src="https://www.portugalespanha.org/images/Grupo_Constant_H.png" />
-                    </div>
-                    <div className="contacto_texto">
-                        <p className="contacto_p">E-mail:<a> recrutamentoagueda@grupoconstant.com</a></p>
-                        <p className="contacto_p">Telefone:<a> 910 954 500</a></p>
-                        <p className="contacto_p">Morada:<a> Rua José Sucena nº61, 3750.157 Águeda</a></p>
-                    </div>
-                </div>
-
-                <div className="contacto_direita">
-                    <div className="contacto_logo">
-                        <img className="contacto_img_direita" src="https://www.jobsexpo.ie/wp-content/uploads/2022/09/Kelly-services-logo.jpg" />
-                    </div>
-                    <div className="contacto_texto">
-                        <p className="contacto_p">E-mail:<a> patricia.amaral@kellyservices.pt</a></p>
-                        <p className="contacto_p">Telefone:<a> 930 500 131</a></p>
-                        <p className="contacto_p">Morada:<a> Largos Nossa Senhora da Alegria 27, 3800-369 Aveiro</a></p>
-                    </div>
-                </div>
-                
-            </div>
-        );
+class Constante_Kelly extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        dadosRecrutamento: [],
+      };
     }
-}
+  
+    componentDidMount() {
+      fetch(`${APIHOST}/recrutamento`)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ dadosRecrutamento: data });
+        })
+        .catch(error => {
+          console.error('Erro ao buscar dados de recrutamento:', error);
+        });
+    }
+  
+    render() {
+      const { dadosRecrutamento } = this.state;
+  
+      return (
+        <div className="contacto">
+          <div className="contacto_esquerda">
+            <div className="contacto_logo">
+            <img className="contacto_img_esquerda" src={process.env.PUBLIC_URL + '/recrutamento/' + dadosRecrutamento[0]?.img_esquerda} alt="Imagem Esquerda"/>
+
+            </div>
+            <div className="contacto_texto">
+              <p className="contacto_p">E-mail:<a>{dadosRecrutamento[0]?.email_esquerda}</a></p>
+              <p className="contacto_p">Telefone:<a>{dadosRecrutamento[0]?.telefone_esquerda}</a></p>
+              <p className="contacto_p">Morada:<a>{dadosRecrutamento[0]?.morada_esquerda}</a></p>
+            </div>
+          </div>
+  
+          <div className="contacto_direita">
+            <div className="contacto_logo">
+            <img className="contacto_img_direita" src={process.env.PUBLIC_URL + '/recrutamento/' + dadosRecrutamento[0]?.img_direita} alt="Imagem Direita"/>
+
+            </div>
+            <div className="contacto_texto">
+              <p className="contacto_p">E-mail:<a>{dadosRecrutamento[0]?.email_direita}</a></p>
+              <p className="contacto_p">Telefone:<a>{dadosRecrutamento[0]?.telefone_direita}</a></p>
+              <p className="contacto_p">Morada:<a>{dadosRecrutamento[0]?.morada_direita}</a></p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
 
 
 

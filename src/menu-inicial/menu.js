@@ -36,10 +36,10 @@ class Botao extends Component{
         return( 
             <div className='menu_botao'>
               
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", fontSize: "2vh"}} onClick={() => this.handleButtonClick('http://192.168.226.83/start')}>{this.props.botao_1}</button>
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginLeft: "4%", fontSize: "2vh"}} onClick={() => this.handleButtonClick('http://192.168.226.83/start')}>{this.props.botao_2}</button>
+                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", fontSize: "2vh"}} onClick={() => this.handleButtonClick('http://172.20.10.7/start')}>{this.props.botao_1}</button>
+                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginLeft: "4%", fontSize: "2vh"}} onClick={() => this.handleButtonClick('http://172.20.10.7/start')}>{this.props.botao_2}</button>
                 <br />
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginTop: "4%", fontSize: "2vh"}} onClick={() => this.handleButtonClick('http://192.168.226.83/start')}>{this.props.botao_3}</button>
+                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginTop: "4%", fontSize: "2vh"}} onClick={() => this.handleButtonClick('http://172.20.10.7/start')}>{this.props.botao_3}</button>
                 
                 
             </div>
