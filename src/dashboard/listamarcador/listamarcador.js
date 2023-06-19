@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-import './listanoticia.css';
+import './listamarcador';
 import axios from 'axios';
 import APIHOST from '../../constant';
 import { format } from 'date-fns';
@@ -27,7 +27,7 @@ const Submenu = ({ items, parentKey="dashboard" }) => {
 const Menu_esquerda = ({ handleMenuClick }) => {
   const [submenus, setSubmenus] = useState([
    
-    
+   
     { key: 'noticias', label: 'Notícias', active: false, items: [
       { key: 'adnoticias', label: 'Adicionar Notícias', onClick: () => handleMenuClick('adicionarNoticias', '#4a81dd') },
       { key: 'listanoticia', label: 'Ver Lista de Notícias', onClick: () => handleMenuClick('listaNoticias', '#4a81dd') }
@@ -98,7 +98,6 @@ const Menu_esquerda = ({ handleMenuClick }) => {
 
 
 
-
 class Search_filter extends Component {
     render() {
       return (
@@ -123,8 +122,6 @@ class Search_filter extends Component {
   }
 
 
-
-
   const Lista = () => {
     const limitarCaracteres = (texto, limite) => {
       if (texto.length <= limite) {
@@ -139,7 +136,7 @@ class Search_filter extends Component {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get(`${APIHOST}/dadosnoticia`);
+          const response = await axios.get(`${APIHOST}/dadosmarcador`);
           setNoticias(response.data);
         } catch (error) {
           console.error(error);
@@ -149,9 +146,7 @@ class Search_filter extends Component {
       fetchData();
     }, []);
   
-    const formatarData = (data) => {
-      return format(new Date(data), "yyyy-MM-dd");
-    };
+   
   
     const indiceInicio = (currentPage - 1) * 7;
     const noticiasExibidas = noticias.slice(indiceInicio, indiceInicio + 8);
@@ -168,8 +163,9 @@ class Search_filter extends Component {
         setCurrentPage(currentPage + 1);
       }
     };
-    const enviarSolicitacao = (idnotev) => {
-      axios.get(`${APIHOST}/rota-do-servidor/${idnotev}`)
+
+    const enviarSolicitacao = (idmarcador) => {
+      axios.get(`${APIHOST}/rota-do-servidor/${idmarcador}`)
         .then(response => {
           // Trate a resposta do servidor aqui
           window.location.reload(); // Recarrega a página
@@ -178,7 +174,7 @@ class Search_filter extends Component {
           // Lide com erros de solicitação aqui
         });
     };
-
+  
     return (
       <div className="lista_div" style={{ maxHeight: "80vh"}}>
         <div className="lista_conteudo">
@@ -186,10 +182,10 @@ class Search_filter extends Component {
             <p>Título</p>
           </div>
           <div className="coluna">
-            <p>Data</p>
+            <p>Contacto</p>
           </div>
           <div className="coluna">
-            <Link to={`/dashboard/adnoticias`} style={{ textDecoration: "none" }}>
+            <Link to={`/dashboard/marcador`} style={{ textDecoration: "none" }}>
               <div
                 style={{
                   backgroundColor: "#4a81dd",
@@ -199,50 +195,44 @@ class Search_filter extends Component {
                   marginRight: "12vh",
                 }}
               >
-                <p>Adicionar Notícia</p>
+                <p>Adicionar Marcador</p>
               </div>
+              
             </Link>
           </div>
         </div>
         {noticiasExibidas.map((noticia) => (
-          <div className="lista_conteudo" key={noticia.id}>
+          <div className="lista_conteudo" key={noticia.idmarcador}>
             <div className="coluna_conteudo_titulo">
-              <p>{limitarCaracteres(noticia.titulo_notev, 35)}</p>
+              <p>{limitarCaracteres(noticia.nome_marcador, 35)}</p>
             </div>
             <div className="coluna_conteudo">
-              <p>{formatarData(noticia.data_notev)}</p>
+              <p>{(noticia.contacto_marcador)}</p>
             </div>
             <div className="coluna_conteudo_svg">
               <p>
-       
-              <Link to={`/dashboard/editnoticia/${noticia.idnotev}`} className="link-noticia">
- 
-                <svg
-                  style={{ float: "left", marginLeft: "12vh" }}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-pencil"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                </svg>
-              </Link>
-
-              
-
-                <svg
-                  style={{ float: "right", marginRight: "12vh" }}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="17"
-                  height="17"
-                  viewBox="0 0 100 100"
-                  onClick={() => enviarSolicitacao(noticia.idnotev)}
-                >
-                  <path d="M20 20 L80 80 M80 20 L20 80" stroke="black" strokeWidth="10" />
-                </svg>
-               
+                <Link to={`/dashboard/editmarcador/${noticia.idmarcador}`}  className="link-noticia">
+                  <svg
+                    style={{ float: "left", marginLeft: "12vh" }}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-pencil"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                  </svg>
+                </Link>
+                  <svg
+                    style={{ float: "right", marginRight: "12vh" }}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="17"
+                    height="17"
+                    viewBox="0 0 100 100"
+                    onClick={() => enviarSolicitacao(noticia.idmarcador)}>
+                    <path d="M20 20 L80 80 M80 20 L20 80" stroke="black" strokeWidth="10" />
+                  </svg>
               </p>
             </div>
           </div>
@@ -266,7 +256,7 @@ class Search_filter extends Component {
 
 
 
-const Listanoticia = () => {
+const Listamarcador = () => {
   const [paginaSelecionada, setPaginaSelecionada] = useState('principal');
   const [corDeFundo, setCorDeFundo] = useState('#3d6cbc');
 
@@ -290,4 +280,4 @@ const Listanoticia = () => {
   );
 };
 
-export default Listanoticia;
+export default Listamarcador;

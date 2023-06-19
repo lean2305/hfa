@@ -40,7 +40,7 @@ const Menu_esquerda = ({ handleMenuClick }) => {
       { key: 'listapagina', label: 'Ver Lista de Páginas', onClick: () => handleMenuClick('listaPaginas', '#ffff00') }
     ] },
     { key: 'paginas', label: 'Marcadores', active: false, items: [
-      { key: 'marcador', label: 'Marcadores', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
+      { key: 'listamarcador', label: 'Marcadores', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
     ] }
  
 

@@ -26,6 +26,8 @@ import Editevento from './dashboard/editevento/editevento';
 import Advideo from './dashboard/advideo/advideos';
 import Listavideo from './dashboard/listavideo/listavideo';
 import EditFichaInsc from './dashboard/editrecrutamento/editrecrutamento';
+import Listamarcador from './dashboard/listamarcador/listamarcador';
+import Editmarcador from './dashboard/editmarcador/editmarcador';
 
 function App() {
   return (
@@ -52,6 +54,8 @@ function App() {
           <Route path='/dashboard/advideo' element={<Protected><Advideo  /></Protected>} />
           <Route path='/dashboard/listavideos' element={<Protected><Listavideo  /></Protected>} />
           <Route path='/dashboard/editrecrutamento' element={<Protected><EditFichaInsc  /></Protected>} />
+          <Route path='/dashboard/listamarcador' element={<Protected><Listamarcador  /></Protected>} />
+          <Route path='/dashboard/editmarcador/:idmarcador' element={<Protected><Editmarcador  /></Protected>} />
           <Route path='/videos' element={<Videos/>} />
           <Route path='/loginantigo' element={<Loginantigo/>} />
           

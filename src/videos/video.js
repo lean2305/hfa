@@ -182,23 +182,64 @@ class Conteudo_menu extends Component{
 }
 
 
-{/* Botões do menu direito */}
-class Botao extends Component{
-    render() {
-        return( 
-            <div className='menu_botao_menu_noticia'>
-              
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", fontSize: "2vh"}}>{this.props.btn1_menu}</button>
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginLeft: "4%", fontSize: "2vh"}}>{this.props.btn2_menu}</button>
-                <br />
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginTop: "4%", fontSize: "2vh"}}>{this.props.btn3_menu}</button>
-                
-                
-            </div>
-        );
-    }
-}
 
+{/* Botões do menu direito */}
+class Botao extends Component {
+    state = {
+      marcadores: []
+    };
+  
+    componentDidMount() {
+      axios.get(`${APIHOST}/marcador`) // Substitua "URL_DO_SERVIDOR" pela URL correta para obter os marcadores
+        .then(response => {
+          this.setState({ marcadores: response.data });
+        })
+        .catch(error => {
+          console.error('Houve um problema ao obter os marcadores:', error);
+        });
+    }
+  
+    handleButtonClick = (url) => {
+      fetch(url, { method: 'GET' })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('A resposta da rede não foi ok');
+          }
+        })
+        .catch(error => {
+          console.error('Houve um problema com a operação fetch:', error);
+        });
+    };
+  
+    render() {
+      const { marcadores } = this.state;
+  
+      return (
+        <div className='menu_botao'>
+          {marcadores.map(marcador => (
+            <button
+              key={marcador.idmarcador}
+              style={{
+                border: "2px solid #47555c",
+                borderRadius: "4px",
+                backgroundColor: "transparent",
+                color: "#42525a",
+                padding: "8px 16px",
+                fontWeight: "bold",
+                cursor: "pointer",
+                fontSize: "2vh",
+                marginLeft: "4%",
+                marginTop: "4%"
+              }}
+              onClick={() => this.handleButtonClick(marcador.contacto_marcador)}
+            >
+              {marcador.nome_marcador}
+            </button>
+          ))}
+        </div>
+      );
+    }
+  }
 
 
 {/* Rodapé do menu direito */}

@@ -39,7 +39,7 @@ const Menu_esquerda = ({ handleMenuClick }) => {
       { key: 'listapagina', label: 'Ver Lista de Páginas', onClick: () => handleMenuClick('listaPaginas', '#ffff00') }
     ] },
     { key: 'paginas', label: 'Marcadores', active: false, items: [
-      { key: 'marcador', label: 'Tabela de marcadores', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
+      { key: 'listamarcador', label: 'Tabela de marcadores', onClick: () => handleMenuClick('adicionarPaginas', '#ffff00') }
     ] }
  
 
@@ -96,7 +96,7 @@ class Add extends Component {
   render() {  
     return (
       <div className='addMarcador'>
-          <h2>Editar Marcador</h2>
+          <h2>Adicionar Marcador</h2>
           <form>
             <div>
               <p>Nome</p>

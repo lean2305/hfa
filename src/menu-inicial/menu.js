@@ -4,6 +4,8 @@ import './menu.css';
 import Clock from '../data_hora/clock';
 import ExibirDataAtual from '../data_hora/date';
 import { Link } from 'react-router-dom';
+import APIHOST from '../constant';
+import axios from 'axios';
 
 
 class Conteudo_menu extends Component{
@@ -20,32 +22,62 @@ class Conteudo_menu extends Component{
 
 
 {/* Botões do menu direito */}
-class Botao extends Component{
-    handleButtonClick = (url) => {
-        fetch(url, { method: 'GET' })
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-          })
-          .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-          });
-      }
-    render() {
-        return( 
-            <div className='menu_botao'>
-              
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", fontSize: "2vh"}} onClick={() => this.handleButtonClick('http://172.20.10.7/start')}>{this.props.botao_1}</button>
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginLeft: "4%", fontSize: "2vh"}} onClick={() => this.handleButtonClick('http://172.20.10.7/start')}>{this.props.botao_2}</button>
-                <br />
-                <button style={{border: "2px solid #47555c",borderRadius: "4px",backgroundColor: "transparent",color: "#42525a",padding: "8px 16px",fontWeight: "bold",cursor: "pointer", marginTop: "4%", fontSize: "2vh"}} onClick={() => this.handleButtonClick('http://172.20.10.7/start')}>{this.props.botao_3}</button>
-                
-                
-            </div>
-        );
+class Botao extends Component {
+    state = {
+      marcadores: []
+    };
+  
+    componentDidMount() {
+      axios.get(`${APIHOST}/marcador`) // Substitua "URL_DO_SERVIDOR" pela URL correta para obter os marcadores
+        .then(response => {
+          this.setState({ marcadores: response.data });
+        })
+        .catch(error => {
+          console.error('Houve um problema ao obter os marcadores:', error);
+        });
     }
-}
+  
+    handleButtonClick = (url) => {
+      fetch(url, { method: 'GET' })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('A resposta da rede não foi ok');
+          }
+        })
+        .catch(error => {
+          console.error('Houve um problema com a operação fetch:', error);
+        });
+    };
+  
+    render() {
+      const { marcadores } = this.state;
+  
+      return (
+        <div className='menu_botao'>
+          {marcadores.map(marcador => (
+            <button
+              key={marcador.idmarcador}
+              style={{
+                border: "2px solid #47555c",
+                borderRadius: "4px",
+                backgroundColor: "transparent",
+                color: "#42525a",
+                padding: "8px 16px",
+                fontWeight: "bold",
+                cursor: "pointer",
+                fontSize: "2vh",
+                marginLeft: "4%",
+                marginTop: "4%"
+              }}
+              onClick={() => this.handleButtonClick(marcador.contacto_marcador)}
+            >
+              {marcador.nome_marcador}
+            </button>
+          ))}
+        </div>
+      );
+    }
+  }
 
 
 class Quadrados extends Component{

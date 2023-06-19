@@ -98,7 +98,6 @@ app.get('/dadoseventoedit/:idnotev', (req, res) => {
 
 app.get('/dadosevento', (req, res) => {
 
-
   db.query(`SELECT * FROM notev where categoria_notev ='Evento'`, (error, results) => {
     if (error) {
       console.error(error);
@@ -108,6 +107,20 @@ app.get('/dadosevento', (req, res) => {
     }
   });
 });
+
+
+app.get('/dadosmarcador', (req, res) => {
+
+  db.query(`SELECT * FROM marcador`, (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao buscar os dados' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 
 
 
@@ -380,6 +393,53 @@ app.post('/uploadevento', upload.single('image'), (req, res) => {
 
 
 
+// Rota para obter os marcadores
+app.get('/marcador', (req, res) => {
+  db.query('SELECT * FROM marcador', (error, results) => {
+    if (error) {
+      console.error('Erro ao obter os marcadores:', error);
+      res.status(500).json({ error: 'Erro ao obter os marcadores' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+
+app.put('/dadosmarcador/:id', (req, res) => {
+  const idMarcador = req.params.id;
+  const { nome_marcador, contacto_marcador } = req.body;
+
+  const query = 'UPDATE marcador SET nome_marcador = ?, contacto_marcador = ? WHERE idmarcador = ?';
+  const values = [nome_marcador, contacto_marcador, idMarcador];
+
+  db.query(query, values, (error, result) => {
+    if (error) {
+      console.error('Erro ao atualizar o marcador: ', error);
+      res.status(500).json({ error: 'Erro ao atualizar o marcador' });
+    } else {
+      console.log('Marcador atualizado com sucesso!');
+      res.status(200).json({ message: 'Marcador atualizado com sucesso' });
+    }
+  });
+});
+
+
+
+app.get('/dadosmarcador/:idmarcador', (req, res) => {
+  const idMarcador = req.params.idmarcador;
+
+  db.query(`SELECT * FROM marcador WHERE idmarcador = '${idMarcador}'`, (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao buscar os dados' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
 
 app.get('/noticias/:idnotev', (req, res) => {
   const idnotev = req.params.idnotev;
@@ -501,6 +561,22 @@ app.get('/rota-do-servidor/:idnotev', (req, res) => {
   const idnotev = req.params.idnotev;
   console.log(idnotev);
   const query = `DELETE FROM notev WHERE idnotev = '${idnotev}'`;
+
+  // Executar a consulta
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(500);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get('/rota-do-servidor/:idmarcador', (req, res) => {
+  const idnotev = req.params.idnotev;
+  console.log(idnotev);
+  const query = `DELETE FROM marcador WHERE idmarcador = '${idnotev}'`;
 
   // Executar a consulta
   db.query(query, (err, result) => {

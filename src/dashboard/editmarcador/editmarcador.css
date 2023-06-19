@@ -1,0 +1,45 @@
+.addMarcador {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.addMarcador h2 {
+    margin-bottom: 50px;
+}
+
+.addMarcador input {
+    margin: 0 0 50px 0;
+    height: 25px;
+    width: 350px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(235, 235, 235);
+}
+
+.addMarcador p {
+    font-weight: bold;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.btn {
+    background-color:#4a81dd ;
+    margin-right: 4%;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 1px;
+    padding: 1%;
+    width: 10%;
+}
+
+.btn2 {
+    color: gray;
+    font-weight: bold;
+    border: none;
+    border-radius: 1px;
+    padding: 1%;
+    width: 10%;
+}
