@@ -425,6 +425,24 @@ app.put('/dadosmarcador/:id', (req, res) => {
 });
 
 
+// Rota para receber a solicitação POST e inserir na tabela "marcador"
+app.post('/inserirmarcador', (req, res) => {
+  const { nome, contacto } = req.body;
+  
+
+  const query = 'INSERT INTO marcador (nome_marcador, contacto_marcador) VALUES (?, ?)';
+  db.query(query, [nome, contacto], (error, results) => {
+    if (error) {
+      console.error('Erro ao inserir dados na tabela:', error);
+      res.status(500).json({ error: 'Erro interno do servidor' });
+    } else {
+      const insertedId = results.insertId;
+      res.json({ id: insertedId, nome, contacto });
+    }
+  });
+});
+
+
 
 app.get('/dadosmarcador/:idmarcador', (req, res) => {
   const idMarcador = req.params.idmarcador;
@@ -573,21 +591,21 @@ app.get('/rota-do-servidor/:idnotev', (req, res) => {
   });
 });
 
-app.get('/rota-do-servidor/:idmarcador', (req, res) => {
-  const idnotev = req.params.idnotev;
-  console.log(idnotev);
-  const query = `DELETE FROM marcador WHERE idmarcador = '${idnotev}'`;
+// Rota para deletar um marcador pelo ID
+app.delete('/apagarmarcador/:id', (req, res) => {
+  const idmarcador = req.params.id;
 
-  // Executar a consulta
-  db.query(query, (err, result) => {
-    if (err) {
-      console.error(err);
-      res.sendStatus(500);
+  const query = 'DELETE FROM marcador WHERE idmarcador = ?';
+  db.query(query, [idmarcador], (error, results) => {
+    if (error) {
+      console.error('Erro ao deletar marcador:', error);
+      res.status(500).json({ error: 'Erro interno do servidor' });
     } else {
-      res.json(result);
+      res.json({ message: 'Marcador deletado com sucesso' });
     }
   });
 });
+
 
 
 app.get('/apagarvideo/:id_videos', (req, res) => {

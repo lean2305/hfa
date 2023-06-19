@@ -3,6 +3,7 @@ import { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './marcador.css';
+import APIHOST from '../../constant';
 
 const Submenu = ({ items, parentKey="dashboard" }) => {
   return (
@@ -90,31 +91,47 @@ const Menu_esquerda = ({ handleMenuClick }) => {
   );
 };
 
-
 class Add extends Component {
+  handleSubmit = (event) => {
+    event.preventDefault(); // Evita o comportamento padrão de atualização da página
 
-  render() {  
+    const nome = event.target.elements.nome.value;
+    const contacto = event.target.elements.contacto.value;
+
+    // Enviar os dados do formulário para o servidor
+    axios.post(`${APIHOST}/inserirmarcador`, { nome, contacto })
+      .then(response => {
+        console.log(response.data); // Exibe a resposta do servidor (opcional)
+        // Faça qualquer manipulação adicional do estado/componente aqui
+      })
+      .catch(error => {
+        console.error(error); // Tratar erros de solicitação (opcional)
+      });
+  }
+
+  render() {
     return (
       <div className='addMarcador'>
-          <h2>Adicionar Marcador</h2>
-          <form>
-            <div>
-              <p>Nome</p>
-              <input /><br />
-              <p>Contacto</p>
-              <input /><br />
-            </div>
-            <button className="btn" type="submit">
-                Guardar
-            </button>
-            <button className="btn2" type="button">
-              Cancelar
-            </button>
-          </form>
+        <h2>Adicionar Marcador</h2>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <p>Nome</p>
+            <input name="nome" /><br />
+            <p>Contacto</p>
+            <input name="contacto" /><br />
+          </div>
+          <button className="btn" type="submit">
+            Guardar
+          </button>
+          <button className="btn2" type="button">
+            Cancelar
+          </button>
+        </form>
       </div>
     );
   }
-};
+}
+
 
 const  Marcador = () => {
   const [paginaSelecionada, setPaginaSelecionada] = useState('principal');

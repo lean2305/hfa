@@ -165,7 +165,7 @@ class Search_filter extends Component {
     };
 
     const enviarSolicitacao = (idmarcador) => {
-      axios.get(`${APIHOST}/rota-do-servidor/${idmarcador}`)
+      axios.delete(`${APIHOST}/apagarmarcador/${idmarcador}`)
         .then(response => {
           // Trate a resposta do servidor aqui
           window.location.reload(); // Recarrega a página
@@ -174,6 +174,7 @@ class Search_filter extends Component {
           // Lide com erros de solicitação aqui
         });
     };
+    
   
     return (
       <div className="lista_div" style={{ maxHeight: "80vh"}}>
