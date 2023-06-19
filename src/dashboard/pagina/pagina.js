@@ -122,6 +122,7 @@ class Search_filter extends Component {
     }
   }
 
+  
   const Lista = () => {
     const limitarCaracteres = (texto, limite) => {
       if (texto.length <= limite) {
@@ -173,10 +174,10 @@ class Search_filter extends Component {
             <p>Título</p>
           </div>
           <div className="coluna0">
-            
+          
           </div>
           <div className="coluna">
-            
+          <p>Editar</p>
           </div>
         </div>
         {noticiasExibidas.map((noticia) => (
@@ -237,6 +238,7 @@ class Search_filter extends Component {
     );
   };
   
+
 
 
 const Listapagina = () => {

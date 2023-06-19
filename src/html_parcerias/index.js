@@ -56,21 +56,9 @@ function Html() {
             -ms-user-select: none;
                 user-select: none;
         gap: var(--gap);
-        -webkit-mask-image: linear-gradient(
-          var(--mask-direction, to right),
-          hsl(0 0% 0% / 0),
-          hsl(0 0% 0% / 1) 20%,
-          hsl(0 0% 0% / 1) 80%,
-          hsl(0 0% 0% / 0)
-          
-        );
-                mask-image: linear-gradient(
-          var(--mask-direction, to right),
-          hsl(0 0% 0% / 0),
-          hsl(0 0% 0% / 1) 20%,
-          hsl(0 0% 0% / 1) 80%,
-          hsl(0 0% 0% / 0)
-        );
+       
+        
+        
       }
       
       .marquee__group {
@@ -86,8 +74,8 @@ function Html() {
       
       @media (prefers-reduced-motion: reduce) {
         .marquee__group {
-          -webkit-animation-play-state: paused;
-                  animation-play-state: paused;
+          
+                  
         }
       }
       
@@ -264,117 +252,121 @@ function Html() {
         
         <svg  viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
-          <image x="-80" y="-80" width="350" height="350" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png"  loading="eager"/>
+          <image x="-80" y="-80" width="350" height="350" href="https://i.imgur.com/MH9lfen.png"  />
 
         </svg>
         <svg   viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
-          <image x="-80" y="-80" width="350" height="350" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" loading="eager"/>
+          <image x="-80" y="-80" width="350" height="350" href="https://i.imgur.com/k0KOQ90.png" />
         </svg>
         <svg   viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
-          <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" loading="eager"/>
+          <image x="-460" y="-460" width="1100" height="1100" href="https://i.imgur.com/2QHktVG.png" />
         </svg>
         <svg  viewBox="0 0 180 180">
           <!-- Adicionar a imagem -->
-          <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" loading="eager"/>
+          <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/wW6rdqC.png" />
         </svg>
         <svg   viewBox="0 0 200 200">
           <!-- Adicionar a imagem -->
-          <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" loading="eager"/>
+          <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/PveWSyH.png" />
         </svg>
         <svg   viewBox="0 0 200 200">
           <!-- Adicionar a imagem -->
-          <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" loading="eager"/>
+          <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/UD1GRia.png" />
         </svg>
         
       </div>
   
-      <div aria-hidden="true" class="marquee__group">
-      <svg  viewBox="0 0 200 200">
+      <div  class="marquee__group">
+       
+      <svg  viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" loading="eager"/>
+      <image x="-80" y="-80" width="350" height="350" href="https://i.imgur.com/MH9lfen.png"  />
 
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg   viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" loading="eager"/>
+      <image x="-80" y="-80" width="350" height="350" href="https://i.imgur.com/k0KOQ90.png" />
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg   viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" loading="eager"/>
+      <image x="-460" y="-460" width="1100" height="1100" href="https://i.imgur.com/2QHktVG.png" />
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg  viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" loading="eager"/>
+      <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/wW6rdqC.png" />
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg   viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" loading="eager"/>
+      <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/PveWSyH.png" />
     </svg>
-    <svg viewBox="0 0 200 200">
+    <svg   viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" loading="eager"/>
+      <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/UD1GRia.png" />
     </svg>
+    
     
       </div>
     </div>
   
     <div class="marquee marquee--reverse">
       <div class="marquee__group">
-      <svg  viewBox="0 0 200 200">
+      
+      <svg  viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" loading="eager"/>
+      <image x="-80" y="-80" width="350" height="350" href="https://i.imgur.com/MH9lfen.png"  />
 
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg   viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" loading="eager"/>
+      <image x="-80" y="-80" width="350" height="350" href="https://i.imgur.com/k0KOQ90.png" />
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg   viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" loading="eager"/>
+      <image x="-460" y="-460" width="1100" height="1100" href="https://i.imgur.com/2QHktVG.png" />
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg  viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" loading="eager"/>
+      <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/wW6rdqC.png" />
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg   viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" loading="eager"/>
+      <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/PveWSyH.png" />
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg   viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" loading="eager"/>
+      <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/UD1GRia.png" />
     </svg>
     
       </div>
   
-      <div aria-hidden="true" class="marquee__group">
-      <svg  viewBox="0 0 200 200">
+      <div  class="marquee__group">
+       
+      <svg  viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_57_5eb2e4749f806.png" loading="eager"/>
+      <image x="-80" y="-80" width="350" height="350" href="https://i.imgur.com/MH9lfen.png" />
 
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg   viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/Grupo_60_5eb2e474eae06.png" loading="eager"/>
+      <image x="-80" y="-80" width="350" height="350" href="https://i.imgur.com/k0KOQ90.png" />
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg   viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-460" y="-460" width="1100" height="1100" xlink:href="/parceria/Grupo_72_5eccceef82685-01-01.png" loading="eager"/>
+      <image x="-460" y="-460" width="1100" height="1100" href="https://i.imgur.com/2QHktVG.png" />
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg  viewBox="0 0 180 180">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_5eb2e475a122a.png" loading="eager"/>
+      <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/wW6rdqC.png" />
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg   viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logo_globaltronic_5eb2e475ecb82.png" loading="eager"/>
+      <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/PveWSyH.png" />
     </svg>
-    <svg  viewBox="0 0 200 200">
+    <svg   viewBox="0 0 200 200">
       <!-- Adicionar a imagem -->
-      <image x="-50" y="-50" width="300" height="300" xlink:href="/parceria/logoIT_25years_5eb2e4765dad5.png" loading="eager"/>
+      <image x="-50" y="-50" width="300" height="300" href="https://i.imgur.com/UD1GRia.png" />
     </svg>
     
       </div>

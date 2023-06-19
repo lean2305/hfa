@@ -248,7 +248,7 @@ app.use(bodyParser.json());
 
 app.post('/recursoupdate', (req, res) => {
   const { imgEsquerda, emailEsquerda, telefoneEsquerda, moradaEsquerda, imgDireita, emailDireita, telefoneDireita, moradaDireita } = req.body;
-
+console.log(imgEsquerda);
   // Executa a consulta SQL para atualizar os dados na tabela recrutamento
   const query = `
     UPDATE recrutamento
