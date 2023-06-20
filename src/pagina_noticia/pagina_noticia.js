@@ -83,6 +83,7 @@ class Botao extends Component {
   }
 }
 
+
 class Noticia extends Component {
     render() {
       return (
@@ -151,6 +152,7 @@ class Noticia extends Component {
   }
   
 
+
 {/* Rodapé dá pagina do lado esquerdo */}
 class Footer extends Component{
     render() {
@@ -214,42 +216,55 @@ class Col_menu extends Component{
 }
 
 function PaginaNoticia() {
-    const { idnotev } = useParams();
-    const [noticia, setNoticia] = useState(null);
-    const [noticiasAnteriores, setNoticiasAnteriores] = useState([]);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(`${APIHOST}/noticias/${idnotev}`);
-          setNoticia(response.data);
-  
-          const ultimasNoticiasResponse = await axios.get(`${APIHOST}/noticias/ultimas-tres/${idnotev}`);
-          const ultimasNoticias = ultimasNoticiasResponse.data;
-  
-          const noticiasImagens = ultimasNoticias.map((noticia) => ({
-            idnotev: noticia.idnotev,
-            imagem_notev: `${APIHOST}/uploads/${noticia.imagem_notev}`,
-          }));
-  
-          setNoticiasAnteriores(noticiasImagens);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-  
-      fetchData();
-    }, [idnotev]);
-  
-  
-    // Verifica se a notícia está sendo carregada
-    if (!noticia) {
-      return <div>Carregando...</div>;
-    }
-    const linhas = noticia.descr_notev.split('.'); // Dividir o texto em linhas com base nos pontos finais
+  const { idnotev } = useParams();
+  const [noticia, setNoticia] = useState(null);
+  const [noticiasAnteriores, setNoticiasAnteriores] = useState([]);
 
-    const textoComQuebrasDeLinha = linhas.map((linha, index) => {
-      return (
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${APIHOST}/noticias/${idnotev}`);
+        setNoticia(response.data);
+
+        const ultimasNoticiasResponse = await axios.get(`${APIHOST}/noticias/ultimas-tres/${idnotev}`);
+        const ultimasNoticias = ultimasNoticiasResponse.data;
+
+        const noticiasImagens = ultimasNoticias.map((noticia) => ({
+          idnotev: noticia.idnotev,
+          imagem_notev: `${APIHOST}/uploads/${noticia.imagem_notev}`,
+        }));
+
+        setNoticiasAnteriores(noticiasImagens);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [idnotev]);
+
+  useEffect(() => {
+    const fetchViewData = async () => {
+      try {
+        const response = await axios.get(`${APIHOST}/view/${idnotev}`);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchViewData();
+  }, [idnotev]);
+
+  // Verifica se a notícia está sendo carregada
+  if (!noticia) {
+    return <div>Carregando...</div>;
+  }
+
+  const linhas = noticia.descr_notev.split('.'); // Dividir o texto em linhas com base nos pontos finais
+
+  const textoComQuebrasDeLinha = linhas.map((linha, index) => {
+    return (
         <React.Fragment key={index}>
           {linha.trim()}. {/* Adicionar o ponto final na linha atual e manter visível */}
           <br /> {/* Adicionar primeira quebra de linha */}

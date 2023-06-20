@@ -161,6 +161,100 @@ app.get('/noticias/:idnotev', (req, res) => {
   });
 });
 
+app.get('/view/:idnotev', (req, res) => {
+  const idnotev = req.params.idnotev;
+  console.log(idnotev);
+  db.query('UPDATE notev SET view_notev = view_notev + 1 WHERE idnotev = ?', [idnotev], (err, results) => {
+    if (err) throw err;
+    
+  });
+});
+
+
+app.get('/viewvideo/:videoId', (req, res) => {
+  const videoId = req.params.videoId;
+  const videoUrl = `https://www.youtube.com/embed/${videoId}`;
+  
+  console.log(videoUrl);
+  
+  // Atualizar o campo view_video na tabela videos
+  const sql = 'UPDATE videos SET view_video = view_video + 1 WHERE url_video = ?';
+  db.query(sql, [videoUrl], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Ocorreu um erro ao atualizar a visualização do vídeo.' });
+    }
+    
+    console.log('Visualização do vídeo atualizada com sucesso.');
+    
+    // Exemplo de resposta enviada de volta para o cliente
+    res.json({ message: 'Recebido o URL do vídeo com sucesso.', videoUrl });
+  });
+});
+
+
+app.get('/viewvideoquadrado/:videoUrl', (req, res) => {
+  const videoUrl = req.params.videoUrl;
+  console.log(videoUrl);
+  
+  const sql = 'UPDATE videos SET view_video = view_video + 1 WHERE url_video = ?';
+  db.query(sql, [videoUrl], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Ocorreu um erro ao atualizar a visualização do vídeo.' });
+    }
+    
+    console.log('Visualização do vídeo atualizada com sucesso.');
+    
+    // Exemplo de resposta enviada de volta para o cliente
+    
+  });
+});
+
+
+// Rota para buscar o total de visualizações
+app.get('/totalviewvideo', (req, res) => {
+  const query = 'SELECT SUM(view_video) AS total_visualizacoes FROM videos';
+
+  db.query(query, (err, result) => {
+    if (err) {
+      throw err;
+    }
+
+   
+    const totalVisualizacoes = result[0].total_visualizacoes || 0;
+    res.json({ total_visualizacoes: totalVisualizacoes });
+  });
+});
+
+
+
+app.get('/totalviewnoticias', (req, res) => {
+  const query = 'SELECT SUM(view_notev) AS totalVisualizacoesnoti FROM notev WHERE categoria_notev = "Noticia"';
+console.log();
+  db.query(query, (err, result) => {
+    if (err) {
+      throw err;
+    }
+
+    const totalVisualizacoesnoti = result[0].totalVisualizacoesnoti || 0;
+    res.json({ totalVisualizacoesnoti: totalVisualizacoesnoti });
+  });
+});
+
+app.get('/totalviewnoticiasevento', (req, res) => {
+  const query = 'SELECT SUM(view_notev) AS totalVisualizacoesevento FROM notev WHERE categoria_notev = "Evento"';
+console.log();
+  db.query(query, (err, result) => {
+    if (err) {
+      throw err;
+    }
+
+    const totalVisualizacoesevento = result[0].totalVisualizacoesevento || 0;
+    res.json({ totalVisualizacoesevento: totalVisualizacoesevento });
+  });
+});
+
 
 app.get('/noticias', (req, res) => {
   db.query('SELECT * FROM notev ORDER BY idnotev DESC', (err, results) => {

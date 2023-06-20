@@ -12,21 +12,42 @@ import Modal from 'react-modal';
 
 
 {/* Maior div do lado esquerdo da página */}
-class Quadrado extends Component{
-    render() {
-        return(
-            
-            <div>
-                <div className='noticia_menu_noticia'>
-                      
-                        <iframe style={{height: '100%' , width:'101%'}} src={`${this.props.videooo}?autoplay=1`} title="YouTube video player" frameborder="0" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" ></iframe>
-                   
-                </div>
-                
-            </div>
-            
-        );
+
+class Quadrado extends Component {
+  componentDidMount() {
+    const videoUrl = this.props.videooo;
+    
+    this.sendVideoToServer(videoUrl);
+  }
+  
+  sendVideoToServer = async (videoUrl) => {
+    try {
+      const response = await axios.get(`${APIHOST}/viewvideoquadrado/${encodeURIComponent(videoUrl)}`);
+      // Processar a resposta aqui, se necessário
+      console.log(response.data);
+    } catch (error) {
+      // Lidar com erros que ocorrerem durante a requisição
+      console.error(error);
     }
+  };
+
+  render() {
+    return (
+      <div>
+        <div className='noticia_menu_noticia'>
+          <iframe
+            style={{ height: '100%', width: '101%' }}
+            src={`${this.props.videooo}?autoplay=1`}
+            title="YouTube video player"
+            frameBorder="0"
+            allowFullScreen="true"
+            webkitallowfullscreen="true"
+            mozallowfullscreen="true"
+          ></iframe>
+        </div>
+      </div>
+    );
+  }
 }
 
 {/* Texto simples de noticias */}
@@ -44,12 +65,13 @@ class Mais extends Component{
 
 
 class Video extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        isModalOpen: false,
-      };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalOpen: false,
+      videoId: null,
+    };
+  }
   
     openModal = () => {
       this.setState({ isModalOpen: true });
@@ -59,8 +81,19 @@ class Video extends Component {
       this.setState({ isModalOpen: false });
     };
   
-    handleVideoClick = () => {
+    handleVideoClick = async () => {
+      const videoId = this.extractVideoId(this.props.videoo);
+      this.setState({ videoId });
       this.openModal();
+      
+      try {
+        const response = await axios.get(`${APIHOST}/viewvideo/${videoId}`);
+        // Process the response data here
+        console.log(response.data);
+      } catch (error) {
+        // Handle any errors that occur during the request
+        console.error(error);
+      }
     };
   
     extractVideoId(url) {
@@ -68,6 +101,7 @@ class Video extends Component {
       const match = url.match(regex);
       return match ? match[1] : null;
     }
+    
   
     render() {
       const videoId = this.extractVideoId(this.props.videoo);
@@ -76,26 +110,26 @@ class Video extends Component {
       
       return (
         <div className="div_noticia_menu_noticia">
-    <button style={{ border: "none" }} onClick={this.handleVideoClick}>
-      <div className="video-thumbnail-inner">
-        <img className="miniatura" style={{ height: "100%", width: "101%" }} src={thumbnailUrl}/>
+          <button style={{ border: "none" }} onClick={this.handleVideoClick}>
+          <div className="video-thumbnail-inner">
+            <img className="miniatura" style={{ height: "100%", width: "101%" }} src={thumbnailUrl}/>
+            
+            <svg
+              className="play-button"
+              xmlns="http://www.w3.org/2000/svg"
+              width="50"
+              height="50"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
         
-        <svg
-          className="play-button"
-          xmlns="http://www.w3.org/2000/svg"
-          width="50"
-          height="50"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polygon points="5 3 19 12 5 21 5 3"></polygon>
-        </svg>
-        
-      </div>
+          </div>
       <h3 style={{ height: "100%", width: "101%", fontFamily: "'Titillium Web', sans-serif" }}> {this.props.titulo_video} </h3>
     </button>
     
@@ -318,7 +352,7 @@ function Videos() {
                             <Col sm={3.98}> 
                             
                                 <Video
-                                  
+                                  videoId={video.id} // Pass the video ID as a prop
                                   videoo={video.url_video} 
                                   titulo_video={video.titulo_video}
                                   
