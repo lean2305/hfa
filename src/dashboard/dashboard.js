@@ -117,83 +117,84 @@ class Contador extends Component {
 
 
 class Top_contador extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      topVideos: [],
+      topNoticias: [],
+      topEventos: []
+    };
+  }
+
+  componentDidMount() {
+    axios.get(`${APIHOST}/topvideos`)
+      .then(response => {
+        this.setState({ topVideos: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    axios.get(`${APIHOST}/topnoticias`)
+      .then(response => {
+        this.setState({ topNoticias: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    axios.get(`${APIHOST}/topevento`)
+      .then(response => {
+        this.setState({ topEventos: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  truncateTitle(title) {
+    if (title.length > 25) {
+      return title.substring(0, 19) + '...';
+    }
+    return title;
+  }
+
   render() {
+    const { topVideos, topNoticias, topEventos } = this.state;
+
     return (
       <div className="contador-direita">
         <div className="contador-top">
           <h4>Top 5 Vídeos</h4>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
+          {topVideos.map(video => (
+            <div className='contador-view' key={video.id_videos}>
+              <p className='contador-p'>{this.truncateTitle(video.titulo_video)}</p>
+              <p className='contador-p'>{video.view_video}</p>
+            </div>
+          ))}
         </div>
         <div className="contador-top">
-        <h4>Top 5 Noticias</h4>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
+          <h4>Top 5 Notícias</h4>
+          {topNoticias.map(noticia => (
+            <div className='contador-view' key={noticia.idnotev}>
+              <p className='contador-p'>{this.truncateTitle(noticia.titulo_notev)}</p>
+              <p className='contador-p'>{noticia.view_notev}</p>
+            </div>
+          ))}
         </div>
         <div className="contador-top">
-        <h4>Top 5 Eventos</h4>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>
-          <div className='contador-view'>
-            <p className='contador-p'>xxxxxxxxxxxxxx</p>
-            <p className='contador-p'>(visualizações)</p>
-          </div>  
+          <h4>Top 5 Eventos</h4>
+          {topEventos.map(evento => (
+            <div className='contador-view' key={evento.idnotev}>
+              <p className='contador-p'>{this.truncateTitle(evento.titulo_notev)}</p>
+              <p className='contador-p'>{evento.view_notev}</p>
+            </div>
+          ))}
         </div>
       </div>
     );
   }
 }
-
 
 
 const Menu_esquerda = ({ handleMenuClick }) => {

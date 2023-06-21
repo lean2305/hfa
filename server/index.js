@@ -7,6 +7,7 @@ const saltRounds = 10;
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs-extra');
+
 const bodyParser = require('body-parser');
 
 
@@ -49,6 +50,8 @@ app.get('/dadosnoticia', (req, res) => {
     }
   });
 });
+
+
 
 
 
@@ -236,7 +239,6 @@ console.log();
     if (err) {
       throw err;
     }
-
     const totalVisualizacoesnoti = result[0].totalVisualizacoesnoti || 0;
     res.json({ totalVisualizacoesnoti: totalVisualizacoesnoti });
   });
@@ -255,6 +257,43 @@ console.log();
   });
 });
 
+
+app.get('/topvideos', (req, res) => {
+  const query = 'SELECT * FROM videos ORDER BY view_video DESC LIMIT 5';
+
+  db.query(query, (err, result) => {
+    if (err) {
+      throw err;
+    }
+
+    res.json(result);
+  });
+});
+
+
+app.get('/topnoticias', (req, res) => {
+  const query = "SELECT * FROM notev WHERE categoria_notev = 'Noticia' ORDER BY view_notev DESC LIMIT 5";
+
+  db.query(query, (err, result) => {
+    if (err) {
+      throw err;
+    }
+
+    res.json(result);
+  });
+});
+
+
+app.get('/topevento', (req, res) => {
+  const query = "SELECT * FROM notev WHERE categoria_notev = 'Evento' ORDER BY view_notev DESC LIMIT 5";
+
+  db.query(query, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.json(result);
+  });
+});
 
 app.get('/noticias', (req, res) => {
   db.query('SELECT * FROM notev ORDER BY idnotev DESC', (err, results) => {
@@ -340,27 +379,75 @@ app.get('/recrutamento', (req, res) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post('/recursoupdate', (req, res) => {
-  const { imgEsquerda, emailEsquerda, telefoneEsquerda, moradaEsquerda, imgDireita, emailDireita, telefoneDireita, moradaDireita } = req.body;
-console.log(imgEsquerda);
-  // Executa a consulta SQL para atualizar os dados na tabela recrutamento
+// Configuração do multer
+const storagee = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../public/recrutamento'); // Especifique o caminho para salvar as imagens
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const uploado = multer({ storage: storagee }).fields([
+  { name: 'imgEsquerda', maxCount: 1 },
+  { name: 'imgDireita', maxCount: 1 },
+]);
+
+// Rota para atualizar os dados
+app.post('/recursoupdate', uploado, (req, res) => {
+  const imgEsquerda = req.files['imgEsquerda'] ? req.files['imgEsquerda'][0] : null;
+  const imgDireita = req.files['imgDireita'] ? req.files['imgDireita'][0] : null;
+
+  console.log('Imagens recebidas:');
+  console.log('Imagem Esquerda:', imgEsquerda);
+  console.log('Imagem Direita:', imgDireita);
+
+  // Acessando outros dados enviados pelo cliente
+  const {
+    emailEsquerda,
+    telefoneEsquerda,
+    moradaEsquerda,
+    emailDireita,
+    telefoneDireita,
+    moradaDireita
+  } = req.body;
+
   const query = `
     UPDATE recrutamento
-    SET img_esquerda = ?, email_esquerda = ?, telefone_esquerda = ?, morada_esquerda = ?, img_direita = ?, email_direita = ?, telefone_direita = ?, morada_direita = ?
+    SET img_esquerda = COALESCE(?, img_esquerda),
+        email_esquerda = ?,
+        telefone_esquerda = ?,
+        morada_esquerda = ?,
+        img_direita = COALESCE(?, img_direita),
+        email_direita = ?,
+        telefone_direita = ?,
+        morada_direita = ?
     WHERE id_recrutamento = 1
   `;
 
-  // Executa a consulta SQL usando os dados recebidos do componente React
-  db.query(query, [imgEsquerda, emailEsquerda, telefoneEsquerda, moradaEsquerda, imgDireita, emailDireita, telefoneDireita, moradaDireita], (error, results) => {
-    if (error) {
-      console.error('Erro ao atualizar os dados:', error);
-      res.status(500).send('Erro ao atualizar os dados');
-      return;
-    }
+  db.query(
+    query,
+    [
+      imgEsquerda ? imgEsquerda.filename : null,
+      emailEsquerda,
+      telefoneEsquerda,
+      moradaEsquerda,
+      imgDireita ? imgDireita.filename : null,
+      emailDireita,
+      telefoneDireita,
+      moradaDireita
+    ],
+    (error, results) => {
+      if (error) {
+        console.error('Erro ao atualizar os dados:', error);
+        res.status(500).send('Erro ao atualizar os dados');
+        return;
+      }
 
-    // Os dados foram atualizados com sucesso
-    res.send('Dados atualizados com sucesso!');
-  });
+      res.send('Dados atualizados com sucesso!');
+    }
+  );
 });
 
 

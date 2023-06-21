@@ -382,6 +382,8 @@ const Thumbnail = () => {
         }
       };
 
+      
+
       const handleImgHistoria = (selectedImage) => {
         setSelectedImage(selectedImage);
         setShowDefaultImage(false);
@@ -523,7 +525,7 @@ const Thumbnail = () => {
             {/*INPUT IMAGEM PRINCIPAL */}
             {dadosCarregados && (<Testando imagem={`/historia_img/${imagemTitulo}`} onImageSelect={handleImageSelect} />)}
             
-
+            
             {/*FIM INPUT IMAGEM PRINCIPAL */}
             <label htmlFor="imagem" className="image-label">
               Clique ou arraste

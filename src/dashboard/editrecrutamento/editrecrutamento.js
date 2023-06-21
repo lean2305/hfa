@@ -196,17 +196,19 @@ const Testando = (props) => {
     const formRef = useRef(null); // Referência ao formulário
     const [recrutamentoData, setRecrutamentoData] = useState(null);
   
-    //esquerda
+    // Esquerda
     const [imgEsquerda, setImgEsquerda] = useState('');
     const [emailEsquerda, setemailEsquerda] = useState('');
     const [telefoneEsquerda, settelefoneEsquerda] = useState('');
     const [moradaEsquerda, setmoradaEsquerda] = useState('');
   
-    //direita
+    // Direita
     const [imgDireita, setImgDireita] = useState('');
     const [emailDireita, setemailDireita] = useState('');
     const [telefoneDireita, settelefoneDireita] = useState('');
     const [moradaDireita, setmoradaDireita] = useState('');
+    const [selectedImageDireita, setSelectedImageDireita] = useState(null); // Add this line
+
   
     useEffect(() => {
       const timerId = setInterval(() => {
@@ -265,33 +267,29 @@ const Testando = (props) => {
       setShowDefaultImage(false);
     };
   
-
-    
     const handleSubmit = (event) => {
-        event.preventDefault(); // Evita o comportamento padrão do formulário
-      
-        // Crie um objeto com os dados que você deseja enviar para o servidor
-        const data = {
-          imgEsquerda: imgEsquerda, // Supondo que imgEsquerda seja uma variável de estado no seu componente
-          emailEsquerda: event.target.email_esquerda.value,
-          telefoneEsquerda: event.target.telefone_esquerda.value,
-          moradaEsquerda: event.target.morada_esquerda.value,
-          emailDireita: event.target.email_direita.value,
-          imgDireita: imgDireita,
-          telefoneDireita: event.target.telefone_direita.value,
-          moradaDireita: event.target.morada_direita.value
-        };
-      
-        // Faça a solicitação POST para o servidor usando o axios
-        axios.post(`${APIHOST}/recursoupdate`, data)
-          .then(response => {
-            // Lida com a resposta do servidor, se necessário
-          })
-          .catch(error => {
-            // Lida com erros, se ocorrerem
-          });
-      };
-      
+      event.preventDefault();
+    
+      const formData = new FormData();
+      formData.append('imgEsquerda', selectedImage); // Adicione a imagem selecionada da esquerda ao FormData
+      formData.append('emailEsquerda', event.target.email_esquerda.value);
+      formData.append('telefoneEsquerda', event.target.telefone_esquerda.value);
+      formData.append('moradaEsquerda', event.target.morada_esquerda.value);
+      formData.append('imgDireita', selectedImageDireita); // Adicione a imagem selecionada da direita ao FormData
+      formData.append('emailDireita', event.target.email_direita.value);
+      formData.append('telefoneDireita', event.target.telefone_direita.value);
+      formData.append('moradaDireita', event.target.morada_direita.value);
+    
+      axios
+        .post(`${APIHOST}/recursoupdate`, formData)
+        .then((response) => {
+          // Lida com a resposta do servidor, se necessário
+        })
+        .catch((error) => {
+          // Lida com erros, se ocorrerem
+        });
+    };
+    
   
     const handleCancel = () => {
       formRef.current.reset();
@@ -302,42 +300,33 @@ const Testando = (props) => {
     const handleImgEsquerda = (selectedImage) => {
       setSelectedImage(selectedImage);
       setShowDefaultImage(false);
-  
+    
       if (selectedImage) {
-        const imgEsquerda = selectedImage.name;
-        setImgEsquerda(imgEsquerda);
+        const uniqueName = `esquerda_${Date.now()}_${selectedImage.name}`; // Adiciona um sufixo único para a imagem
+        setImgEsquerda(uniqueName);
       }
     };
-  
-    const handleImgDireita = (selectedImage) => {
-        setSelectedImage(selectedImage);
-        setShowDefaultImage(false);
-    
-        if (selectedImage) {
-          const imgDireita = selectedImage.name;
-          setImgDireita(imgDireita);
-        }
-      };
 
+    const handleImgDireita = (selectedImage) => {
+      setSelectedImageDireita(selectedImage); // Atualiza a imagem da direita usando setSelectedImageDireita
+      setShowDefaultImage(false);
+    
+      if (selectedImage) {
+        const uniqueName = `direita_${Date.now()}_${selectedImage.name}`;
+        setImgDireita(uniqueName);
+      }
+    };
+    
     return (
       <div>
         <h2>Editar Página da Ficha de Inscrição</h2>
         <p style={{ paddingTop: '4%', fontWeight: 'bold' }}>Alterar Cartão Esquerdo</p>
         <form onSubmit={handleSubmit} ref={formRef}>
-          <Testando imagem={process.env.PUBLIC_URL + '/recrutamento/' + imgEsquerda} onImageSelect={handleImgEsquerda} />
-          <input
-                style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
-                placeholder="Nome da imagem do cartão esquerdo"
-                type="text"
-                name="img_esquerda"
-                id="imgEsquerda"
-                value={imgEsquerda}
-                onChange={(event) => {
-                const updatedValue = event.target.value;
-                setImgEsquerda(updatedValue);
-                }}
-            />
-
+        <Testando
+  imagem={process.env.PUBLIC_URL + '/recrutamento/' + imgEsquerda}
+  onImageSelect={handleImgEsquerda}
+/>
+         
 
 
           {!selectedImage && (
@@ -412,20 +401,10 @@ const Testando = (props) => {
           {/*INPUT IMAGEM PRINCIPAL */}
           
       <p style={{ paddingTop: '4%', fontWeight: 'bold' }}>Alterar Cartão Direito</p>
-      <Testando imagem={process.env.PUBLIC_URL + '/recrutamento/' + imgDireita} onImageSelect={handleImgDireita} />
-      <input
-            style={{ backgroundColor: 'rgb(201 200 200)', border: 'none', borderRadius: 10, padding: 10 }}
-            placeholder="Nome da imagem do cartão direito"
-            type="text"
-            name="img_direita"
-            id="imgDireita"
-            value={imgDireita}
-            onChange={(event) => {
-            const updatedValue = event.target.value;
-            setImgDireita(updatedValue);
-            }}
-        />
-
+      <Testando
+  imagem={process.env.PUBLIC_URL + '/recrutamento/' + imgDireita}
+  onImageSelect={handleImgDireita}
+/>
           {/*FIM INPUT IMAGEM PRINCIPAL */}
   
           {/*INPUT TITULO */}
