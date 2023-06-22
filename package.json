@@ -22,6 +22,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-grid-system": "^8.1.9",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.8.0",

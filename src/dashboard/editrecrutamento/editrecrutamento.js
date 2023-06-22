@@ -126,23 +126,26 @@ const Testando = (props) => {
     };
   
    
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const formData = new FormData();
-      formData.append('image', selectedImage);
-  
-      // Enviar nome da imagem para o servidor
-      props.onSubmit(selectedImage.name);
-  
-      axios
-        .post('http://localhost:3001/upload', formData)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
+    
+const handleSubmit = (event) => {
+  event.preventDefault();
+  const formData = new FormData();
+  formData.append('image', selectedImage);
+
+  // Enviar nome da imagem para o servidor
+  props.onSubmit(selectedImage.name);
+
+  axios
+    .post('http://localhost:3001/upload', formData)
+    .then((response) => {
+      console.log(response.data);
+
+      // A imagem foi enviada para o servidor e salva em um caminho específico no servidor.
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
   
     const handleCancel = () => {
       formRef.current.reset();
@@ -322,10 +325,7 @@ const Testando = (props) => {
         <h2>Editar Página da Ficha de Inscrição</h2>
         <p style={{ paddingTop: '4%', fontWeight: 'bold' }}>Alterar Cartão Esquerdo</p>
         <form onSubmit={handleSubmit} ref={formRef}>
-        <Testando
-  imagem={process.env.PUBLIC_URL + '/recrutamento/' + imgEsquerda}
-  onImageSelect={handleImgEsquerda}
-/>
+        <Testando imagem={process.env.PUBLIC_URL + '/recrutamento/' + imgEsquerda} onImageSelect={handleImgEsquerda} />
          
 
 

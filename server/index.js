@@ -361,6 +361,23 @@ app.post('/uploadhistoria', (req, res) => {
 });
 
 
+
+// Configuração do Multer para processar o upload da imagem
+const storageo = multer.diskStorage({
+  destination: '../public/historia_img',
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+const uploadi = multer({ storageo });
+
+// Rota para receber a imagem enviada pelo cliente
+app.post('/upload-imagem', uploadi.single('imagem'), (req, res) => {
+  // Aqui você pode lidar com o arquivo recebido e enviar a resposta adequada para o cliente
+});
+
+
+
 app.get('/recrutamento', (req, res) => {
   const query = 'SELECT * FROM recrutamento';
 
@@ -376,6 +393,10 @@ app.get('/recrutamento', (req, res) => {
 });
 
 
+
+
+
+//imagem recrutamento
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -520,6 +541,29 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname));
   }
 });
+
+
+// Configuração do multer para salvar a imagem no disco
+const sstorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../public/historia_img'); // Define o diretório de destino das imagens
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // Define o nome do arquivo como o nome original
+  },
+});
+
+const uspload = multer({ storage: sstorage });
+
+// Rota para receber a imagem enviada
+app.post('/upload', uspload.single('image'), (req, res) => {
+  // A imagem foi salva com sucesso, você pode adicionar lógica adicional aqui
+  res.send('Imagem recebida e salva!');
+});
+
+
+
+
 
 const upload = multer({ storage });
 const moment = require('moment');

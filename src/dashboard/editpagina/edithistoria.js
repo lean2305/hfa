@@ -102,11 +102,25 @@ const Testando = (props) => {
  
   const fileInputRef = useRef(null); // Referência ao input do arquivo
   const formRef = useRef(null); // Referência ao formulário
-
   const handleImageChange = (event) => {
     setSelectedImage(event.target.files[0]);
     setShowDefaultImage(false);
     props.onImageSelect(event.target.files[0]); // Chama a função de callback com a imagem selecionada
+  
+    // Enviar a imagem para o servidor
+    const formData = new FormData();
+    formData.append('image', event.target.files[0]);
+  
+    axios
+      .post('http://localhost:3001/upload', formData)
+      .then((response) => {
+        console.log(response.data);
+        // Lógica adicional após o sucesso do envio da imagem para o servidor
+      })
+      .catch((error) => {
+        console.log(error);
+        // Lógica adicional em caso de erro no envio da imagem para o servidor
+      });
   };
 
   const handleDefaultImageClick = () => {
@@ -382,8 +396,16 @@ const Thumbnail = () => {
         }
       };
 
+
+
+
+
       
 
+
+
+
+      
       const handleImgHistoria = (selectedImage) => {
         setSelectedImage(selectedImage);
         setShowDefaultImage(false);
