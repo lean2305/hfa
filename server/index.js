@@ -543,23 +543,37 @@ const storage = multer.diskStorage({
 });
 
 
+
 // Configuração do multer para salvar a imagem no disco
-const sstorage = multer.diskStorage({
+const swtorage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, '../public/historia_img'); // Define o diretório de destino das imagens
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname); // Define o nome do arquivo como o nome original
+    const filename = file.originalname;
+    const filePath = `../public/historia_img/${filename}`;
+
+    // Verifica se o arquivo já existe
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+      if (err) {
+        // O arquivo não existe, pode prosseguir com o salvamento
+        cb(null, filename);
+      } else {
+        // O arquivo já existe, retorne um erro para indicar que o nome de arquivo é duplicado
+        cb(new Error('Já existe um arquivo com esse nome!'));
+      }
+    });
   },
 });
 
-const uspload = multer({ storage: sstorage });
+const uwpload = multer({ storage: swtorage });
 
 // Rota para receber a imagem enviada
-app.post('/upload', uspload.single('image'), (req, res) => {
+app.post('/upload', uwpload.single('image'), (req, res) => {
   // A imagem foi salva com sucesso, você pode adicionar lógica adicional aqui
   res.send('Imagem recebida e salva!');
 });
+
 
 
 
