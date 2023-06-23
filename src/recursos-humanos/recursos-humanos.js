@@ -85,7 +85,7 @@ class Botao extends Component {
 class Footer extends Component{
     render() {
         return( 
-            <div className='footer'>
+            <div className='footer-recursos'>
                 <br />
                 <p className='Text-footerr' style={{ color: "rgb(168, 168, 168)" }}>Developed by <a style={{ color: "white" ,fontWeight: "bold" }}>HFA</a></p>
 

@@ -141,7 +141,7 @@ function Html() {
         place-items: center;
         width: var(--size);
         fill: var(--color-text);
-        background: var(--color-bg-accent);
+        background: #36a6e1;;
         aspect-ratio: 16/9;
         padding: calc(var(--size) / 10);
         border-radius: 0.5rem;

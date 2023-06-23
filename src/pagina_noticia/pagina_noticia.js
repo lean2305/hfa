@@ -231,7 +231,7 @@ function PaginaNoticia() {
 
         const noticiasImagens = ultimasNoticias.map((noticia) => ({
           idnotev: noticia.idnotev,
-          imagem_notev: `${APIHOST}/uploads/${noticia.imagem_notev}`,
+          imagem_notev: `/uploads/${noticia.imagem_notev}`,
         }));
 
         setNoticiasAnteriores(noticiasImagens);

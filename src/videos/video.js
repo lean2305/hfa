@@ -207,7 +207,7 @@ class Conteudo_menu extends Component{
     render() {
         return( 
             <div className='conteudo_menu_menu_noticia'>
-               <img className='imgbarra_menu_noticia'  src={this.props.menu_img}  />  
+               <img className='imgbarra_menu_video'  src={this.props.menu_img}  />  
                 <h1 style={{color: "#072d49", fontFamily : "'Titillium Web', sans-serif", fontSize: "4vh"}}>{this.props.menu_titulo}</h1>
                 <p style={{ color: "#47555c",marginLeft : "5%", marginRight: "5%", fontSize: "2.3vh"}}>{this.props.menu_texto}</p>       
             </div>
@@ -344,7 +344,7 @@ function Videos() {
             
             <Mais nomemeio="HFA - Eletrónica e Telecomunicações" />
             
-            <div className="container_menu_noticia">
+            <div className="container_menu_video">
                 
                 <Container>
                         <Row>

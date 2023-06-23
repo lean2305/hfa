@@ -88,8 +88,8 @@ function Login() {
         <Form className="loginForm">
 
           <label className="formLabel">Email</label><br />
-          <Field name="email" type="text" className="formInput" /><br />
-
+          <Field name="email" type="text" className="formInput"  /><br />
+          
           <label className="formLabel">Password</label><br />
           <Field type="password" name="password" className="formInput"/><br />
           

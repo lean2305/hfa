@@ -70,7 +70,7 @@
     margin-top: 5%;
 }
 
-.imgbarra_menu_noticia{
+.imgbarra_menu_video{
     height: 15vh;
     width: 42vh;
     margin-left: 2%;
@@ -81,7 +81,7 @@
     color:blue;
 }
 
-.container_menu_noticia {
+.container_menu_video {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
