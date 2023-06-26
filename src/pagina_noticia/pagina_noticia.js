@@ -335,7 +335,7 @@ function PaginaNoticia() {
                                     menu_logo="https://showroom.portugalbikevalue.pt/wp-content/uploads/2021/05/HFA-Logo-Dark.png"
                                     menu_titulo="ATENDIMENTO"
                                     menu_texto1="Para ser atendido, consoante a sua necessidade, escolha nos botões abaixo o departamento. "
-                                    menu_texto2="Enquando aguarda, navegue pela nossa plataforma para saber mais sobre nós!"
+                                    menu_texto2="Enquanto aguarda, navegue pela nossa plataforma para saber mais sobre nós!"
                                     />
                         </Col>
                         <Col>

@@ -4,35 +4,38 @@ import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import APIHOST from '../../constant';
 
 
 
 function Login() {
     const navigate = useNavigate();
    
-  const handleLogin = (values) => {
-    Axios.post("http://localhost:3001/login", {
-      email: values.email,
-      password: values.password,
-    })
-      .then((response) => {
-        console.log(response.data); // verifique se o token está presente aqui
-        alert(response.data.msg);
-        return response.data;
+    const handleLogin = (values, { setSubmitting }) => {
+      Axios.post(`${APIHOST}/login`, {
+        email: values.email,
+        password: values.password,
       })
-      .then((data) => {
-        localStorage.setItem("token", data.token);
-        if (data.msg === "Utilizador conectado") { // adiciona essa linha
-          navigate("/dashboard");
-        }
-      })
-      .catch((err) => console.error(err));
-  };
+        .then((response) => {
+          console.log(response.data);
+          alert(response.data.msg);
+          return response.data;
+        })
+        .then((data) => {
+          localStorage.setItem("token", data.token);
+          if (data.msg === "Utilizador conectado") {
+            navigate("/dashboard");
+          }
+        })
+        .catch((err) => console.error(err))
+        .finally(() => {
+          setSubmitting(false);
+        });
+    };
     
 
   const handleRegister = (values) => {
-    Axios.post("http://localhost:3001/register", {
+    Axios.post(`${APIHOST}/register`, {
       email: values.email,
       password: values.password,
     }).then((response) => {

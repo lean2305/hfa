@@ -80,7 +80,7 @@ function ConteudoMenu(props) {
     <div className='conteudo_menu_menu_noticia'>
       <img className='imgbarra_menu_noticia' src={props.menu_img} />
       <h1 style={{ color: "#072d49", fontFamily: "'Titillium Web', sans-serif", fontSize: "4vh" }}>{props.menu_titulo}</h1>
-      <p style={{ color: "#47555c", marginLeft: "5%", marginRight: "5%", fontSize: "2.3vh" }}>{props.menu_texto}</p>
+      <p style={{ color: "#47555c",marginLeft : "5%", marginRight: "5%", fontSize: "2.3vh"}}><p>{props.menu_texto1}</p><p>{props.menu_texto2}</p></p>       
     </div>
   );
 }
@@ -259,7 +259,8 @@ function Noticias() {
               <Col>
                 <ConteudoMenu
                   menu_titulo="ATENDIMENTO"
-                  menu_texto="Para ser atendido, consoante a sua necessidade, escolha nos botões abaixo o departamento. Enquanto aguarda, navegue pela nossa plataforma para saber mais sobre nós!"
+                  m menu_texto1="Para ser atendido, consoante a sua necessidade, escolha nos botões abaixo o departamento. "
+                  menu_texto2="Enquanto aguarda, navegue pela nossa plataforma para saber mais sobre nós!"
                   menu_img="https://showroom.portugalbikevalue.pt/wp-content/uploads/2021/05/HFA-Logo-Dark.png" />
               </Col>
               <Col>

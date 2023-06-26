@@ -665,8 +665,8 @@ function Historia() {
             </section>
             
            <Objetivo 
-                    visao01="01" visao="VISÃO" visaoT="Fazer da HFA uma referência a nivel mundial no setor da produção e teste de produtos de eletrónica" 
-                    missao02="02" missao="MISSÃO" missaoT="Realizarde formasustentada, e com elevados padrões de qualidade, os produtos de eletrónica solicitados, sempre na vanguarda da tecnlogia."
+                    visao01="01" visao="VISÃO" visaoT="Fazer da HFA uma referência a nível mundial no setor da produção e teste de produtos de eletrónica" 
+                    missao02="02" missao="MISSÃO" missaoT="Realizar de forma sustentada, e com elevados padrões de qualidade, os produtos de eletrónica solicitados, sempre na vanguarda da tecnlogia."
                     valores03="03" valores="VALORES" valoresT="Qualidade; Know-How; Inovação; Flexibilidade; Dedicação; Confiança / Confidencialidade"/>
            
             <Compromisso 
@@ -730,7 +730,7 @@ function Historia() {
                                 menu_logo="https://showroom.portugalbikevalue.pt/wp-content/uploads/2021/05/HFA-Logo-Dark.png"
                                 menu_titulo="ATENDIMENTO"
                                 menu_texto1="Para ser atendido, consoante a sua necessidade, escolha nos botões abaixo o departamento. "
-                                menu_texto2="Enquando aguarda, navegue pela nossa plataforma para saber mais sobre nós!"
+                                menu_texto2="Enquanto aguarda, navegue pela nossa plataforma para saber mais sobre nós!"
                                 />
                         </Col>
 

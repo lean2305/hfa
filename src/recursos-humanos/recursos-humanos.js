@@ -14,7 +14,7 @@ class Conteudo_menu extends Component{
             <div className='conteudo_menu'>
                <img className='imgbarra' src="https://showroom.portugalbikevalue.pt/wp-content/uploads/2021/05/HFA-Logo-Dark.png"  />  
                 <h1 style={{color: "#072d49", fontFamily : "'Titillium Web', sans-serif", fontSize: "4vh"}}>ATENDIMENTO</h1>
-                <p style={{ color: "#47555c",marginLeft : "5%", marginRight: "5%", fontSize: "2.3vh"}}>Para ser atendido, consoante a sua necessidade, escolha nos botões abaixo o departamento. <br />Enquando aguarda, navegue pela nossa plataforma para saber mais sobre nós!</p>       
+                <p style={{ color: "#47555c",marginLeft : "5%", marginRight: "5%", fontSize: "2.3vh"}}>Para ser atendido, consoante a sua necessidade, escolha nos botões abaixo o departamento. <br /> <br />Enquanto aguarda, navegue pela nossa plataforma para saber mais sobre nós!</p>       
             </div>
         );
     }
@@ -100,28 +100,17 @@ class Footer extends Component{
         );
     }
 }
-
+{/* Rodapé do menu direito */}
 class Footer_menu extends Component{
-    render() {
-        return(
-            <div className='footer_menu_wrapper'>
-                <div className='footer_menu'>
-                    <div className='button_wrapper'>
-                        <div style={{backgroundColor: '#63b8e3'}} className='button'>
-                            <h2 style={{fontSize: '3vh'}}>Voltar</h2>
-                        </div>
-                    </div>
-                    <div className='button_wrapper'>
-                        <div className='button'>
-                            <h2 style={{fontSize: '3vh'}}>Página principal</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-          
-        );
-    }
+  render() {
+      return(
+          <Link to="/" style={{ textDecoration: 'none' }}> 
+          <div className='footer_menu'>
+              <h1>{this.props.btn_pagina_principal}</h1>
+          </div>
+          </Link> 
+      );
+  }
 }
 
 class Faça_parte extends Component{
@@ -201,9 +190,9 @@ class Constante_Kelly extends Component {
 
             </div>
             <div className="contacto_texto">
-              <p className="contacto_p">E-mail:<a>{dadosRecrutamento[0]?.email_esquerda}</a></p>
-              <p className="contacto_p">Telefone:<a>{dadosRecrutamento[0]?.telefone_esquerda}</a></p>
-              <p className="contacto_p">Morada:<a>{dadosRecrutamento[0]?.morada_esquerda}</a></p>
+              <p className="contacto_p">E-mail: <a>{dadosRecrutamento[0]?.email_esquerda}</a></p>
+              <p className="contacto_p">Telefone: <a>{dadosRecrutamento[0]?.telefone_esquerda}</a></p>
+              <p className="contacto_p">Morada: <a>{dadosRecrutamento[0]?.morada_esquerda}</a></p>
             </div>
           </div>
   
@@ -213,9 +202,9 @@ class Constante_Kelly extends Component {
 
             </div>
             <div className="contacto_texto">
-              <p className="contacto_p">E-mail:<a>{dadosRecrutamento[0]?.email_direita}</a></p>
-              <p className="contacto_p">Telefone:<a>{dadosRecrutamento[0]?.telefone_direita}</a></p>
-              <p className="contacto_p">Morada:<a>{dadosRecrutamento[0]?.morada_direita}</a></p>
+              <p className="contacto_p">E-mail: <a>{dadosRecrutamento[0]?.email_direita}</a></p>
+              <p className="contacto_p">Telefone: <a>{dadosRecrutamento[0]?.telefone_direita}</a></p>
+              <p className="contacto_p">Morada: <a>{dadosRecrutamento[0]?.morada_direita}</a></p>
             </div>
           </div>
         </div>
@@ -265,6 +254,10 @@ function RecursosHumanos() {
                         </Col>
                         <Col>
                             <Botao />
+                        </Col>
+                    </Row><Row>
+                        <Col>
+                           < Footer_menu btn_pagina_principal="Página Principal" />
                         </Col>
                     </Row>
                  

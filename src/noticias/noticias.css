@@ -72,6 +72,7 @@
     width: 38vh;
     margin-left: 2%;
     object-fit: cover;
+    min-width: 107%;
 }
 
 .p_menu_noticia{

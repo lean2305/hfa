@@ -146,10 +146,10 @@ function MenuInicial() {
      <div className='pagina_menu_inicial'>
         <div className='esquerda_menu_inicial'>
             <Quadrados 
-                quadrado_text_1="Noticias & Eventos"
+                quadrado_text_1="Notícias & Eventos"
                 quadrado_text_2="Recrutamento"
                 quadrado_text_3="Historia HFA"
-                quadrado_text_4="Videos"
+                quadrado_text_4="Vídeos"
             /> 
         </div>
         
@@ -173,7 +173,7 @@ function MenuInicial() {
                                     menu_logo="https://showroom.portugalbikevalue.pt/wp-content/uploads/2021/05/HFA-Logo-Dark.png"
                                     menu_titulo="ATENDIMENTO"
                                     menu_texto1="Para ser atendido, consoante a sua necessidade, escolha nos botões abaixo o departamento. "
-                                    menu_texto2="Enquando aguarda, navegue pela nossa plataforma para saber mais sobre nós!"
+                                    menu_texto2="Enquanto aguarda, navegue pela nossa plataforma para saber mais sobre nós!"
                             />
                         </Col>
                         <Col>
