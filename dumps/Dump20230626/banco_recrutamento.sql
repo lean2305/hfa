@@ -16,30 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `notev`
+-- Table structure for table `recrutamento`
 --
 
-DROP TABLE IF EXISTS `notev`;
+DROP TABLE IF EXISTS `recrutamento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `notev` (
-  `idnotev` int NOT NULL AUTO_INCREMENT,
-  `titulo_notev` varchar(45) NOT NULL,
-  `descr_notev` varchar(1000) NOT NULL,
-  `categoria_notev` varchar(45) NOT NULL,
-  `data_notev` date NOT NULL,
-  `imagem_notev` varchar(45) NOT NULL,
-  PRIMARY KEY (`idnotev`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1250;
+CREATE TABLE `recrutamento` (
+  `id_recrutamento` int NOT NULL AUTO_INCREMENT,
+  `img_esquerda` text,
+  `email_esquerda` text NOT NULL,
+  `telefone_esquerda` text NOT NULL,
+  `morada_esquerda` text NOT NULL,
+  `img_direita` text,
+  `email_direita` text NOT NULL,
+  `telefone_direita` text NOT NULL,
+  `morada_direita` text NOT NULL,
+  PRIMARY KEY (`id_recrutamento`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `notev`
+-- Dumping data for table `recrutamento`
 --
 
-LOCK TABLES `notev` WRITE;
-/*!40000 ALTER TABLE `notev` DISABLE KEYS */;
-/*!40000 ALTER TABLE `notev` ENABLE KEYS */;
+LOCK TABLES `recrutamento` WRITE;
+/*!40000 ALTER TABLE `recrutamento` DISABLE KEYS */;
+INSERT INTO `recrutamento` VALUES (1,'constante.png','recrutamentoagueda@grupoconstant.com','910 954 500','Rua José Sucena nº61, 3750.157 Águeda','kelly.jpg','patricia.amaral@kellyservices.pt','930 500 131','Largos Nossa Senhora da Alegria 27, 3800-369 Aveiro');
+/*!40000 ALTER TABLE `recrutamento` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-11 13:38:01
+-- Dump completed on 2023-06-26  8:43:40
