@@ -86,7 +86,10 @@
     padding-right: 30px;
     
   }
-  
+  .container_menu_noticia .div_noticia_menu_noticia {
+    margin-right: 10%; /* Espaçamento horizontal */
+    margin-bottom: 10%; /* Espaçamento vertical */
+  }
 
 .footer_menu_noticia{
     background-color: #002c4b;
